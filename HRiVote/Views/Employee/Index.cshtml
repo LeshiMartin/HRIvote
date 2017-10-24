@@ -1,0 +1,77 @@
+﻿@model IEnumerable<HRiVote.Models.Employee>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 class="text-center">Index</h2>
+<div class="row">
+    <div class="col-sm-12">
+        <p>
+            @Html.ActionLink("Create New", "AddEmployee")
+        </p>
+        @using (Html.BeginForm("Filter", "Employee", FormMethod.Post)) { 
+        <div class="col-md-4 col-md-offset-8 ">
+            @Html.TextBox("Name", "", new { @class="form-control"})
+            <input type="submit" class="btn btn-default btn-info fa fa-send"  value="Search"/>
+        </div>
+             
+             }
+        <table class="table table-condensed table-bordered col-sm-12">
+            <tr>
+                <th>
+                    @Html.ActionLink("Last Name", "Index", new { name= ViewBag.DateSortParm })
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstName)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(x => x.job.Name)
+                </th>
+
+                <th>
+                    @Html.ActionLink("isAvailable", "Index", new { name= ViewBag.NameSortParm })
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(x => x.Photo)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FirstName)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(x => item.job.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IsAvailable)
+                    </td>
+                    <td>
+                        @if (item.Photo == "No photo uploaded")
+                        {
+                            @Html.DisplayFor(x => item.Photo)
+                        }
+                        else
+                        {<img src="@Url.Content(item.Photo)" alt="@Html.DisplayFor(x => item.Photo)" width="100" />}
+                    </td>
+                    <td class="">
+                        @Html.ActionLink(" Edit", "Edit", new { id = item.ID }, new { @class = "fa fa-pencil btn btn-default btn-primary" }) |
+                        @Html.ActionLink(" Details", "Details", new { id = item.ID }, new { @class = " fa fa-search btn-default btn btn-info" }) |
+                        @Html.ActionLink(" Delete", "Delete", new { id = item.ID }, new { @class = "fa fa-trash btn btn-default btn-danger" })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>

@@ -1,0 +1,124 @@
+﻿@model HRiVote.ViewModels.CalendarViewModel
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 class="text-center">Calendar</h2>
+
+<br /><br /><hr />
+<div class="row">
+    
+        <div class="col-sm-3 Back">
+            @if (Model.employees != null)
+            {
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="font-size:large">
+                                Employees
+                                <br />
+                                <br />
+                                <hr />
+                            </th>
+                            <th>@Html.ActionLink("Employees table list","Index","Employee",null,new { @class = "fa fa-paper-plane" })</th>
+                        </tr>
+                    </thead>
+                    @foreach (var item in Model.employees)
+                    {
+                        <tr>
+                            <td class="text-center">
+                                @Html.ActionLink(item.FullName, "Details", "Employee", new { id = item.ID }, new { @class = "fa fa-search" })
+                            </td>
+                        </tr>
+                    }
+                </table>
+            }
+        </div>
+        <div class="col-sm-3">
+            @if (Model.Projects != null)
+            {
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="font-size:large">
+                                Projects
+                                <br />
+                                <br />
+                                <hr />
+                            </th>
+                            <th>
+                                @Html.ActionLink("Projects table list", "Index", "Project", null,new { @class = "fa fa-paper-plane" })
+                            </th>
+                        </tr>
+                    </thead>
+                    @foreach (var item in Model.Projects)
+                    {
+                        <tr>
+                            <td class="text-center">
+                                @Html.ActionLink(item.ProjectName, "Details", "Project", new { id = item.ID }, new { @class = "fa fa-search" })
+                            </td>
+                        </tr>
+                    }
+                </table>
+            }
+        </div>
+        <div class="col-sm-3">
+            @if (Model.Meetings != null)
+            {
+               <table>
+                    <thead>
+                        <tr>
+                            <th style="font-size:large">
+                                Meetings
+                                <br />
+                                <br />
+                                <hr />
+                                
+                            </th>
+                            <th>
+                                @Html.ActionLink("Meetingd table list","Index","Meeting",null,new { @class = "fa fa-paper-plane" })
+                            </th>
+                        </tr>
+                    </thead>
+                    @foreach (var item in Model.Meetings)
+                    {
+                        <tr>
+                            <td class="text-center">
+                                @Html.ActionLink(item.MeetingDay.ToShortDateString(), "Details", "Meeting", new { id = item.ID }, new { @class = "fa fa-search" })
+                            </td>
+                        </tr>
+                    }
+                </table>
+            }
+        </div>
+    <div class="col-sm-3">
+        @if (Model.Candidate != null)
+            {
+            <table>
+                <thead>
+                    <tr >
+                        <th style="font-size:large">
+                            Candidates
+                            <br />
+                            <br />
+                            <hr />
+                        </th>
+                        <th>
+                            @Html.ActionLink("Candidate table list", "Index", null,new { @class = "fa fa-paper-plane" })
+                        </th>
+                    </tr>
+                </thead>
+                @foreach (var item in Model.Candidate)
+                {
+                    <tr>
+                        <td class="text-center">
+                            @Html.ActionLink(item.FirstName, "Details", "Candidate", new { id = item.ID }, new { @class = "fa fa-search" })
+                        </td>
+                    </tr>
+                }
+            </table>
+        }
+    </div>
+
+    </div>
+

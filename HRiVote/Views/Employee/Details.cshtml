@@ -1,0 +1,129 @@
+﻿@model HRiVote.Models.Employee
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Employee</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.job.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.job.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BirthDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BirthDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsAvailable)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsAvailable)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VacationDays)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VacationDays)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Projects)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Projects)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Achievements)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Achievements)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CV)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CV)
+        </dd>
+
+        <dt>
+            @if (Model.CV == "No CV uploaded")
+            {
+            @Html.DisplayNameFor(model => model.Photo)
+            }
+            else
+            {
+                <a href="@Url.Content(Model.CV)"><img src="@Url.Content(Model.CV)"alt="@Html.DisplayFor(x=>x.CV)"width="100" /></a>
+            }
+        </dt>
+
+        <dd>
+            @if (Model.Photo == "No photo uploaded") {
+            @Html.DisplayFor(model => model.Photo)
+            }
+            else
+            {
+                <a href="@Url.Content(Model.Photo)"><img src="@Url.Content(Model.Photo)" alt="@Html.DisplayFor(x=>x.Photo)"width="100" /></a>
+            }
+
+        </dd>
+        
+        
+    </dl>
+</div>
+<p>
+    @Html.ActionLink(" Edit", "Edit", new { id = Model.ID },new { @class = "btn btn-primary fa fa-pencil" }) |
+    @Html.ActionLink(" Back to List", "Index",null,new { @class = "btn btn-primary fa fa-backward" })
+</p>

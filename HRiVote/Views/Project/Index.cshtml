@@ -1,0 +1,79 @@
+﻿@model IEnumerable<HRiVote.Models.ProjectManagement>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table id="Projects" class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Assignee.FullName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProjectName)
+        </th>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+       
+        <th>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Assignee.FullName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProjectName)
+        </td>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.StartDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EndDate)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID },new { @class = "btn  btn-default btn-primary fa fa-pencil" }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID },new { @class = "fa fa-search btn btn-default btn-info" }) |
+            <button data-project-id="@item.ID" type="button"class="btn btn-danger fa fa-trash js-delete">Delete</button>
+        </td>
+    </tr>
+}
+
+</table>
+@section scripts{
+<script>
+    $(document).ready(function () {
+        $("#Projects ").on("click",".js-delete", function () {
+            
+            var button = $(this);
+            $.ajax({
+                url: "/api/projects/" + button.attr("data-project-id"),
+                method: "DELETE",
+                success: function () {
+                    button.parents("tr").remove();
+                    console.log("Success")
+                }
+            })
+        });
+    });
+</script>
+}
