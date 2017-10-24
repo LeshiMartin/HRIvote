@@ -3,42 +3,121 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - HRiVote</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
+
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
+   
+           
+            @*<div class="navbar navbar-inverse navbar-fixed-top">*@
+            <div class="container">
+                <div class="navbar-header" align="center">
+                    <img src="~/Photos/iVoteLogo1200_Transparent1.png" alt="logo"/>
+                   
+                </div>
+                    <ul class="nav navbar-right">
+                       @Html.Partial("_LoginPartial")
+                    </ul>
+          
+            @*<div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
                 @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>*@
+
+            @*<ul class="nav navbar-nav">
+                <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                <li>@Html.ActionLink("About", "About", "Home")</li>
+                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+            </ul>*@
+
+        </div>
+    @*</div>*@
+    <br /><br />
+    @*<div class="row affix-row">*@
+    <div class="row">
+        @*<div class="col-sm-3 col-md-2 affix-sidebar">*@
+            <div class="col-sm-3 col-md-1 affix-sidebar">
+        @*<div class="col-xs-3 col-md-1 affix-content">*@
+            <div class="sidebar-nav" @*data-spy="affix"*@>
+                <div class=" nav navbar-inverse navbar-left" role="navigation">
+                    <div class="panel-group" id="accordion">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                @*<h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+                                        Candidate
+                                    </a>
+                                    <div class="panel-body">
+                                    @Html.ActionLink("Lista na kandidati", "Index", "Candidate")
+                                </div>
+                                </h4>*@
+                                @*<div class="panel-body">*@
+                                    @Html.ActionLink("Candidates", "Index", "Home", new { candidate=true})
+                                @*</div>*@
+                            </div>
+                            @*<div id="collapse1" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    @Html.ActionLink("Lista na kandidati", "Index", "Candidate")
+                                </div>
+                            </div>*@
+                        </div>
+                        <br />
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                @*<h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+                                        Employee
+                                    </a>
+                                </h4>*@
+                                @Html.ActionLink("Employees", "Index", "Home", new { employee=true })
+                            </div>
+                            @*<div id="collapse2" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    @Html.ActionLink("Lista na vraboteni", "Index", "Employee")
+                                </div>
+                            </div>*@
+                        </div>
+                        <br />
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                @*<h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+                                        Calendar
+                                    </a>
+                                </h4>*@
+                                @Html.ActionLink("Projects", "Index", "Home", new { projects=true})
+                            </div>
+                            @*<div id="collapse3" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    @Html.ActionLink("Proekti", "Index", "Project")
+                                </div>
+                            </div>*@
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
+        </div>
+        <div class="col-sm-9 col-md-10 affix-content">
+            <div class="container">
+                @*<div class="container body-content">*@
+
+                @RenderBody()
+                <hr />
+                <footer>
+                    <p>&copy; @DateTime.Now.Year - HRiVote</p>
+                </footer>
             </div>
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
-
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+            @Scripts.Render("~/bundles/jquery")
+            @Scripts.Render("~/bundles/bootstrap")
+            @RenderSection("scripts", required: false)
 </body>
 </html>
