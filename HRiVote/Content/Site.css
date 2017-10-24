@@ -23,6 +23,6 @@ textarea {
     max-width: 280px;
 }
 .Back{
-    background-color:rgba(17, 17, 17, 0.45);
+    background-color:rgba(17, 17, 17, 0.3) !important;
 }
 

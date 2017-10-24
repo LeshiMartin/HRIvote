@@ -22,27 +22,27 @@ namespace HRiVote.Controllers
         }
         // GET: Calendar
 
-        public ActionResult Index(bool? candidate,bool? employee,bool? meetings,bool? projects)
+        public ActionResult Index(int? candidate, int? employee,int? meetings,int? projects)
         {
             var meets = db.sredbi.Where(x => x.MeetingDay.Day - DateTime.Now.Day <= -5).ToList();
             db.sredbi.RemoveRange(meets);
             db.SaveChanges();
 
             var calendar = new CalendarViewModel();
-            if (candidate.HasValue)
+            if (candidate.HasValue && candidate.Value==1)
             {
                 calendar.Candidate = db.aplikanti.ToList();
             }
-            if (employee.HasValue)
+            if (employee.HasValue&& employee.Value==1)
             {
                 calendar.employees = db.emps.ToList();
             }
-            if (meetings.HasValue)
+            if (meetings.HasValue&&meetings.Value==1)
             {
                 calendar.Meetings = db.sredbi.ToList();
 
             }
-            if (projects.HasValue)
+            if (projects.HasValue&&projects.Value==1)
             {
                 calendar.Projects = db.project.ToList();
             }

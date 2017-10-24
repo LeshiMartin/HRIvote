@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace HRiVote.Controllers
 {
+    [HandleError(View = "DetailedError")]
     public class ProjectController : Controller
     {
         public Entity db = new Entity();

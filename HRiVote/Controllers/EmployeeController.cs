@@ -14,6 +14,7 @@ using HRiVote.Validations;
 
 namespace HRiVote.Controllers
 {
+    [HandleError(View = "DetailedError")]
     public class EmployeeController : Controller
     {
         private Entity db = new Entity();

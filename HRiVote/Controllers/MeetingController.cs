@@ -10,6 +10,7 @@ using System.Data.Entity;
 
 namespace HRiVote.Controllers
 {
+    [HandleError(View = "DetailedError")]
     public class MeetingController : Controller
     {
         private Entity db = new Entity();

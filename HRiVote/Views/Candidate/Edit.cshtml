@@ -91,8 +91,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.InterviewDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.InterviewDate, "{0:d MMM yyyy}", new { @class = "form-control" })
-                @*<input type="date" class="ui-datepicker form-control" name="Date">*@
+                @Html.TextBoxFor(x=>x.InterviewDate,Model.InterviewDate.ToShortDateString(),new { @class = "form-control"})
+                 <input type="date" class="ui-datepicker form-control" name="Date">
                 @*@Html.EditorFor(model => model.InterviewDate, new { htmlAttributes = new { @class = "form-control" } })*@
                 @Html.ValidationMessageFor(model => model.InterviewDate, "", new { @class = "text-danger" })
             </div>

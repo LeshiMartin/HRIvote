@@ -12,6 +12,7 @@ using System.IO;
 
 namespace HRiVote.Controllers
 {
+    [HandleError(View = "DetailedError")]
     public class CandidateController : Controller
     {
         private Entity db = new Entity();
