@@ -23,32 +23,32 @@
         </div>  
     <br /><br />
     
-    <div class="row">
+    <div class="row container">
             <div class="col-sm-3 col-md-1 affix-sidebar">        
             <div class="sidebar-nav">
                 <div class="nav navbar-inverse navbar-left" role="navigation">
                     <div class="panel-group" id="accordion">
                         <div class="panel panel-default">
                             <div class="panel-heading">                            
-                                @Html.ActionLink("Candidates", "Index", "Home", new { candidate = 1 },"")                                
+                                @Html.ActionLink("Candidates", "Index", "Candidate", null,new { @class = "fa fa-paper-plane" })                                
                             </div>                    
                         </div>
                         <br />
                         <div class="panel panel-default">
                             <div class="panel-heading">                      
-                                @Html.ActionLink("Employees", "Index", "Home", new { employee = 1 },"")
+                                @Html.ActionLink("Employees", "Index", "Employee", null,new { @class = "fa fa-paper-plane" })
                             </div>                   
                         </div>
                         <br />
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                @Html.ActionLink("Projects", "Index", "Home", new { projects = 1 },"")
+                                @Html.ActionLink("Projects", "Index", "Project", null,new { @class = "fa fa-paper-plane" })
                             </div>                            
                         </div>
                         <br />
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                @Html.ActionLink("Meetings", "Index", "Home", new { meetings = 1 },"")
+                                @Html.ActionLink("Meetings", "Index", "Meeting", null ,new { @class = "fa fa-paper-plane" })
                             </div>                           
                         </div>
                     </div>
@@ -65,8 +65,7 @@
             </div>
         </div>
     </div>
-            @Scripts.Render("~/bundles/jquery")
-            @Scripts.Render("~/bundles/bootstrap")
+            @Scripts.Render("~/bundles/lib")            
             @RenderSection("scripts", required: false)
 </body>
 </html>
