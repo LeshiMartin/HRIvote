@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Details";
 }
-<div class="Back">
+<div class="Back container">
     <h2>Details</h2>
 
     <div>
@@ -87,8 +87,13 @@
 
         </dl>
     </div>
+    
+</div>
+<br />
+<div class="Back container">
+    <br />
     <p>
         @Html.ActionLink(" Edit", "Edit", new { id = Model.ID }, new { @class = "btn btn-primary fa fa-pencil" }) |
-        @Html.ActionLink(" Back to List", "Index", null, new { @class = "btn btn-info fa fa-backward" })
+        @Html.ActionLink(" Back to List", "Index", null, new { @class = "btn btn-primary fa fa-backward" })
     </p>
 </div>

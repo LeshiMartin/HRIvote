@@ -28,8 +28,7 @@ namespace HRiVote.Controllers
             };
             return View(viewmodel);
         }
-        [HttpPost]
-        [Checker]
+        [HttpPost]       
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Save(Employee employee, HttpPostedFileBase file, HttpPostedFileBase file1)
         {
@@ -179,7 +178,19 @@ namespace HRiVote.Controllers
         }
         public ActionResult Details(int id)
         {
-            var emp = db.emps.Include(c => c.job).Single(x => x.ID == id);
+            var emp = db.emps.Include(c => c.job).Include(x=>x.projects).Single(x => x.ID == id);
+            try
+            {
+                if (db.project!=null)
+                {
+                    emp.projects = db.project.Where(x => x.EmployeeID == emp.ID).ToList();  
+                }                             
+            }
+            catch 
+            {
+                throw new Exception("There wasn't a project assigned to this employee");
+            }
+
             if (emp == null)
             {
                 return HttpNotFound();
