@@ -9,11 +9,12 @@ namespace HRiVote
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/lib").Include(
-                         "~/Scripts/jquery-{version}.js",
-                          "~/Scripts/bootstrap.js",
-                         "~/Scripts/respond.js",
-                         "~/Scripts/DataTables/DataTables.bootstrap.js",
-                         "~/Scripts/DataTables/jquery.dataTables.js"));
+                        "~/Scripts/jquery-{version}.js",
+                        "~/Scripts/bootstrap.js",
+                        "~/Scripts/respond.js"
+                        //"~/Scripts/DataTables/dataTables.bootstrap.js",
+                        //"~/Scripts/DataTables/jquery.dataTables.js"
+                        ));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -28,6 +29,7 @@ namespace HRiVote
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap-lumen.css",
                       "~/Content/font-awesome.css",
+                      "~/Content/DataTables/css/dataTables.bootstrap.css",
                       "~/Content/site.css"));
         }
     }
