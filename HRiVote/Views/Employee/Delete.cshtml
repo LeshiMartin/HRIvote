@@ -3,118 +3,120 @@
 @{
     ViewBag.Title = "Delete";
 }
+<div class="Back">
+    <h2>Delete</h2>
 
-<h2>Delete</h2>
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>Employee</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.job.Name)
+            </dt>
 
-<h3 >Are you sure you want to delete this?</h3>
-<div>
-    <h4>Employee</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.job.Name)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.job.Name)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.job.Name)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.LastName)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.LastName)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.FirstName)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.BirthDate)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.BirthDate)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.BirthDate)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.BirthDate)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.IsAvailable)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.IsAvailable)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.IsAvailable)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.IsAvailable)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.VacationDays)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.VacationDays)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.VacationDays)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.VacationDays)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Projects)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Projects)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Projects)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Projects)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Achievements)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Achievements)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Achievements)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Achievements)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Phone)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Phone)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Phone)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Phone)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.CV)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CV)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CV)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.CV)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Photo)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Photo)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Photo)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Photo)
-        </dd>
+        </dl>
 
-    </dl>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default btn-danger fa fa-trash" /> |
-            @Html.ActionLink(" Back to List", "Index",null,new { @class = "btn btn-primary fa fa-pencil" })
-        </div>
-    }
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default btn-danger fa fa-trash" /> |
+                @Html.ActionLink(" Back to List", "Index", null, new { @class = "btn btn-primary fa fa-pencil" })
+            </div>
+        }
+    </div>
 </div>

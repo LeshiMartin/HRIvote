@@ -18,11 +18,11 @@ namespace HRiVote.DAL.IdentityMigrations
 
         protected override void Seed(HRiVote.Models.ApplicationDbContext context)
         {
-            if (!context.Users.Any(u => u.UserName == "martinleshi@hotmail.com"))
+            if (!context.Users.Any(u => u.UserName == "martin.leshi@ivote.mk"))
             {
                 var store = new UserStore<ApplicationUser>(context);
                 var Manager = new UserManager<ApplicationUser>(store);
-                var user = new ApplicationUser {  UserName= "martinleshi@hotmail.com" };
+                var user = new ApplicationUser {  UserName= "martin.leshi@ivote.mk" };
                 Manager.Create(user, "password");
             }
         }
