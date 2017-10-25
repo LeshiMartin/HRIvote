@@ -21,66 +21,67 @@
              
              }
         <table class="table col-sm-12" id="table">
-            <tr>
-                <th>
-                    @Html.ActionLink("Last Name", "Index", new { name= ViewBag.DateSortParm })
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FirstName)
-                </th>
+            <thead>
+                <tr>
+                    <th>
+                        @Html.ActionLink("Last Name", "Index", new { name = ViewBag.DateSortParm })
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FirstName)
+                    </th>
 
-                <th>
-                    @Html.DisplayNameFor(x => x.job.Name)
-                </th>
+                    <th>
+                        @Html.DisplayNameFor(x => x.job.Name)
+                    </th>
 
-                <th>
-                    @Html.ActionLink("isAvailable", "Index", new { name= ViewBag.NameSortParm })
-                </th>
+                    <th>
+                        @Html.ActionLink("isAvailable", "Index", new { name = ViewBag.NameSortParm })
+                    </th>
 
-                <th>
-                    @Html.DisplayNameFor(x => x.Photo)
-                </th>
-                <th></th>
-            </tr>
-
+                    <th>
+                        @Html.DisplayNameFor(x => x.Photo)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.LastName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FirstName)
-                    </td>
+                <tbody>
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LastName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FirstName)
+                        </td>
 
-                    <td>
-                        @Html.DisplayFor(x => item.job.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.IsAvailable)
-                    </td>
-                    <td>
-                        @if (item.Photo == "No photo uploaded")
-                        {
-                            @Html.DisplayFor(x => item.Photo)
-                        }
-                        else
-                        {<img src="@Url.Content(item.Photo)" alt="@Html.DisplayFor(x => item.Photo)" width="100" />}
-                    </td>
-                    <td class="">
-                        @Html.ActionLink(" Edit", "Edit", new { id = item.ID }, new { @class = "fa fa-pencil btn btn-default btn-primary" }) |
-                        @Html.ActionLink(" Details", "Details", new { id = item.ID }, new { @class = " fa fa-search btn-default btn btn-info" }) |
-                        @Html.ActionLink(" Delete", "Delete", new { id = item.ID }, new { @class = "fa fa-trash btn btn-default btn-danger" })
-                    </td>
-                </tr>
+                        <td>
+                            @Html.DisplayFor(x => item.job.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IsAvailable)
+                        </td>
+                        <td>
+                            @if (item.Photo == "No photo uploaded")
+                            {
+                                @Html.DisplayFor(x => item.Photo)
+                            }
+                            else
+                            {<img src="@Url.Content(item.Photo)" alt="@Html.DisplayFor(x => item.Photo)" width="100" />}
+                        </td>
+                        <td class="">
+                            @Html.ActionLink(" Edit", "Edit", new { id = item.ID }, new { @class = "fa fa-pencil btn btn-default btn-primary" }) |
+                            @Html.ActionLink(" Details", "Details", new { id = item.ID }, new { @class = " fa fa-search btn-default btn btn-info" }) |
+                            @Html.ActionLink(" Delete", "Delete", new { id = item.ID }, new { @class = "fa fa-trash btn btn-default btn-danger" })
+                        </td>
+                    </tr>
+                </tbody>
             }
 
         </table>
     </div>
 </div>
 
-<script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
-<script type="text/javascript" charset="utf8" src="http://cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
 @section scripts{
 <script>
     $(document).ready(function () {
