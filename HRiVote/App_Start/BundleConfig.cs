@@ -9,6 +9,7 @@ namespace HRiVote
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
+                            "~/Scripts/data-table.js",
                         "~/Scripts/jquery-{version}.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
@@ -26,6 +27,7 @@ namespace HRiVote
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap-lumen.css",
                       "~/Content/font-awesome.css",
+                      "~/Content/data-tables.css",
                       "~/Content/site.css"));
         }
     }

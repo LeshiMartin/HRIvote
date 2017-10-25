@@ -1,9 +1,10 @@
 ﻿@model IEnumerable<HRiVote.Models.Employee>
-
 @{
     ViewBag.Title = "Index";
 }
+<link href="~/Content/data-tables.css" rel="stylesheet" />
 
+<script src="~/Scripts/data-table.js"></script>
 <h2 class="text-center">Index</h2>
 <div class="row">
     <div class="col-sm-12">
@@ -17,7 +18,7 @@
         </div>
              
              }
-        <table class="table col-sm-12">
+        <table id="myTable" class="table col-sm-12">
             <tr>
                 <th>
                     @Html.ActionLink("Last Name", "Index", new { name= ViewBag.DateSortParm })
@@ -75,3 +76,10 @@
         </table>
     </div>
 </div>
+@section scripts{
+<script>
+    $(document).ready(function () {
+        $('#myTable').DataTable();
+    });
+    </script>    
+}
