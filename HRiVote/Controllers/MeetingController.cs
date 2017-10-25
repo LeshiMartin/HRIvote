@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
+using HRiVote.Validations;
 
 namespace HRiVote.Controllers
 {
@@ -28,7 +29,7 @@ namespace HRiVote.Controllers
             {
                 meeting = new Meeting(),
                 Employees = db.emps.ToList(),
-                projects = db.project.ToList()
+                projects = db.project.Where(x=>x.MeetingID==0||x.MeetingID==null).ToList()
             };
             return View(ViewModel);
 
@@ -53,61 +54,56 @@ namespace HRiVote.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Save(Meeting meeting,int? Employes,int? Projects)
         {
-            if (meeting.ID == 0)
-            {              
-                db.sredbi.Add(meeting);
-                db.SaveChanges();
-                if (Employes.HasValue)
-                {
-                    var emps = db.emps.Where(x => x.ID == Employes).ToList();
-                    foreach (var item in emps)
-                    {
-                        item.MeetingID = meeting.ID;
-                    }
-                }
-                if (Projects.HasValue)
-                {
-                    var projects = db.project.Where(x => x.ID == Projects).ToList();
-                    foreach (var item in projects)
-                    {
-                        if (item.ID == Projects)
-                        {
-                            item.MeetingID = meeting.ID;
-                        }
-                    }
-                }
-                RedirectToAction("Index");
+            var viewmodel = new MeetingViewModel()
+            {
+                meeting = meeting,
+                Employees = db.emps.ToList(),
+                projects = db.project.ToList(),
+            };
+            if (!Employes.HasValue || !Projects.HasValue)
+            {
+                return View("CreateMeeting", viewmodel);
             }
             else
             {
-                var meet = db.sredbi.Single(x => x.ID == meeting.ID);
-                if (Employes.HasValue)
+                if (meeting.ID == 0)
                 {
-                    var emps = db.emps.Where(x => x.ID == Employes).ToList();
-                    foreach (var item in emps)
+                    if (ModelState.IsValid)
                     {
-                        item.MeetingID = meeting.ID;
-                    }
-                }
-                if (Projects.HasValue)
-                {
-                    var projects = db.project.Where(x => x.ID == Projects).ToList();
-                    foreach (var item in projects)
-                    {
-                        if (item.ID == Projects)
+                        db.sredbi.Add(meeting);
+                        db.SaveChanges();
+                        var emplist = db.emps.Where(x => x.ID == Employes).ToList();
+                        var project = db.project.SingleOrDefault(x => x.ID == Projects);
+                        foreach(var item in emplist)
                         {
                             item.MeetingID = meeting.ID;
-                        }
+                        };
+                        project.MeetingID = meeting.ID;
+                        db.SaveChanges();
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "Error try again");
+                        return View("CreateMeeting", viewmodel);
                     }
                 }
-                meet.MeetingDay = meeting.MeetingDay;
-               
-                meet.MeetingTime = meeting.MeetingTime;
-               
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                else
+                {
+                    var meet = db.sredbi.Single(x => x.ID == meeting.ID);
+                    var emplist = db.emps.Where(x => x.ID == Employes).ToList();
+                    var project = db.project.SingleOrDefault(x => x.ID == Projects);
+                    foreach (var item in emplist)
+                    {
+                        item.MeetingID = meeting.ID;
+                    };
+                    project.MeetingID = meeting.ID;
+                    meet.MeetingDay = meeting.MeetingDay;
+                    meet.MeetingTime = meeting.MeetingTime;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
             }
-            return View(meeting);
         }
         public ActionResult Index()
         {

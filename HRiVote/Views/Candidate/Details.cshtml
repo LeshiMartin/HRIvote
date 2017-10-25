@@ -3,90 +3,97 @@
 @{
     ViewBag.Title = "Details";
 }
+<div class="Back container">
+    <h2>Details</h2>
 
-<h2>Details</h2>
+    <div>
+        <h4>Candidate</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.LastName)
+            </dt>
 
-<div>
-    <h4>Candidate</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.LastName)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.FirstName)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PhoneNumber)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.PhoneNumber)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.PhoneNumber)
-        </dd>
 
-        
 
-        <dt>
-            @Html.DisplayNameFor(model => model.InterviewDate)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.InterviewDate)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.InterviewDate)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.InterviewDate)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.InterviewTime)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.InterviewTime)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.InterviewTime)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.InterviewTime)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.InterviewRound)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.InterviewRound)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.InterviewRound)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.CV)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.InterviewRound)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.CV)
+            </dt>
 
-        <dd> @{
-            var path = Model.CV;
-         }
-        @if (path == "Cv not Uploaded")
-         {
-            <img src="@Url.Content(Model.CV)" alt="@Html.DisplayFor(model => model.CV)" width="200" />
-         }
-        else
-        {
-            <a href="@Url.Content(Model.CV)"><img src="@Url.Content(Model.CV)" alt="@Html.DisplayFor(model => model.CV)" width="200" /></a>
-        }
-        </dd>
+            <dd>
+                @{
+                    var path = Model.CV;
+                }
+                @if (path == "Cv not Uploaded")
+                {
+                    <img src="@Url.Content(Model.CV)" alt="@Html.DisplayFor(model => model.CV)" width="200" />
+                }
+                else
+                {
+                    <a href="@Url.Content(Model.CV)"><img src="@Url.Content(Model.CV)" alt="@Html.DisplayFor(model => model.CV)" width="200" /></a>
+                }
+            </dd>
 
-    </dl>
+        </dl>
+    </div>
+    
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<br />
+<div class="Back container">
+    <br />
+    <p>
+        @Html.ActionLink(" Edit", "Edit", new { id = Model.ID }, new { @class = "btn btn-primary fa fa-pencil" }) |
+        @Html.ActionLink(" Back to List", "Index", null, new { @class = "btn btn-primary fa fa-backward" })
+    </p>
+</div>

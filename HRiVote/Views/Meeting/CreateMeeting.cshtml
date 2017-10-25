@@ -3,64 +3,64 @@
 @{
     ViewBag.Title = "CreateMeeting";
 }
+<div class="Back">
+    <h2>CreateMeeting</h2>
 
-<h2>CreateMeeting</h2>
 
+    @using (Html.BeginForm("Save", "Meeting", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(x => x.meeting.ID)
+        <div class="form-horizontal">
+            <h4>Meeting</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-@using (Html.BeginForm("Save","Meeting",FormMethod.Post)) 
-{
-    @Html.AntiForgeryToken()
-    @Html.HiddenFor(x=>x.meeting.ID)
-    <div class="form-horizontal">
-        <h4>Meeting</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        
-        <div class="form-group">
-            @Html.Label("Employes", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.ListBox("Employes",new SelectList(Model.Employees, "ID", "FullName"), new { @class="form-control",@size=3})
-                @Html.ValidationMessage("Employes")
+            <div class="form-group">
+                @Html.Label("Employes", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.ListBox("Employes", new SelectList(Model.Employees, "ID", "FullName"), new { @class = "form-control", @size = 3 })
+                    @Html.ValidationMessage("Employes")
+                </div>
+
+            </div>
+            <div class="form-group">
+                @Html.Label("Projects", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("Projects", new SelectList(Model.projects, "ID", "ProjectName"), "---Choose a Project---", new { @class = "form-control" })
+                    @Html.ValidationMessage("Employes")
+                </div>
+
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.meeting.MeetingDay, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <i class="fa fa-calendar">@Html.EditorFor(model => model.meeting.MeetingDay, new { htmlAttributes = new { @class = "form-control" } })</i> 
+                    @Html.ValidationMessageFor(model => model.meeting.MeetingDay, "", new { @class = "text-danger" })
+                </div>
             </div>
 
-        </div>
-        <div class="form-group">
-            @Html.Label("Projects", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("Projects", new SelectList(Model.Employees, "ID", "ProjectName"),"---Choose a Project---" ,new { @class = "form-control" })
-                @Html.ValidationMessage("Employes")
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.meeting.MeetingTime, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <i class="fa fa-clock-o">@Html.EditorFor(model => model.meeting.MeetingTime, new { htmlAttributes = new { @class = "form-control" } })</i> 
+                    @Html.ValidationMessageFor(model => model.meeting.MeetingTime, "", new { @class = "text-danger" })
+                </div>
             </div>
 
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.meeting.MeetingDay, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.meeting.MeetingDay, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.meeting.MeetingDay, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default btn-success " />
+                </div>
             </div>
         </div>
+    }
 
-        
-        <div class="form-group">
-            @Html.LabelFor(model => model.meeting.MeetingTime, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.meeting.MeetingTime, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.meeting.MeetingTime, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default btn-success " />
-            </div>
-        </div>
+    <div>
+        @Html.ActionLink(" Back to List", "Index", null, new { @class = "btn btn-info fa fa-backward" })
     </div>
-}
-
-<div>
-    @Html.ActionLink(" Back to List", "Index",null,new { @class = "btn btn-info fa fa-backward" })
 </div>
-
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

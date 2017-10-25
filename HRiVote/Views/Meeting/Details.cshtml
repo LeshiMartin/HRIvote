@@ -3,36 +3,42 @@
 @{
     ViewBag.Title = "Details";
 }
+<div class="Back container">
+    <h2>Details</h2>
 
-<h2>Details</h2>
+    <div>
+        <h4>Meeting</h4>
+        <hr />
+        <dl class="dl-horizontal">
 
-<div>
-    <h4>Meeting</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        
 
-        
 
-        <dt>
-            @Html.DisplayNameFor(model => model.MeetingDay)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.MeetingDay)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.MeetingDay)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.MeetingTime)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.MeetingDay)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.MeetingTime)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.MeetingTime)
+            </dt>
 
-    </dl>
+            <dd>
+                @Html.DisplayFor(model => model.MeetingTime)
+            </dd>
+
+        </dl>
+    </div>
+   
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }, new { @class = "btn btn-info fa fa-pencil" }) |
-    @Html.ActionLink(" Back to List", "Index", null, new { @class = "btn btn-info fa fa-backward" })
-</p>
+<br />
+<div class="Back container">
+    <br />
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ID }, new { @class = "btn btn-primary fa fa-pencil" }) |
+        @Html.ActionLink(" Back to List", "Index", null, new { @class = "btn btn-primary fa fa-backward" })
+    </p>
+</div>

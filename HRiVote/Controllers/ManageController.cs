@@ -10,6 +10,7 @@ using HRiVote.Models;
 
 namespace HRiVote.Controllers
 {
+    [HandleError(View = "DetailedError")]
     [Authorize]
     public class ManageController : Controller
     {

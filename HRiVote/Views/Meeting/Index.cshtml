@@ -3,52 +3,55 @@
 @{
     ViewBag.Title = "Index";
 }
-
-<h2>Index</h2>
+<link rel="stylesheet" href="//cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css" />
+<div class="Back container">
+<h2 class="text-center">List of Meetings</h2>
 
 <p>
     @Html.ActionLink("Create New", "CreateMeeting","",new { @class = "btn btn-info fa fa-pencil" })
 </p>
-<table class="table " id="Meeting">
-    <tr>
-       
-        
-        <th>
-            @Html.DisplayNameFor(model => model.MeetingDay)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MeetingTime)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        
-       
-        <td>
-            @Html.DisplayFor(modelItem => item.MeetingDay)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MeetingTime)
-        </td>
-        <td>
-            @Html.ActionLink(" Edit", "Edit", new { id=item.ID },new { @class = "btn btn-default btn-primary fa fa-pencil" }) |
-            @Html.ActionLink(" Details", "Details", new { id=item.ID },new { @class = "btn btn-default btn-info fa fa-search" }) |
-            <button type="button" class="btn btn-danger fa fa-trash js-delete" data-meeting-id="@item.ID" >Delete</button>
-        </td>
-    </tr>
+<table class="table table-hover table-responsive table-condensed " id="Meeting">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MeetingDay)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MeetingTime)
+            </th>
+            <th>Action Links</th>
+        </tr>
+    </thead>
+@foreach (var item in Model)
+{
+    <tbody>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MeetingDay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MeetingTime)
+            </td>
+            <td>
+                @Html.ActionLink(" Edit", "Reschedule", new { id = item.ID }, new { @class = "btn btn-default btn-primary fa fa-pencil" }) |
+                @Html.ActionLink(" Details", "Details", new { id = item.ID }, new { @class = "btn btn-default btn-info fa fa-search" }) |
+                <button type="button" class="btn btn-danger fa fa-trash js-delete" data-meeting-id="@item.ID"> Delete</button>
+            </td>
+        </tr>
+    </tbody>
 }
 
 </table>
+</div>
 @section scripts{
     <script>
+        $("#Meeting").DataTable();
         $(document).ready(function () {
-            $("#Meeting").on("click", "js-delete", function () {
+            $("#Meeting").on("click", ".js-delete", function () {
                 var button = $(this);
                 $.ajax({
                     url: "/api/Meeting/" + button.attr("data-meeting-id"),
-                    method: "Delete",
+                    method:"Delete",
                     success: function () {
                         button.parents("tr").remove();
                     }

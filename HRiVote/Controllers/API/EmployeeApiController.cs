@@ -64,7 +64,7 @@ namespace HRiVote.Controllers.API
             employee.JobPositionID = employe.JobPositionID;
             employee.Phone = employe.Phone;
             employee.Photo = employe.Photo;
-            employee.Projects = employe.Projects;
+           // employee.Projects = employe.Projects;
             employee.VacationDays = employe.VacationDays;
             db.SaveChanges();
             throw new HttpResponseException(HttpStatusCode.OK);

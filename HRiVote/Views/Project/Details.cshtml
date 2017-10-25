@@ -3,81 +3,87 @@
 @{
     ViewBag.Title = "Details";
 }
+<div class="Back container">
+    <h2>Details</h2>
 
-<h2>Details</h2>
+    <div>
+        <h4>ProjectManagement</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Assignee.FullName)
+            </dt>
 
-<div>
-    <h4>ProjectManagement</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Assignee.FullName)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Assignee.FullName)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Assignee.FullName)
-        </dd>
 
-        
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ProjectName)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.ProjectName)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ProjectName)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.ProjectName)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Status)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Status)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Status)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.File)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.File)
+            </dt>
 
-        <dd>
-            @if (Model.File == "Missing")
+            <dd>
+                @if (Model.File == "Missing")
             {
-            @Html.DisplayFor(model => model.File)
-            }
-            else
-            {
-                <a href="@Url.Content(Model.File)"><img src="@Url.Content(Model.File)" alt="@Html.DisplayFor(x=>x.File)" width="100" /></a>
-            }
-        </dd>
+                    @Html.DisplayFor(model => model.File)
+                }
+                else
+                {
+                    <a href="@Url.Content(Model.File)"><img src="@Url.Content(Model.File)" alt="@Html.DisplayFor(x=>x.File)" width="100" /></a>
+                }
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.StartDate)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.StartDate)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.StartDate)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.EndDate)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.EndDate)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.EndDate)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.EndDate)
+            </dd>
 
-    </dl>
+        </dl>
+    </div>
+   
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID },new { @class = "btn btn-info fa fa-pencil" }) |
-    @Html.ActionLink("Back to List", "Index",null,new { @class = "btn btn-info fa fa-backward" })
-</p>
+<br />
+<div class="Back container">
+    <br />
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ID }, new { @class = "btn btn-primary fa fa-pencil" }) |
+        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary fa fa-backward" })
+    </p>
+</div>

@@ -3,89 +3,89 @@
 @{
     ViewBag.Title = "AddProject";
 }
+<div class="Back">
+    <h2>AddProject</h2>
 
-<h2>AddProject</h2>
 
+    @using (Html.BeginForm("Save", "Project", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
 
-@using (Html.BeginForm("Save","Project",FormMethod.Post,new { enctype = "multipart/form-data" }))
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>ProjectManagement</h4>
-        @Html.HiddenFor(x=>x.project.ID)
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.project.ProjectName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.project.ProjectName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.project.ProjectName, "", new { @class = "text-danger" })
+        <div class="form-horizontal">
+            <h4>ProjectManagement</h4>
+            @Html.HiddenFor(x => x.project.ID)
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.project.ProjectName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.project.ProjectName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.project.ProjectName, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.project.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextAreaFor(model => model.project.Description, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.project.Description, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.project.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.project.Description, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.project.Description, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.project.Status, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.project.Status)
-                    @Html.ValidationMessageFor(model => model.project.Status, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.project.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.project.Status)
+                        @Html.ValidationMessageFor(model => model.project.Status, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.project.File, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <i class="fa fa-cloud-upload"> <input type="file" value="Search..." name="file" id="file" /></i> 
+                    @Html.ValidationMessageFor(model => model.project.File, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.project.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <i class="fa fa-calendar">@Html.EditorFor(model => model.project.StartDate, new { htmlAttributes = new { @class = "form-control" } })</i> 
+                    @Html.ValidationMessageFor(model => model.project.StartDate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.project.EndDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <i class="fa fa-calendar">@Html.EditorFor(model => model.project.EndDate, new { htmlAttributes = new { @class = "form-control" } })</i> 
+                    @Html.ValidationMessageFor(model => model.project.EndDate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.project.EmployeeID, "Employees", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(x => x.project.EmployeeID, new SelectList(Model.employees, "ID", "FullName"), "---Select Employee---", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.project.EmployeeID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default btn-success" />
                 </div>
             </div>
         </div>
+    }
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.project.File, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-               <input type="file" value="Search..."name="file" id="file" class="fa fa-upload"/>
-                @Html.ValidationMessageFor(model => model.project.File, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.project.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.project.StartDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.project.StartDate, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.project.EndDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.project.EndDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.project.EndDate, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.project.EmployeeID, "Employees", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(x=>x.project.EmployeeID,new SelectList(Model.employees,"ID","FullName"),"---Select Employee---", new { @class="form-control"})
-                @Html.ValidationMessageFor(model => model.project.EmployeeID, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default btn-success" />
-            </div>
-        </div>
+    <div>
+        @Html.ActionLink("Back to List", "Index", "", new { @class = "btn btn-info fa fa-backward" })
     </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index","",new { @class = "btn btn-info fa fa-backward" })
 </div>
-
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

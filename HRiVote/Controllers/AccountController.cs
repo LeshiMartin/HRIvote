@@ -13,6 +13,7 @@ using HRiVote.Models;
 namespace HRiVote.Controllers
 {
     [Authorize]
+    [HandleError(View = "DetailedError")]
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;

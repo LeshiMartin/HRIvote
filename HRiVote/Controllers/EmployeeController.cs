@@ -28,8 +28,7 @@ namespace HRiVote.Controllers
             };
             return View(viewmodel);
         }
-        [HttpPost]
-        [Checker]
+        [HttpPost]       
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Save(Employee employee, HttpPostedFileBase file, HttpPostedFileBase file1)
         {
@@ -150,27 +149,10 @@ namespace HRiVote.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-        public async Task<ActionResult> Index( string sort)
+        public  ActionResult Index( )
         {
-            ViewBag.NameSortParm = String.IsNullOrEmpty(sort) ? "name" : "";
-            ViewBag.DateSortParm = sort == "Date" ? "date" : "Date";
-            var emps = from x in db.emps select x;
-            switch (sort)
-            {
-                case "name":
-                    emps = emps.OrderByDescending(x => x.IsAvailable);
-                    break;
-                case "Date":
-                    emps = emps.OrderBy(x => x.LastName);
-                    break;
-                case "date":
-                    emps = emps.OrderByDescending(x => x.FirstName);
-                    break;
-                default:
-                    emps = emps.OrderBy(x => x.IsAvailable);
-                    break;
-            }
-            return View(await emps.Include(c=>c.job).ToListAsync());
+          
+            return View(db.emps.Include(c=>c.job).ToList());
         }
 
         public ActionResult AddPosition()
@@ -196,28 +178,28 @@ namespace HRiVote.Controllers
         }
         public ActionResult Details(int id)
         {
-            var emp = db.emps.Include(c => c.job).Single(x => x.ID == id);
+            var emp = db.emps.Include(c => c.job).Include(x=>x.projects).Single(x => x.ID == id);
+            try
+            {
+                if (db.project!=null)
+                {
+                    emp.projects = db.project.Where(x => x.EmployeeID == emp.ID).ToList();  
+                }                             
+            }
+            catch 
+            {
+                throw new Exception("There wasn't a project assigned to this employee");
+            }
+
             if (emp == null)
             {
                 return HttpNotFound();
             }
             return View(emp);
         }
-        [HttpPost]
-        public ActionResult Filter(string Name)
-        {
-            if (!string.IsNullOrEmpty(Name))
-            {
-                var emps = db.emps.Where(x => x.LastName.ToLower() == Name.ToLower() || x.FirstName.ToLower() == Name.ToLower()||x.FullName.ToLower()==Name.ToLower()).ToList();
-                return View("Index", emps);
-            }
-            else
-            {
-                ModelState.AddModelError("","No matching  Employee");
-                return View();
+       
 
-            }
-        }
+        
     }
 
 }
