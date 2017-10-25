@@ -4,13 +4,13 @@
     ViewBag.Title = "Index";
 }
 <link rel="stylesheet" href="//cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css" />
-<div class="Back">
-    <h2>Index</h2>
+<div class="Back container">
+    <h2 class="text-center">Index</h2>
 
     <p>
         @Html.ActionLink("Create New", "AddProject", null, new { @class = "btn btn-info fa fa-pencil" })
     </p>
-    <table id="Projects" class="table">
+    <table id="Projects" class="table table-hover table-responsive table-condensed">
         <thead>
             <tr>
                 <th>
@@ -30,7 +30,7 @@
                 <th>
                     @Html.DisplayNameFor(model => model.EndDate)
                 </th>
-                <th></th>
+                <th>Action Links</th>
             </tr>
         </thead>
         @foreach (var item in Model)

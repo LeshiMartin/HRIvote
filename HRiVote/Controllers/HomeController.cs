@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace HRiVote.Controllers
 {
+    [HandleError(View = "DetailedError")]
     public class HomeController : Controller
     {
         private Entity db = new Entity();
