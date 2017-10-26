@@ -15,7 +15,7 @@
                     <img src="~/Photos/iVoteLogo1200_Transparent1.png" alt="logo"/>                  
                 </div>
                 <div class="col-sm-5 col-sm-offset-3">
-                    <h5>&copy;Today is: @DateTime.Now.ToLongDateString() </h5>
+                    
                 </div>
                     <ul class="nav navbar-right">
                        @Html.Partial("_LoginPartial")
@@ -40,17 +40,7 @@
                             </div>                   
                         </div>
                         <br />
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                @Html.ActionLink("Projects", "Index", "Project", null,new { @class = "fa fa-paper-plane" })
-                            </div>                            
-                        </div>
-                        <br />
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                @Html.ActionLink("Meetings", "Index", "Meeting", null,new { @class = "fa fa-paper-plane" })
-                            </div>                           
-                        </div>
+
                     </div>
                     </div>
                 </div>

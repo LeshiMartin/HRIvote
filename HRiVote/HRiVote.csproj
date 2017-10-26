@@ -205,15 +205,11 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\API\EmployeeApiController.cs" />
-    <Compile Include="Controllers\API\MeetingController.cs" />
-    <Compile Include="Controllers\API\ProjectsController.cs" />
     <Compile Include="Controllers\CalendarController.cs" />
     <Compile Include="Controllers\CandidateController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\MeetingController.cs" />
-    <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="DAL\Entity.cs" />
     <Compile Include="DAL\EntityMigrations\201710231412400_InitialCreate.cs" />
     <Compile Include="DAL\EntityMigrations\201710231412400_InitialCreate.Designer.cs">
@@ -255,6 +251,10 @@
     <Compile Include="DAL\EntityMigrations\201710260927007_Update8.Designer.cs">
       <DependentUpon>201710260927007_Update8.cs</DependentUpon>
     </Compile>
+    <Compile Include="DAL\EntityMigrations\201710261108137_Update61.cs" />
+    <Compile Include="DAL\EntityMigrations\201710261108137_Update61.Designer.cs">
+      <DependentUpon>201710261108137_Update61.cs</DependentUpon>
+    </Compile>
     <Compile Include="DAL\EntityMigrations\Configuration.cs" />
     <Compile Include="DAL\IdentityMigrations\201710190928386_InitialCreate.cs" />
     <Compile Include="DAL\IdentityMigrations\201710190928386_InitialCreate.Designer.cs">
@@ -262,8 +262,6 @@
     </Compile>
     <Compile Include="DAL\IdentityMigrations\Configuration.cs" />
     <Compile Include="DTO\EmployeeDTO.cs" />
-    <Compile Include="Filters\MeetingFilter.cs" />
-    <Compile Include="Filters\ProjectFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -274,9 +272,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\JobPosition.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\Meeting.cs" />
     <Compile Include="Models\OpenPosition.cs" />
-    <Compile Include="Models\ProjectManagement.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
@@ -285,13 +281,9 @@
     <Compile Include="Validations\CandidateDate.cs" />
     <Compile Include="Validations\CandidateTime.cs" />
     <Compile Include="Validations\Checker.cs" />
-    <Compile Include="Validations\MeetingDate.cs" />
-    <Compile Include="Validations\ProjectsDates.cs" />
     <Compile Include="Validations\UnderAge.cs" />
     <Compile Include="Validations\Vacation.cs" />
-    <Compile Include="ViewModels\CustomProjects.cs" />
     <Compile Include="ViewModels\EmployeeViewModel.cs" />
-    <Compile Include="ViewModels\MeetingViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="bin\Antlr3.Runtime.dll" />
@@ -740,24 +732,20 @@
     <Content Include="Views\Employee\AddEmployee.cshtml" />
     <Content Include="Views\Employee\Index.cshtml" />
     <Content Include="Views\Employee\AddPosition.cshtml" />
-    <Content Include="Views\Project\Index.cshtml" />
-    <Content Include="Views\Project\AddProject.cshtml" />
     <Content Include="Views\Employee\Details.cshtml" />
     <Content Include="Views\Employee\Delete.cshtml" />
-    <Content Include="Views\Meeting\CreateMeeting.cshtml" />
-    <Content Include="Views\Meeting\Details.cshtml" />
-    <Content Include="Views\Meeting\Index.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Project\Details.cshtml" />
     <Content Include="TimePicker\LICENSE" />
     <Content Include="Views\Candidate\Create.cshtml" />
     <Content Include="Views\Candidate\Delete.cshtml" />
     <Content Include="Views\Candidate\Details.cshtml" />
     <Content Include="Views\Candidate\Edit.cshtml" />
     <Content Include="Views\Candidate\Index.cshtml" />
+    <Content Include="Views\Shared\_Layout1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Filters\" />
     <Folder Include="Images\" />
     <Folder Include="obj\Debug\TempPE\" />
     <Folder Include="Views\Calendar\" />
@@ -809,6 +797,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DAL\EntityMigrations\201710260927007_Update8.resx">
       <DependentUpon>201710260927007_Update8.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DAL\EntityMigrations\201710261108137_Update61.resx">
+      <DependentUpon>201710261108137_Update61.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DAL\IdentityMigrations\201710190928386_InitialCreate.resx">
       <DependentUpon>201710190928386_InitialCreate.cs</DependentUpon>

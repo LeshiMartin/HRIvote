@@ -35,7 +35,7 @@ namespace HRiVote.Models
         [Display(Name = "Денови од одмор")]
         public int VacationDays { get; set; }
 
-        public ICollection<ProjectManagement>projects { get; set; }
+        
 
         public string Achievements { get; set; }
 
@@ -47,13 +47,12 @@ namespace HRiVote.Models
 
         [Display(Name = "Телефон"), DataType(DataType.PhoneNumber)]
         public long Phone { get; set; }
-        [Checker]
+       
         [Required]
         [Display(Name = "Е-маил"), DataType(DataType.EmailAddress)]
         public string Email { get; set; }
         public string CV { get; set; }
         public string Photo { get; set; }
-        public int? MeetingID { get; set; }
-        public Meeting meeting { get; set; }
+        
     }
 }

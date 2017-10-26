@@ -1,5 +1,5 @@
 ﻿using HRiVote.DAL;
-using HRiVote.Filters;
+
 using HRiVote.Models;
 using HRiVote.ViewModels;
 using System;
@@ -23,8 +23,7 @@ namespace HRiVote.Controllers
             base.Dispose(disposing);
         }
         // GET: Calendar
-        [MeetingFilter]
-        [ProjectFilter]
+        
         public ActionResult Index()
         {
             //var meets = db.sredbi.Where(x => x.MeetingDay.Day - DateTime.Now.Day <= -5).ToList();

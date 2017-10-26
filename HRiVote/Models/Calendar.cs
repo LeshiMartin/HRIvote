@@ -11,8 +11,7 @@ namespace HRiVote.Models
 
         public int? EmployeeID { get; set; }
         public Employee employee { get; set; }
-        public int? ProjectManagementID { get; set; }
-        public ProjectManagement project { get; set; }
+       
         public int? CandidateID { get; set; }
         public Candidate candidate { get; set; }
         public string Title { get; set; }

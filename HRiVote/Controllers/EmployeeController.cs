@@ -30,6 +30,7 @@ namespace HRiVote.Controllers
         }
         [HttpPost]       
         [ValidateAntiForgeryToken]
+        [Checker]
         public async Task<ActionResult> Save(Employee employee, HttpPostedFileBase file, HttpPostedFileBase file1)
         {
             if (employee.ID == 0)
@@ -60,6 +61,7 @@ namespace HRiVote.Controllers
                     }
                     employee.FullName = employee.LastName + " " + employee.FirstName;
                     db.emps.Add(employee);
+                    
                     await db.SaveChangesAsync();
                     return RedirectToAction("Index");
                 }
@@ -178,18 +180,8 @@ namespace HRiVote.Controllers
         }
         public ActionResult Details(int id)
         {
-            var emp = db.emps.Include(c => c.job).Include(x=>x.projects).Single(x => x.ID == id);
-            try
-            {
-                if (db.project!=null)
-                {
-                    emp.projects = db.project.Where(x => x.EmployeeID == emp.ID).ToList();  
-                }                             
-            }
-            catch 
-            {
-                throw new Exception("There wasn't a project assigned to this employee");
-            }
+            var emp = db.emps.Include(c => c.job).Single(x => x.ID == id);
+           
 
             if (emp == null)
             {
