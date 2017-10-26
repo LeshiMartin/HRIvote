@@ -207,6 +207,7 @@
     <Compile Include="Controllers\API\EmployeeApiController.cs" />
     <Compile Include="Controllers\API\MeetingController.cs" />
     <Compile Include="Controllers\API\ProjectsController.cs" />
+    <Compile Include="Controllers\CalendarController.cs" />
     <Compile Include="Controllers\CandidateController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -249,6 +250,10 @@
     <Compile Include="DAL\EntityMigrations\201710260733115_Update7.cs" />
     <Compile Include="DAL\EntityMigrations\201710260733115_Update7.Designer.cs">
       <DependentUpon>201710260733115_Update7.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\EntityMigrations\201710260927007_Update8.cs" />
+    <Compile Include="DAL\EntityMigrations\201710260927007_Update8.Designer.cs">
+      <DependentUpon>201710260927007_Update8.cs</DependentUpon>
     </Compile>
     <Compile Include="DAL\EntityMigrations\Configuration.cs" />
     <Compile Include="DAL\IdentityMigrations\201710190928386_InitialCreate.cs" />
@@ -801,6 +806,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DAL\EntityMigrations\201710260733115_Update7.resx">
       <DependentUpon>201710260733115_Update7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DAL\EntityMigrations\201710260927007_Update8.resx">
+      <DependentUpon>201710260927007_Update8.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DAL\IdentityMigrations\201710190928386_InitialCreate.resx">
       <DependentUpon>201710190928386_InitialCreate.cs</DependentUpon>

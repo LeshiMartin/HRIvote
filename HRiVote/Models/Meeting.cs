@@ -20,5 +20,6 @@ namespace HRiVote.Models
         public DateTime MeetingTime { get; set; }      
         
         public string MeetingTitle { get; set; } 
+        public ICollection<Employee> emps { get; set; }
     }
 }

@@ -74,41 +74,32 @@ namespace HRiVote.Controllers
                 {
                     if (ModelState.IsValid)
                     {
-                        db.sredbi.Add(meeting);
-                        db.SaveChanges();
-                        var emplist = db.emps.Where(x => x.ID == Employes).ToList();
-                        var project = db.project.SingleOrDefault(x => x.ID == Projects);
-                        foreach(var item in emplist)
-                        {
-                            item.MeetingID = meeting.ID;
-                        };
+                        var project = db.project.Single(x => x.ID == Projects);
                         if (meeting.MeetingTitle == null || meeting.MeetingTitle == "")
                         {
                             meeting.MeetingTitle = "Meeting for " + project.ProjectName;
-                            db.SaveChanges();
                         }
-                        project.MeetingID = meeting.ID;
-                        try
-                        {
-                            // Your code...
-                            // Could also be before try if you know the exception occurs in SaveChanges
+                        db.sredbi.Add(meeting);
+                        db.SaveChanges();
 
-                            db.SaveChanges();
-                        }
-                        catch (DbEntityValidationException e)
+                        var employe = db.emps.Where(x => x.ID == Employes).ToList();
+                       foreach(var item in employe)
                         {
-                            foreach (var eve in e.EntityValidationErrors)
-                            {
-                                Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
-                                    eve.Entry.Entity.GetType().Name, eve.Entry.State);
-                                foreach (var ve in eve.ValidationErrors)
-                                {
-                                    Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
-                                        ve.PropertyName, ve.ErrorMessage);
-                                }
-                            }
-                           
+                            item.MeetingID = meeting.ID;
                         }
+
+
+
+                        project.MeetingID = meeting.ID;
+                        
+
+                        // Your code...
+                        // Could also be before try if you know the exception occurs in SaveChanges
+
+                        db.SaveChanges();
+                        
+                        
+                        
                         return RedirectToAction("Index");
                     }
                     else
@@ -131,7 +122,7 @@ namespace HRiVote.Controllers
                     meet.MeetingTime = meeting.MeetingTime;
                     if (meeting.MeetingTitle == null || meeting.MeetingTitle == "")
                     {
-                        meeting.MeetingTitle = "Meeting for " + project.ProjectName;
+                        meet.MeetingTitle = "Meeting for " + project.ProjectName;
                     }
                     db.SaveChanges();
                     return RedirectToAction("Index");
