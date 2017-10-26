@@ -3,43 +3,17 @@
 @{
     ViewBag.Title = "Index";
 }
-<<<<<<< HEAD
-<link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css">
+<div class="container Back">
+    <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css">
 
-<h2 class="text-center">Index</h2>
-
-<div class="row">
-    <div class="col-sm-12 col-sm-offset-1">
-        <p>
-            @Html.ActionLink("  Create New", "AddEmployee",null,new { @class = "btn btn-info fa fa-pencil" })
-        </p>
-        @using (Html.BeginForm("Filter", "Employee", FormMethod.Post)) {
-        <div class="col-md-4 col-md-offset-8 ">
-            @Html.TextBox("Name", "", new { @class="form-control"})
-            <input type="submit" class="btn btn-default btn-info fa fa-send"  value="Search"/>
-        </div>
-
-             }
-        <table class="table col-sm-12" id="table">
-            <tr>
-                <th>
-                    @Html.ActionLink("Last Name", "Index", new { name= ViewBag.DateSortParm })
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FirstName)
-                </th>
-=======
-<link rel="stylesheet" href="//cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css" />
-<div class="Back container">
-    <h2 class="text-center">List of Employees</h2>
+    <h2 class="text-center">Index</h2>
     <div class="row">
-        <div class="col-sm-12">
-            <p>
-                @Html.ActionLink("Create New", "AddEmployee", null, new { @class = "btn btn-info fa fa-pencil" })
-            </p>
-       
+        
 
->>>>>>> 4d3eed02b7a6b2748d358b56cf9864f7f9156fd5
+
+            <p>
+                @Html.ActionLink("Create New", "AddEmployee", null, new { @class = "btn btn-primary fa fa-pencil" })
+            </p>
 
             <table id="myTable" class="table table-hover table-responsive col-sm-12">
                 <thead>
@@ -99,33 +73,14 @@
                     </tbody>
                 }
 
-<<<<<<< HEAD
-        </table>
-        @*<link href="//cdn.datatables.net/1.10.9/js/jquery.dataTables.min.css" rel="stylesheet" />*@
-    </div>
-</div>
 
-
-@section scripts{
-    <script type="text/javascript" charset="utf8" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
-<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.5/js/jquery.dataTables.js"></script>
-
-
-
-<script>
-    $(document).ready(function () {
-        $('#table').DataTable( );
-
-
-    });
-
-    </script>
-
-=======
             </table>
+
         </div>
     </div>
-</div>
+
+
+
 @section scripts{
 
 <script>
@@ -133,5 +88,5 @@
         $("#myTable").DataTable();
     });
 </script>    
->>>>>>> 4d3eed02b7a6b2748d358b56cf9864f7f9156fd5
+
 }
