@@ -20,18 +20,10 @@ namespace HRiVote.Controllers
         // GET: Candidate
         public ActionResult Index(string currentFilter,string searchString)
         {
-            ViewBag.CurrentFilter = searchString;
-            var candidates = from cand in db.aplikanti
-                            select cand;
-            if(!String.IsNullOrEmpty(searchString))
-            {
-                candidates = candidates.Where(c => c.FirstName.Contains(searchString) || c.LastName.Contains(searchString));
-                return View(candidates.ToList());
-            }
-            else
-            {
+            
+            
                 return View(db.aplikanti.ToList());
-            }
+            
         }
 
         // GET: Candidate/Details/5
@@ -59,8 +51,8 @@ namespace HRiVote.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-      
-        public ActionResult Create([Bind(Include = "ID,LastName,FirstName,Email,PhoneNumber,CV,InterviewDate,InterviewTime")] Candidate candidate, HttpPostedFileBase file,DateTime? Time, int? InterviewRound)
+      [ValidateAntiForgeryToken]
+        public ActionResult Create( Candidate candidate, HttpPostedFileBase file, int? InterviewRound)
         {
             if (ModelState.IsValid)
             {
@@ -76,19 +68,8 @@ namespace HRiVote.Controllers
                     candidate.CV = "Cv not Uploaded";
                     //ViewBag.Message = "Cv not Uploaded";
                 }
-                if (Time.HasValue)
-                {
-                    candidate.InterviewTime = Time.Value;
-                }
-                else
-                {
-                    ModelState.AddModelError("Time", "This field is mandatory");
-                }
-                if(candidate.InterviewDate < DateTime.Now)
-                {
-                    ModelState.AddModelError("InterviewDate", "Vnesovte minat datum.");
-                    return View(candidate);
-                }
+               
+               
                 if(InterviewRound.HasValue)
                 {
                     candidate.InterviewRound = InterviewRound.Value;
@@ -121,7 +102,7 @@ namespace HRiVote.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,LastName,FirstName,Email,PhoneNumber,InterviewDate,InterviewTime, InterviewRound")] Candidate candidate, DateTime? Time,HttpPostedFileBase file, int? InterviewRound, DateTime? Date)
+        public ActionResult Edit([Bind(Include = "ID,LastName,FirstName,Email,PhoneNumber,InterviewDate,InterviewTime, InterviewRound")] Candidate candidate, HttpPostedFileBase file, int? InterviewRound)
         {
             if (ModelState.IsValid)
             {
@@ -139,14 +120,7 @@ namespace HRiVote.Controllers
                 }
                 
                 db.Entry(candidate).State = EntityState.Modified;
-                if(Time.HasValue)
-                {
-                    candidate.InterviewTime = Time.Value;
-                }
-                if(Date.HasValue)
-                {
-                    candidate.InterviewDate = Date.Value;
-                }
+               
                 if(InterviewRound.HasValue)
                 {
                     candidate.InterviewRound = InterviewRound.Value;

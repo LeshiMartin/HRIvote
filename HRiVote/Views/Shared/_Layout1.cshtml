@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+   
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - HRiVote</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+
+
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <div class="container">
+        <div class="navbar-header col-sm-4 col-sm-offset-5 text-center"  @*style="float:right"*@>
+            <img src="~/Photos/iVoteLogo1200_Transparent1.png" alt="logo" />
+        </div>
+        <div class="col-sm-5 col-sm-offset-3">
+
+        </div>
+        <ul class="nav navbar-right">
+            @Html.Partial("_LoginPartial")
+        </ul>
+    </div>  
+    <div>
+        @RenderBody()
+    </div>
+    @Scripts.Render("~/bundles/lib")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

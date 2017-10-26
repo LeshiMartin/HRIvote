@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HRiVote.Validations;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -32,11 +33,12 @@ namespace HRiVote.Models
         public string CV { get; set; }
 
         [Required]
+        [CandidateDate]
         [Display(Name ="Датум на интервју")]
         [DataType(DataType.Date), DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime InterviewDate { get; set; }
 
-        
+        [CandidateTime]
         [Display(Name = "Време на интервју")]
         [DataType(DataType.Time)/*, DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")*/]
         public DateTime? InterviewTime { get; set; }

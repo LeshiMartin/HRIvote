@@ -21,11 +21,11 @@ namespace HRiVote.DAL
             base.OnModelCreating(modelBuilder);
         }
         public DbSet<Employee> emps { get; set; }
-        public DbSet<ProjectManagement> project { get; set; }
+       
         public DbSet<Candidate> aplikanti { get; set; }
         public DbSet<OpenPosition> pozicii { get; set; }
-        public DbSet<Meeting> sredbi { get; set; } 
-        //public DbSet<Calendar> kalendar { get; set; }
+        public DbSet<Skills> skilss { get; set; }
+        public DbSet<Calendar> kalendar { get; set; }
         public DbSet<JobPosition> positions { get; set; }
     }
 }

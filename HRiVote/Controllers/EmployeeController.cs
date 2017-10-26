@@ -21,16 +21,19 @@ namespace HRiVote.Controllers
         // GET: Employee
         public ActionResult AddEmployee()
         {
+            
+            
             var viewmodel = new EmployeeViewModel()
             {
                 employee = new Employee(),
-                positions = db.positions.ToList()
+                positions = db.positions.ToList(),
+               
             };
             return View(viewmodel);
         }
-        [HttpPost]
-        [Checker]
+        [HttpPost]       
         [ValidateAntiForgeryToken]
+        [Checker]
         public async Task<ActionResult> Save(Employee employee, HttpPostedFileBase file, HttpPostedFileBase file1)
         {
             if (employee.ID == 0)
@@ -61,6 +64,7 @@ namespace HRiVote.Controllers
                     }
                     employee.FullName = employee.LastName + " " + employee.FirstName;
                     db.emps.Add(employee);
+                    
                     await db.SaveChangesAsync();
                     return RedirectToAction("Index");
                 }
@@ -87,6 +91,7 @@ namespace HRiVote.Controllers
                 empl.JobPositionID = employee.JobPositionID;
                 empl.Phone = employee.Phone;
                 empl.VacationDays = employee.VacationDays;
+                empl.EmploymentStatus = employee.EmploymentStatus;
                 if (file!=null&&file.ContentLength > 0)
                 {
                     var name = Path.GetFileName(file.FileName);
@@ -124,12 +129,14 @@ namespace HRiVote.Controllers
             {
                 return HttpNotFound();
             }
-            var viewmodel = new EmployeeViewModel()
-            {
-                employee = emp,
-                positions = db.positions.ToList()
-            };
-            return View("AddEmployee", viewmodel);
+                var viewmodel = new EmployeeViewModel()
+                {
+                    employee = emp,
+                    positions = db.positions.ToList(),
+
+                };
+                return View("AddEmployee", viewmodel);
+            
         }
         public ActionResult Delete(int id)
         {
@@ -146,31 +153,14 @@ namespace HRiVote.Controllers
         public ActionResult DeleltePost(int id)
         {
             var emp = db.emps.Find(id);
-            db.emps.Remove(emp);
+            emp.EmploymentStatus = false;
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-        public async Task<ActionResult> Index( string sort)
+        public  ActionResult Index( )
         {
-            ViewBag.NameSortParm = String.IsNullOrEmpty(sort) ? "name" : "";
-            ViewBag.DateSortParm = sort == "Date" ? "date" : "Date";
-            var emps = from x in db.emps select x;
-            switch (sort)
-            {
-                case "name":
-                    emps = emps.OrderByDescending(x => x.IsAvailable);
-                    break;
-                case "Date":
-                    emps = emps.OrderBy(x => x.LastName);
-                    break;
-                case "date":
-                    emps = emps.OrderByDescending(x => x.FirstName);
-                    break;
-                default:
-                    emps = emps.OrderBy(x => x.IsAvailable);
-                    break;
-            }
-            return View(await emps.Include(c=>c.job).ToListAsync());
+          
+            return View(db.emps.Include(c=>c.job).Where(x=>x.EmploymentStatus==true).ToList());
         }
 
         public ActionResult AddPosition()
@@ -180,15 +170,23 @@ namespace HRiVote.Controllers
         [HttpPost]
         [ActionName("AddPosition")]
         [ValidateAntiForgeryToken]
-        public ActionResult Add(JobPosition jobPosition)
+        public ActionResult Add(JobPosition jobPosition,string skils)
         {
             if (ModelState.IsValid)
             {
-                if (!db.positions.Select(x => x.Name).Contains(jobPosition.Name))
+                if (!db.positions.Select(x => x.Title).Contains(jobPosition.Title))
                 {
+                    jobPosition.Status = true;
+                   
                     db.positions.Add(jobPosition);
                     db.SaveChanges();
 
+                }
+                else
+                {
+                    var job = db.positions.Single(x => x.Title == jobPosition.Title);
+                    
+                    db.SaveChanges();
                 }
                 return RedirectToAction("AddEmployee");
             }
@@ -197,27 +195,17 @@ namespace HRiVote.Controllers
         public ActionResult Details(int id)
         {
             var emp = db.emps.Include(c => c.job).Single(x => x.ID == id);
+           
+
             if (emp == null)
             {
                 return HttpNotFound();
             }
             return View(emp);
         }
-        [HttpPost]
-        public ActionResult Filter(string Name)
-        {
-            if (!string.IsNullOrEmpty(Name))
-            {
-                var emps = db.emps.Where(x => x.LastName.ToLower() == Name.ToLower() || x.FirstName.ToLower() == Name.ToLower()||x.FullName.ToLower()==Name.ToLower()).ToList();
-                return View("Index", emps);
-            }
-            else
-            {
-                ModelState.AddModelError("","No matching  Employee");
-                return View();
+       
 
-            }
-        }
+        
     }
 
 }

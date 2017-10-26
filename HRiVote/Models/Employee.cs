@@ -30,16 +30,16 @@ namespace HRiVote.Models
 
         [Required]
         [Display(Name = "Достапен")]
-        public bool? IsAvailable { get; set; }
+        public bool IsAvailable { get; set; }
         [Vacations]
         [Display(Name = "Денови од одмор")]
         public int VacationDays { get; set; }
 
-        public string Projects { get; set; }
+        public bool EmploymentStatus { get; set; }
 
         public string Achievements { get; set; }
 
-
+        public string Skills { get; set; }
 
         [Display(Name = "Позиција")]
         public JobPosition job { get; set; }
@@ -47,12 +47,12 @@ namespace HRiVote.Models
 
         [Display(Name = "Телефон"), DataType(DataType.PhoneNumber)]
         public long Phone { get; set; }
-
+       
+        [Required]
         [Display(Name = "Е-маил"), DataType(DataType.EmailAddress)]
         public string Email { get; set; }
         public string CV { get; set; }
         public string Photo { get; set; }
-        public int? MeetingID { get; set; }
-        public Meeting meeting { get; set; }
+        
     }
 }
