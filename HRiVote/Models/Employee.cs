@@ -30,16 +30,16 @@ namespace HRiVote.Models
 
         [Required]
         [Display(Name = "Достапен")]
-        public bool? IsAvailable { get; set; }
+        public bool IsAvailable { get; set; }
         [Vacations]
         [Display(Name = "Денови од одмор")]
         public int VacationDays { get; set; }
 
-        
+        public bool EmploymentStatus { get; set; }
 
         public string Achievements { get; set; }
 
-
+        public string Skills { get; set; }
 
         [Display(Name = "Позиција")]
         public JobPosition job { get; set; }

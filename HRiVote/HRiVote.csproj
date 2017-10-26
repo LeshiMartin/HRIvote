@@ -210,6 +210,7 @@
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PosstionsController.cs" />
     <Compile Include="DAL\Entity.cs" />
     <Compile Include="DAL\EntityMigrations\201710231412400_InitialCreate.cs" />
     <Compile Include="DAL\EntityMigrations\201710231412400_InitialCreate.Designer.cs">
@@ -255,6 +256,10 @@
     <Compile Include="DAL\EntityMigrations\201710261108137_Update61.Designer.cs">
       <DependentUpon>201710261108137_Update61.cs</DependentUpon>
     </Compile>
+    <Compile Include="DAL\EntityMigrations\201710261405278_Update9.cs" />
+    <Compile Include="DAL\EntityMigrations\201710261405278_Update9.Designer.cs">
+      <DependentUpon>201710261405278_Update9.cs</DependentUpon>
+    </Compile>
     <Compile Include="DAL\EntityMigrations\Configuration.cs" />
     <Compile Include="DAL\IdentityMigrations\201710190928386_InitialCreate.cs" />
     <Compile Include="DAL\IdentityMigrations\201710190928386_InitialCreate.Designer.cs">
@@ -273,6 +278,7 @@
     <Compile Include="Models\JobPosition.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\OpenPosition.cs" />
+    <Compile Include="Models\Skills.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
@@ -749,6 +755,7 @@
     <Folder Include="Images\" />
     <Folder Include="obj\Debug\TempPE\" />
     <Folder Include="Views\Calendar\" />
+    <Folder Include="Views\Posstions\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -800,6 +807,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DAL\EntityMigrations\201710261108137_Update61.resx">
       <DependentUpon>201710261108137_Update61.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DAL\EntityMigrations\201710261405278_Update9.resx">
+      <DependentUpon>201710261405278_Update9.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DAL\IdentityMigrations\201710190928386_InitialCreate.resx">
       <DependentUpon>201710190928386_InitialCreate.cs</DependentUpon>

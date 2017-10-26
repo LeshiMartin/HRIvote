@@ -102,7 +102,7 @@ namespace HRiVote.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,LastName,FirstName,Email,PhoneNumber,InterviewDate,InterviewTime, InterviewRound")] Candidate candidate, DateTime? Time,HttpPostedFileBase file, int? InterviewRound, DateTime? Date)
+        public ActionResult Edit([Bind(Include = "ID,LastName,FirstName,Email,PhoneNumber,InterviewDate,InterviewTime, InterviewRound")] Candidate candidate, HttpPostedFileBase file, int? InterviewRound)
         {
             if (ModelState.IsValid)
             {
@@ -120,14 +120,7 @@ namespace HRiVote.Controllers
                 }
                 
                 db.Entry(candidate).State = EntityState.Modified;
-                if(Time.HasValue)
-                {
-                    candidate.InterviewTime = Time.Value;
-                }
-                if(Date.HasValue)
-                {
-                    candidate.InterviewDate = Date.Value;
-                }
+               
                 if(InterviewRound.HasValue)
                 {
                     candidate.InterviewRound = InterviewRound.Value;

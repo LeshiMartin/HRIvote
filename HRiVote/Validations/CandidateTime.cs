@@ -16,7 +16,7 @@ namespace HRiVote.Validations
             {
                 return new ValidationResult("You Must enter an InterviewTime");
             }
-            if (candidate.InterviewTime.Value.Hour < DateTime.Now.Hour)
+            if (candidate.InterviewDate.Date<=DateTime.Now.Date && candidate.InterviewTime.Value.Hour < DateTime.Now.Hour)
             {
                 return new ValidationResult("You entered invalid time for interview");
             }

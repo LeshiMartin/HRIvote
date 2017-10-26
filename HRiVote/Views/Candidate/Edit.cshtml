@@ -85,7 +85,7 @@
                     @Html.LabelFor(model => model.InterviewTime, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @*<input type="datetime-local" />*@
-                        <i class="fa fa-clock-o"><input type="time" class="glyphicon-time form-control" name="Time" /></i>
+                        <i class="fa fa-clock-o">@Html.EditorFor(x=>x.InterviewTime, new { htmlAttributes = new { @class = "form-control",Type="time" } })</i>
                         @Html.ValidationMessageFor(model => model.InterviewTime, "", new { @class = "text-danger" })
                     </div>
                 </div>

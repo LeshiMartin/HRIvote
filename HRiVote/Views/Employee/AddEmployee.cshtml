@@ -21,7 +21,14 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.employee.JobPositionID, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownListFor(x => x.employee.JobPositionID, new SelectList(Model.positions, "ID", "Name"), "---Select---", new { @class = "form-control" })
+                    @Html.DropDownListFor(x => x.employee.JobPositionID, new SelectList(Model.positions, "ID", "Title"), "---Select---", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.employee.JobPositionID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.employee.Skills, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.ListBoxFor(x => x.employee.Skills, Model.Lpositions,  new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.employee.JobPositionID, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -72,7 +79,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.employee.Achievements, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.employee.Achievements, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.TextAreaFor(model => model.employee.Achievements, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.employee.Achievements, "", new { @class = "text-danger" })
                 </div>
             </div>
