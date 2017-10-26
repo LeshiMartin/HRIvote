@@ -17,6 +17,8 @@ namespace HRiVote.Models
         public DateTime MeetingDay { get; set; }
         [DataType(DataType.Time)]
         [DisplayFormat(DataFormatString ="{0:hh-mm}")]
-        public DateTime MeetingTime { get; set; }       
+        public DateTime MeetingTime { get; set; }      
+        
+        public string MeetingTitle { get; set; } 
     }
 }

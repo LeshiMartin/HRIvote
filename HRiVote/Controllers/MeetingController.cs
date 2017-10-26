@@ -8,6 +8,9 @@ using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
 using HRiVote.Validations;
+using HRiVote.Filters;
+using System.Data;
+using System.Data.Entity.Validation;
 
 namespace HRiVote.Controllers
 {
@@ -51,7 +54,8 @@ namespace HRiVote.Controllers
         }
         // GET: Meeting
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        
+       // [ValidateAntiForgeryToken]
         public ActionResult Save(Meeting meeting,int? Employes,int? Projects)
         {
             var viewmodel = new MeetingViewModel()
@@ -78,8 +82,33 @@ namespace HRiVote.Controllers
                         {
                             item.MeetingID = meeting.ID;
                         };
+                        if (meeting.MeetingTitle == null || meeting.MeetingTitle == "")
+                        {
+                            meeting.MeetingTitle = "Meeting for " + project.ProjectName;
+                            db.SaveChanges();
+                        }
                         project.MeetingID = meeting.ID;
-                        db.SaveChanges();
+                        try
+                        {
+                            // Your code...
+                            // Could also be before try if you know the exception occurs in SaveChanges
+
+                            db.SaveChanges();
+                        }
+                        catch (DbEntityValidationException e)
+                        {
+                            foreach (var eve in e.EntityValidationErrors)
+                            {
+                                Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                                    eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                                foreach (var ve in eve.ValidationErrors)
+                                {
+                                    Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                                        ve.PropertyName, ve.ErrorMessage);
+                                }
+                            }
+                           
+                        }
                         return RedirectToAction("Index");
                     }
                     else
@@ -100,6 +129,10 @@ namespace HRiVote.Controllers
                     project.MeetingID = meeting.ID;
                     meet.MeetingDay = meeting.MeetingDay;
                     meet.MeetingTime = meeting.MeetingTime;
+                    if (meeting.MeetingTitle == null || meeting.MeetingTitle == "")
+                    {
+                        meeting.MeetingTitle = "Meeting for " + project.ProjectName;
+                    }
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
