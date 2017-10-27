@@ -28,11 +28,12 @@
                     </td>
                     <td>
                         @Html.ActionLink("Edit", "Edit", new { id = item.ID },new { @class = "btn btn-primary fa fa-pencil" }) |                      
-                        @Html.ActionLink("Delete", "Delete", new { id = item.ID },new { @class = "btn btn-danger fa fa-trash" })
+                        <button data-project-id="@item.ID" type="button" class="btn btn-danger fa fa-trash js-delete">Delete</button>
                     </td>
                 </tr>
             </tbody>
         }
+        
 
     </table>
 </div>
@@ -41,6 +42,18 @@
     <script>
         $(document).ready(function () {
             $("#table").DataTable();
+            $("#table").on("click", ".js-delete", function () {
+                var button = $(this);
+                $.ajax({
+                    url: "/api/Possitons/" + button.attr("data-project-id"),
+                    method: "DELETE",
+                    success: function () {
+                        button.parents("tr").remove();
+                        console.log("Success")
+                    }
+                })
+            });
+
         });
     </script>
 }

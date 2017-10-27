@@ -205,6 +205,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\API\EmployeeApiController.cs" />
+    <Compile Include="Controllers\API\PossitonsController.cs" />
     <Compile Include="Controllers\CalendarController.cs" />
     <Compile Include="Controllers\CandidateController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
@@ -268,6 +269,10 @@
     <Compile Include="DAL\EntityMigrations\201710261710039_update11.cs" />
     <Compile Include="DAL\EntityMigrations\201710261710039_update11.Designer.cs">
       <DependentUpon>201710261710039_update11.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\EntityMigrations\201710271012322_OpenPosition Update.cs" />
+    <Compile Include="DAL\EntityMigrations\201710271012322_OpenPosition Update.Designer.cs">
+      <DependentUpon>201710271012322_OpenPosition Update.cs</DependentUpon>
     </Compile>
     <Compile Include="DAL\EntityMigrations\Configuration.cs" />
     <Compile Include="DAL\IdentityMigrations\201710190928386_InitialCreate.cs" />
@@ -833,6 +838,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DAL\EntityMigrations\201710261710039_update11.resx">
       <DependentUpon>201710261710039_update11.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DAL\EntityMigrations\201710271012322_OpenPosition Update.resx">
+      <DependentUpon>201710271012322_OpenPosition Update.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DAL\IdentityMigrations\201710190928386_InitialCreate.resx">
       <DependentUpon>201710190928386_InitialCreate.cs</DependentUpon>

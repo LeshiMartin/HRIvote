@@ -24,7 +24,7 @@ namespace HRiVote.Controllers
             var viewmodel = new EmployeeViewModel()
             {
                 employee = new Employee(),
-                positions = db.positions.ToList(),
+                positions = db.positions.Where(x => x.Status == true).ToList(),
                 skils = db.skilss.ToList()
                
             };
@@ -97,8 +97,8 @@ namespace HRiVote.Controllers
                     var viewmodel = new EmployeeViewModel()
                     {
                         employee = employee,
-                        positions = db.positions.ToList(),
-                        skils=db.skilss.ToList()
+                        positions = db.positions.Where(x => x.Status == true).ToList(),
+                        skils =db.skilss.ToList()
                     };
                     return View("AddEmployee", viewmodel);
                 }
@@ -168,8 +168,8 @@ namespace HRiVote.Controllers
                 var viewmodel = new EmployeeViewModel()
                 {
                     employee = emp,
-                    positions = db.positions.ToList(),
-                    skils=db.skilss.ToList()
+                    positions = db.positions.Where(x => x.Status == true).ToList(),
+                    skils =db.skilss.ToList()
 
                 };
                 return View("AddEmployee", viewmodel);
@@ -208,7 +208,7 @@ namespace HRiVote.Controllers
             var viewmodel = new EmployeeViewModel()
             {
                 emps = emps,
-                positions = db.positions.ToList(),
+                positions = db.positions.Where(x=>x.Status==true).ToList(),
                 skils = db.skilss.ToList(),
             };
             return View(viewmodel);
