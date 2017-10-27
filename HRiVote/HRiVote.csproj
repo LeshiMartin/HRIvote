@@ -18,7 +18,8 @@
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort>44333</IISExpressSSLPort>
+    <IISExpressSSLPort>
+    </IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -259,6 +260,10 @@
     <Compile Include="DAL\EntityMigrations\201710261405278_Update9.cs" />
     <Compile Include="DAL\EntityMigrations\201710261405278_Update9.Designer.cs">
       <DependentUpon>201710261405278_Update9.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\EntityMigrations\201710261451238_Update91.cs" />
+    <Compile Include="DAL\EntityMigrations\201710261451238_Update91.Designer.cs">
+      <DependentUpon>201710261451238_Update91.cs</DependentUpon>
     </Compile>
     <Compile Include="DAL\EntityMigrations\Configuration.cs" />
     <Compile Include="DAL\IdentityMigrations\201710190928386_InitialCreate.cs" />
@@ -810,6 +815,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DAL\EntityMigrations\201710261405278_Update9.resx">
       <DependentUpon>201710261405278_Update9.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DAL\EntityMigrations\201710261451238_Update91.resx">
+      <DependentUpon>201710261451238_Update91.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DAL\IdentityMigrations\201710190928386_InitialCreate.resx">
       <DependentUpon>201710190928386_InitialCreate.cs</DependentUpon>
