@@ -262,7 +262,7 @@
     <Compile Include="DAL\EntityMigrations\201710261405278_Update9.Designer.cs">
       <DependentUpon>201710261405278_Update9.cs</DependentUpon>
     </Compile>
-<<<<<<< HEAD
+&lt; HEAD
     <Compile Include="DAL\EntityMigrations\201710261451238_Update91.cs" />
     <Compile Include="DAL\EntityMigrations\201710261451238_Update91.Designer.cs">
       <DependentUpon>201710261451238_Update91.cs</DependentUpon>
@@ -274,7 +274,7 @@
     <Compile Include="DAL\EntityMigrations\201710261710039_update11.cs" />
     <Compile Include="DAL\EntityMigrations\201710261710039_update11.Designer.cs">
       <DependentUpon>201710261710039_update11.cs</DependentUpon>
->>>>>>> 0516d7b94b2f0085db53b1b7ae18614d60a46f99
+&gt; 0516d7b94b2f0085db53b1b7ae18614d60a46f99
     </Compile>
     <Compile Include="DAL\EntityMigrations\Configuration.cs" />
     <Compile Include="DAL\IdentityMigrations\201710190928386_InitialCreate.cs" />
@@ -835,7 +835,7 @@
     <EmbeddedResource Include="DAL\EntityMigrations\201710261405278_Update9.resx">
       <DependentUpon>201710261405278_Update9.cs</DependentUpon>
     </EmbeddedResource>
-<<<<<<< HEAD
+&lt; HEAD
     <EmbeddedResource Include="DAL\EntityMigrations\201710261451238_Update91.resx">
       <DependentUpon>201710261451238_Update91.cs</DependentUpon>
 =======
@@ -844,7 +844,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DAL\EntityMigrations\201710261710039_update11.resx">
       <DependentUpon>201710261710039_update11.cs</DependentUpon>
->>>>>>> 0516d7b94b2f0085db53b1b7ae18614d60a46f99
+&gt; 0516d7b94b2f0085db53b1b7ae18614d60a46f99
     </EmbeddedResource>
     <EmbeddedResource Include="DAL\IdentityMigrations\201710190928386_InitialCreate.resx">
       <DependentUpon>201710190928386_InitialCreate.cs</DependentUpon>
