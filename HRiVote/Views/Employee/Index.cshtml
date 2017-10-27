@@ -1,4 +1,4 @@
-﻿@model IEnumerable<HRiVote.Models.Employee>
+﻿@model HRiVote.ViewModels.EmployeeViewModel
 
 @{
     ViewBag.Title = "Index";
@@ -7,39 +7,52 @@
     <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css">
 
     <h2 class="text-center">Index</h2>
-    <div class="row">
-        
 
-
+    <div class="row">   
             <p>
                 @Html.ActionLink("Create New", "AddEmployee", null, new { @class = "btn btn-primary fa fa-pencil" })
             </p>
-
+            <br /><br />
+        @using (Html.BeginForm("IndexPost", "Employee", FormMethod.Post))
+        {
+        <div class="col-sm-4 ">
+            @Html.Label("Job Possitions")
+            @Html.DropDownList("pos",new SelectList(Model.positions,"ID","Title" ,"---Filter by Job Posstions---"),new {@class="form-control"})
+        </div>
+        <div class="col-sm-4 ">
+            @Html.Label("Skills")
+            @Html.DropDownList("skil",new SelectList(Model.skils,"ID", "Skill"),"---Filter by Skills---",new { @class="form-control"})
+        </div>
+        <br /><br />
+        }
+        </div>
+        <div class="row">
+            <br /><br />
             <table id="myTable" class="table table-hover table-responsive col-sm-12">
                 <thead>
                     <tr>
                         <th>
-                            @Html.DisplayNameFor(x => x.LastName)
+                            Last Name
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.FirstName)
-                        </th>
-
-                        <th>
-                            @Html.DisplayNameFor(x => x.job.Title)
+                            First Name
                         </th>
 
                         <th>
-                            @Html.DisplayNameFor(x => x.IsAvailable)
+                            Job title
                         </th>
 
                         <th>
-                            @Html.DisplayNameFor(x => x.Photo)
+                            Available
+                        </th>
+
+                        <th>
+                            Photo
                         </th>
                         <th>Action Links</th>
                     </tr>
                 </thead>
-                @foreach (var item in Model)
+                @foreach (var item in Model.emps)
             {
                     <tbody>
                         <tr>

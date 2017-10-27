@@ -63,17 +63,31 @@ namespace HRiVote.Controllers
                     }
                     employee.FullName = employee.LastName + " " + employee.FirstName;
                     employee.EmploymentStatus = true;
+                    List<Skills> skils = new List<Skills>();
+                    foreach(var item in skills)
+                    {
+                        employee.skils = db.skilss.Where(x => x.ID == item).ToList();
+                        if (!db.emps.Select(x=>x.Email).Contains(employee.Email))
+                        {
+                            db.emps.Add(employee);
+                            await db.SaveChangesAsync();
+                        }
+                        else if(db.emps.Select(x=>x.ID).Contains(employee.ID))
+                        {
 
-                   
-                    db.emps.Add(employee);
+                            var emp = db.emps.Single(x => x.ID == employee.ID);
+                            emp.skils = employee.skils;
+                            await db.SaveChangesAsync();
+                        }
+                        var sk = db.skilss.Single(x => x.ID == item);
+                        skils.Add(sk);
+                       
+                    }
                     
-                    await db.SaveChangesAsync();
-                   // var skils = db.skilss.Where(x => x.ID == skills).ToList();
-                    
-                    //foreach(var item in skils)
-                    //{
-                    //    item.Employees.Add(employee);
-                    //}
+                    foreach (var item in skils)
+                    {
+                        item.Employees.Add(employee);
+                    }
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
@@ -122,6 +136,18 @@ namespace HRiVote.Controllers
                 {
                     empl.Photo = "No Photo Uploade";
                 }
+                List<Skills> skils = new List<Skills>();
+                foreach (var item in skills)
+                {
+                    empl.skils = db.skilss.Where(x => x.ID == item).ToList();
+                    await db.SaveChangesAsync();
+                    var sk = db.skilss.Single(x => x.ID == item);
+                    skils.Add(sk);
+                }
+                foreach (var item in skils)
+                {
+                    item.Employees.Add(employee);
+                }
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -168,10 +194,24 @@ namespace HRiVote.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-        public  ActionResult Index( )
+        public  ActionResult Index(bool? status )
         {
-          
-            return View(db.emps.Include(c=>c.job).Where(x=>x.EmploymentStatus==true).ToList());
+            List<Employee> emps = new List<Employee>();
+            if (status.HasValue)
+            {
+                 emps = db.emps.Include(c => c.job).Where(x => x.EmploymentStatus == status).ToList();
+            }
+            else
+            {
+                 emps = db.emps.Include(c => c.job).ToList();
+            }
+            var viewmodel = new EmployeeViewModel()
+            {
+                emps = emps,
+                positions = db.positions.ToList(),
+                skils = db.skilss.ToList(),
+            };
+            return View(viewmodel);
         }
 
         public ActionResult AddPosition()

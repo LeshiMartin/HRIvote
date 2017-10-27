@@ -299,6 +299,7 @@
     <Compile Include="Validations\UnderAge.cs" />
     <Compile Include="Validations\Vacation.cs" />
     <Compile Include="ViewModels\EmployeeViewModel.cs" />
+    <Compile Include="ViewModels\PossitionsViewModel.cs" />
     <Compile Include="ViewModels\PosstionSkilllViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -764,6 +765,7 @@
     <Content Include="Views\Skills\Edit.cshtml" />
     <Content Include="Views\Skills\Index.cshtml" />
     <Content Include="Views\Posstions\Index.cshtml" />
+    <Content Include="Views\Shared\_PositionsPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -18,11 +18,11 @@ namespace HRiVote.Controllers
         private Entity db = new Entity();
 
         // GET: Candidate
-        public ActionResult Index(string currentFilter,string searchString)
+        public ActionResult Index(int? id)
         {
             
             
-                return View(db.aplikanti.ToList());
+                return View(db.aplikanti.Where(x=>x.InterviewRound==id).ToList());
             
         }
 
