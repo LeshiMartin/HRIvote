@@ -9,54 +9,77 @@
 
 
 </head>
-<body>      
-            <div class="container">
-                <div class="navbar-header" align="center">
-                    <img src="~/Photos/iVoteLogo1200_Transparent1.png"  alt="logo"/>                  
-                </div>
-                <div class="col-sm-5 col-sm-offset-3">
-                    
-                </div>
-                    <ul class="nav navbar-right">
-                       @Html.Partial("_LoginPartial")
-                    </ul>        
-        </div>  
+<body>
+    <div class="container">
+        <div class="navbar-header" align="center">
+            <img src="~/Photos/iVoteLogo1200_Transparent1.png" alt="logo" />
+        </div>
+        <div class="col-sm-5 col-sm-offset-3">
+
+        </div>
+        <ul class="nav navbar-right">
+            @Html.Partial("_LoginPartial")
+        </ul>
+    </div>
     <br /><br />
-    
+
     <div class="row">
-            <div class="col-sm-3 col-md-1 affix-sidebar">        
+        <div class="col-sm-3 col-md-1 affix-sidebar">
             <div class="sidebar-nav">
                 <div class="nav navbar-inverse navbar-left" role="navigation">
                     <div class="panel-group" id="accordion">
                         <div class="panel panel-default">
-                            <div class="panel-heading">                            
-                                @Html.ActionLink("Candidates", "Index", "Candidate", null,new { @class = "fa fa-paper-plane" })                                
-                            </div>                    
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+                                        @Html.TextBox("m", "Candidate", new { @class = "btn btn-info" })
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapse1" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    @Html.ActionLink(" First Round", "Index", "Candidate", new { id = 1 }, new { @class = "fa fa-paper-plane" })
+                                    @Html.ActionLink(" Second Round", "Index", "Candidate", new { id = 2 }, new { @class = "fa fa-paper-plane" })
+                                    @Html.ActionLink(" Third Round", "Index", "Candidate", new { id = 3 }, new { @class = "fa fa-paper-plane" })
+                                    @Html.ActionLink(" All Candidate", "Index", "Candidate", null, new { @class = "fa fa-paper-plane" })
+                                </div>
+                            </div>
                         </div>
                         <br />
                         <div class="panel panel-default">
-                            <div class="panel-heading">                      
-                                @Html.ActionLink("Employees", "Index", "Employee", null,new { @class = "fa fa-paper-plane" })
-                            </div>                   
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+                                        @Html.TextBox("m", "Employees", new { @class = "btn btn-info" })
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapse2" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    @Html.ActionLink(" Employed", "Index", "Employee", new { status = true }, new { @class = "fa fa-paper-plane" })<br />
+                                    @Html.ActionLink(" Fired", "Index", "Employee", new { status = false }, new { @class = "fa fa-paper-plane" })<br />
+                                    @Html.ActionLink(" All Employees", "Index", "Employee", "", new { @class = "fa fa-paper-plane" })
+                                </div>
+
+                            </div>
                         </div>
+
                         <br />
 
                     </div>
-                    </div>
                 </div>
+            </div>
         </div>
         <div class="col-sm-9 col-md-10 affix-content">
-            <div class="" >              
+            <div class="">
                 @RenderBody()
                 <hr />
-                <footer>
-                   
-                </footer>
+                <footer></footer>
             </div>
         </div>
     </div>
-            
-            @Scripts.Render("~/bundles/lib")
-            @RenderSection("scripts", required: false)
+
+    @Scripts.Render("~/bundles/lib")
+    @RenderSection("scripts", required: false)
 </body>
 </html>

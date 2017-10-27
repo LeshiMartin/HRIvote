@@ -9,7 +9,7 @@ namespace HRiVote.Models
     {
         public int ID { get; set; }
         public string Skill { get; set; }
-        public int? EmployeeID { get; set; }
-        public Employee employee { get; set; }
+       public bool Status { get; set; }
+        public ICollection<Employee> Employees { get; set; }
     }
 }

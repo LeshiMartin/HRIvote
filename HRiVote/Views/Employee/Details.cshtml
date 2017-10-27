@@ -9,133 +9,147 @@
     <div>
         <h4>Employee</h4>
         <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.job.Name)
-            </dt>
+        <div class="row">
+            <div class="col-sm-4">
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.job.Title)
+                    </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.job.Name)
-            </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.job.Title)
+                    </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.LastName)
-            </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.LastName)
+                    </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.LastName)
-            </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.LastName)
+                    </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.FirstName)
-            </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.FirstName)
+                    </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.FirstName)
-            </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.FirstName)
+                    </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.BirthDate)
-            </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.BirthDate)
+                    </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.BirthDate)
-            </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.BirthDate)
+                    </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.IsAvailable)
-            </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.IsAvailable)
+                    </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.IsAvailable)
-            </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.IsAvailable)
+                    </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.VacationDays)
-            </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.VacationDays)
+                    </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.VacationDays)
-            </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.VacationDays)
+                    </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Achievements)
-            </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Achievements)
+                    </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.Achievements)
-            </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.Achievements)
+                    </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Phone)
-            </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Phone)
+                    </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.Phone)
-            </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.Phone)
+                    </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.Email)
-            </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Email)
+                    </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.Email)
-            </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.Email)
+                    </dd>
 
-            <dt>
-                @Html.DisplayNameFor(model => model.CV)
-            </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.CV)
+                    </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.CV)
-            </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.CV)
+                    </dd>
 
-            <dt>
-                @if (Model.CV == "No CV uploaded")
+                    <dt>
+                        @if (Model.CV == "No CV uploaded")
             {
-                    @Html.DisplayNameFor(model => model.Photo)
-                }
-                else
-                {
-                    <a href="@Url.Content(Model.CV)"><img src="@Url.Content(Model.CV)" alt="@Html.DisplayFor(x=>x.CV)" width="100" /></a>
-                }
-            </dt>
+                            @Html.DisplayNameFor(model => model.Photo)
+                        }
+                        else
+                        {
+                            <a href="@Url.Content(Model.CV)"><img src="@Url.Content(Model.CV)" alt="@Html.DisplayFor(x=>x.CV)" width="100" /></a>
+                        }
+                    </dt>
 
-            <dd>
-                @if (Model.Photo == "No photo uploaded")
-                {
-                    @Html.DisplayFor(model => model.Photo)
-                }
-                else
-                {
-                    <a href="@Url.Content(Model.Photo)"><img src="@Url.Content(Model.Photo)" alt="@Html.DisplayFor(x=>x.Photo)" width="100" /></a>
-                }
+                    <dd>
+                        @if (Model.Photo == "No photo uploaded")
+                        {
+                            @Html.DisplayFor(model => model.Photo)
+                        }
+                        else
+                        {
+                            <a href="@Url.Content(Model.Photo)"><img src="@Url.Content(Model.Photo)" alt="@Html.DisplayFor(x=>x.Photo)" width="100" /></a>
+                        }
 
-            </dd>
-        </dl>
+                    </dd>
+                </dl>
+            </div>
+            <div class="col-sm-6">
+                <h4>
+                    Skills
+                </h4>
+                <hr />
+                @foreach (var item in Model.skils)
+            {
+                    <p style="color:black;font-weight:600 !important;"> @Html.DisplayFor(x => item.Skill)</p>
+                }
+            </div>
+        </div>
+
     </div>
-   
-    
+
 </div>
 <br />
 @*<h3 class="text-center">Assigned Projects</h3>
-<div class="Back container">
-    <table class="table hover table-condensed">
-        <tr>
-            <th>Project Name</th>
-            <th> Starting Date</th>
-            <th> End Date</th>
-        </tr>
-        @foreach (var item in Model.projects)
-        {
+    <div class="Back container">
+        <table class="table hover table-condensed">
             <tr>
-                <td>@Html.DisplayFor(x => item.ProjectName)</td>
-                <td>@Html.DisplayFor(x => item.StartDate)</td>
-                <td>@Html.DisplayFor(x => item.EndDate)</td>
+                <th>Project Name</th>
+                <th> Starting Date</th>
+                <th> End Date</th>
             </tr>
-        }
-    </table>
-</div>*@
+            @foreach (var item in Model.projects)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(x => item.ProjectName)</td>
+                    <td>@Html.DisplayFor(x => item.StartDate)</td>
+                    <td>@Html.DisplayFor(x => item.EndDate)</td>
+                </tr>
+            }
+        </table>
+    </div>*@
 
 <br />
 <div class="Back container">

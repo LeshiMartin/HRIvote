@@ -11,6 +11,7 @@ namespace HRiVote.ViewModels
     {
         public Employee employee { get; set; }
         public IEnumerable<JobPosition> positions { get; set; }
-        public List<SelectListItem> Lpositions { get; set; }
+        public IEnumerable<Skills> skils { get; set; }
+        public IEnumerable<Employee> emps { get; set; }
     }
 }
