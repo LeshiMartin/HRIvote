@@ -2,6 +2,7 @@
 using HRiVote.Models;
 using HRiVote.Validations;
 using HRiVote.ViewModels;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.IO;
 using System.Linq;
@@ -32,7 +33,7 @@ namespace HRiVote.Controllers
         [HttpPost]       
         [ValidateAntiForgeryToken]
         [Checker]
-        public async Task<ActionResult> Save(Employee employee, HttpPostedFileBase file, HttpPostedFileBase file1,int? skills)
+        public async Task<ActionResult> Save(Employee employee, HttpPostedFileBase file, HttpPostedFileBase file1,List<int> skills)
         {
             if (employee.ID == 0)
             {
@@ -62,16 +63,17 @@ namespace HRiVote.Controllers
                     }
                     employee.FullName = employee.LastName + " " + employee.FirstName;
                     employee.EmploymentStatus = true;
-                    employee.skils = db.skilss.Where(x => x.ID == skills).ToList();
+
+                   
                     db.emps.Add(employee);
                     
                     await db.SaveChangesAsync();
-                    var skils = db.skilss.Where(x => x.ID == skills).ToList();
+                   // var skils = db.skilss.Where(x => x.ID == skills).ToList();
                     
-                    foreach(var item in skils)
-                    {
-                        item.Employees.Add(employee);
-                    }
+                    //foreach(var item in skils)
+                    //{
+                    //    item.Employees.Add(employee);
+                    //}
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
@@ -208,7 +210,7 @@ namespace HRiVote.Controllers
         }
         public ActionResult Details(int id)
         {
-            var emp = db.emps.Include(c => c.job).Single(x => x.ID == id);
+            var emp = db.emps.Include(c => c.job).Include(x=>x.skils).Single(x => x.ID == id);
            
 
             if (emp == null)

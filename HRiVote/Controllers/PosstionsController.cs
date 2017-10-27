@@ -17,7 +17,7 @@ namespace HRiVote.Controllers
         public ActionResult Index()
         {
 
-            return View(db.positions.ToList());
+            return View(db.positions.Where(x=>x.Status==true).ToList());
         }
         public ActionResult Edit(int id)
         {
