@@ -24,16 +24,26 @@ namespace HRiVote.Controllers
             var viewmodel = new EmployeeViewModel()
             {
                 employee = new Employee(),
+<<<<<<< HEAD
                 positions = db.positions.ToList(),
                 skils = db.skilss.ToList()
 
+=======
+                positions = db.positions.Where(x => x.Status == true).ToList(),
+                skils = db.skilss.ToList()
+               
+>>>>>>> 971db4c0b7ac89e00dc1ad772abd669c8da598e9
             };
             return View(viewmodel);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Checker]
+<<<<<<< HEAD
         public async Task<ActionResult> Save(Employee employee, HttpPostedFileBase file, HttpPostedFileBase file1, List<int> skills)
+=======
+        public async Task<ActionResult> Save(Employee employee, HttpPostedFileBase file, HttpPostedFileBase file1,List<int> skills)
+>>>>>>> 971db4c0b7ac89e00dc1ad772abd669c8da598e9
         {
             if (employee.ID == 0)
             {
@@ -64,15 +74,26 @@ namespace HRiVote.Controllers
                     employee.FullName = employee.LastName + " " + employee.FirstName;
                     employee.EmploymentStatus = true;
                     List<Skills> skils = new List<Skills>();
+<<<<<<< HEAD
                     foreach (var item in skills)
                     {
                         employee.skils = db.skilss.Where(x => x.ID == item).ToList();
                         if (!db.emps.Select(x => x.Email).Contains(employee.Email))
+=======
+                    foreach(var item in skills)
+                    {
+                        employee.skils = db.skilss.Where(x => x.ID == item).ToList();
+                        if (!db.emps.Select(x=>x.Email).Contains(employee.Email))
+>>>>>>> 971db4c0b7ac89e00dc1ad772abd669c8da598e9
                         {
                             db.emps.Add(employee);
                             await db.SaveChangesAsync();
                         }
+<<<<<<< HEAD
                         else if (db.emps.Select(x => x.ID).Contains(employee.ID))
+=======
+                        else if(db.emps.Select(x=>x.ID).Contains(employee.ID))
+>>>>>>> 971db4c0b7ac89e00dc1ad772abd669c8da598e9
                         {
 
                             var emp = db.emps.Single(x => x.ID == employee.ID);
@@ -81,9 +102,15 @@ namespace HRiVote.Controllers
                         }
                         var sk = db.skilss.Single(x => x.ID == item);
                         skils.Add(sk);
+<<<<<<< HEAD
 
                     }
 
+=======
+                       
+                    }
+                    
+>>>>>>> 971db4c0b7ac89e00dc1ad772abd669c8da598e9
                     foreach (var item in skils)
                     {
                         item.Employees.Add(employee);
@@ -97,8 +124,13 @@ namespace HRiVote.Controllers
                     var viewmodel = new EmployeeViewModel()
                     {
                         employee = employee,
+<<<<<<< HEAD
                         positions = db.positions.ToList(),
                         skils = db.skilss.ToList()
+=======
+                        positions = db.positions.Where(x => x.Status == true).ToList(),
+                        skils =db.skilss.ToList()
+>>>>>>> 971db4c0b7ac89e00dc1ad772abd669c8da598e9
                     };
                     return View("AddEmployee", viewmodel);
                 }
@@ -165,6 +197,7 @@ namespace HRiVote.Controllers
             {
                 return HttpNotFound();
             }
+<<<<<<< HEAD
             var viewmodel = new EmployeeViewModel()
             {
                 employee = emp,
@@ -173,6 +206,13 @@ namespace HRiVote.Controllers
 
             };
             return View("AddEmployee", viewmodel);
+=======
+                var viewmodel = new EmployeeViewModel()
+                {
+                    employee = emp,
+                    positions = db.positions.Where(x => x.Status == true).ToList(),
+                    skils =db.skilss.ToList()
+>>>>>>> 971db4c0b7ac89e00dc1ad772abd669c8da598e9
 
         }
         public ActionResult Delete(int id)
@@ -194,21 +234,37 @@ namespace HRiVote.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+<<<<<<< HEAD
         public ActionResult Index(bool? status)
+=======
+        public  ActionResult Index(bool? status )
+>>>>>>> 971db4c0b7ac89e00dc1ad772abd669c8da598e9
         {
             List<Employee> emps = new List<Employee>();
             if (status.HasValue)
             {
+<<<<<<< HEAD
                 emps = db.emps.Include(c => c.job).Where(x => x.EmploymentStatus == status).ToList();
             }
             else
             {
                 emps = db.emps.Include(c => c.job).ToList();
+=======
+                 emps = db.emps.Include(c => c.job).Where(x => x.EmploymentStatus == status).ToList();
+            }
+            else
+            {
+                 emps = db.emps.Include(c => c.job).ToList();
+>>>>>>> 971db4c0b7ac89e00dc1ad772abd669c8da598e9
             }
             var viewmodel = new EmployeeViewModel()
             {
                 emps = emps,
+<<<<<<< HEAD
                 positions = db.positions.ToList(),
+=======
+                positions = db.positions.Where(x=>x.Status==true).ToList(),
+>>>>>>> 971db4c0b7ac89e00dc1ad772abd669c8da598e9
                 skils = db.skilss.ToList(),
             };
             return View(viewmodel);
@@ -226,7 +282,11 @@ namespace HRiVote.Controllers
         [HttpPost]
         [ActionName("AddPosition")]
         [ValidateAntiForgeryToken]
+<<<<<<< HEAD
         public ActionResult Add(JobPosition jobPosition, string skill)
+=======
+        public ActionResult Add(JobPosition jobPosition,string skill)
+>>>>>>> 971db4c0b7ac89e00dc1ad772abd669c8da598e9
         {
             if (ModelState.IsValid)
             {
@@ -238,20 +298,34 @@ namespace HRiVote.Controllers
                 }
                 if (!db.skilss.Select(x => x.Skill).Contains(skill))
                 {
+<<<<<<< HEAD
                     var skils = new Skills() { Status = true, Skill = skill };
                     db.skilss.Add(skils);
                     db.SaveChanges();
 
                 }
 
+=======
+                    var skils = new Skills() { status = true, Skill = skill };
+                    db.skilss.Add(skils);
+                    db.SaveChanges();
+                   
+                }
+               
+>>>>>>> 971db4c0b7ac89e00dc1ad772abd669c8da598e9
                 return RedirectToAction("AddEmployee");
             }
             return View(jobPosition);
         }
         public ActionResult Details(int id)
         {
+<<<<<<< HEAD
             var emp = db.emps.Include(c => c.job).Include(x => x.skils).Single(x => x.ID == id);
 
+=======
+            var emp = db.emps.Include(c => c.job).Include(x=>x.skils).Single(x => x.ID == id);
+           
+>>>>>>> 971db4c0b7ac89e00dc1ad772abd669c8da598e9
 
             if (emp == null)
             {

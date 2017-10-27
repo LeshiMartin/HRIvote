@@ -39,7 +39,11 @@ namespace HRiVote.Models
 
         public string Achievements { get; set; }
 
+<<<<<<< HEAD
         public ICollection<Skills> skils { get; set; }
+=======
+        public virtual ICollection<Skills> skils { get; set; }
+>>>>>>> 971db4c0b7ac89e00dc1ad772abd669c8da598e9
 
         [Display(Name = "Позиција")]
         public JobPosition job { get; set; }
