@@ -212,6 +212,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PosstionsController.cs" />
+    <Compile Include="Controllers\SkillsController.cs" />
     <Compile Include="DAL\Entity.cs" />
     <Compile Include="DAL\EntityMigrations\201710231412400_InitialCreate.cs" />
     <Compile Include="DAL\EntityMigrations\201710231412400_InitialCreate.Designer.cs">
@@ -261,9 +262,19 @@
     <Compile Include="DAL\EntityMigrations\201710261405278_Update9.Designer.cs">
       <DependentUpon>201710261405278_Update9.cs</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="DAL\EntityMigrations\201710261451238_Update91.cs" />
     <Compile Include="DAL\EntityMigrations\201710261451238_Update91.Designer.cs">
       <DependentUpon>201710261451238_Update91.cs</DependentUpon>
+=======
+    <Compile Include="DAL\EntityMigrations\201710261653130_update10.cs" />
+    <Compile Include="DAL\EntityMigrations\201710261653130_update10.Designer.cs">
+      <DependentUpon>201710261653130_update10.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\EntityMigrations\201710261710039_update11.cs" />
+    <Compile Include="DAL\EntityMigrations\201710261710039_update11.Designer.cs">
+      <DependentUpon>201710261710039_update11.cs</DependentUpon>
+>>>>>>> 0516d7b94b2f0085db53b1b7ae18614d60a46f99
     </Compile>
     <Compile Include="DAL\EntityMigrations\Configuration.cs" />
     <Compile Include="DAL\IdentityMigrations\201710190928386_InitialCreate.cs" />
@@ -295,6 +306,8 @@
     <Compile Include="Validations\UnderAge.cs" />
     <Compile Include="Validations\Vacation.cs" />
     <Compile Include="ViewModels\EmployeeViewModel.cs" />
+    <Compile Include="ViewModels\PossitionsViewModel.cs" />
+    <Compile Include="ViewModels\PosstionSkilllViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="bin\Antlr3.Runtime.dll" />
@@ -753,6 +766,13 @@
     <Content Include="Views\Candidate\Edit.cshtml" />
     <Content Include="Views\Candidate\Index.cshtml" />
     <Content Include="Views\Shared\_Layout1.cshtml" />
+    <Content Include="Views\Skills\Create.cshtml" />
+    <Content Include="Views\Skills\Delete.cshtml" />
+    <Content Include="Views\Skills\Details.cshtml" />
+    <Content Include="Views\Skills\Edit.cshtml" />
+    <Content Include="Views\Skills\Index.cshtml" />
+    <Content Include="Views\Posstions\Index.cshtml" />
+    <Content Include="Views\Shared\_PositionsPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -760,7 +780,6 @@
     <Folder Include="Images\" />
     <Folder Include="obj\Debug\TempPE\" />
     <Folder Include="Views\Calendar\" />
-    <Folder Include="Views\Posstions\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -816,8 +835,16 @@
     <EmbeddedResource Include="DAL\EntityMigrations\201710261405278_Update9.resx">
       <DependentUpon>201710261405278_Update9.cs</DependentUpon>
     </EmbeddedResource>
+<<<<<<< HEAD
     <EmbeddedResource Include="DAL\EntityMigrations\201710261451238_Update91.resx">
       <DependentUpon>201710261451238_Update91.cs</DependentUpon>
+=======
+    <EmbeddedResource Include="DAL\EntityMigrations\201710261653130_update10.resx">
+      <DependentUpon>201710261653130_update10.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DAL\EntityMigrations\201710261710039_update11.resx">
+      <DependentUpon>201710261710039_update11.cs</DependentUpon>
+>>>>>>> 0516d7b94b2f0085db53b1b7ae18614d60a46f99
     </EmbeddedResource>
     <EmbeddedResource Include="DAL\IdentityMigrations\201710190928386_InitialCreate.resx">
       <DependentUpon>201710190928386_InitialCreate.cs</DependentUpon>

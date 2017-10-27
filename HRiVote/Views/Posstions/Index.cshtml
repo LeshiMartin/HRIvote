@@ -1,0 +1,46 @@
+﻿@model IEnumerable<HRiVote.Models.JobPosition>
+
+@{
+    ViewBag.Title = "Index";
+}
+<link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css">
+<div class="container Back">
+    <h2>Index</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table id="table" class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        @foreach (var item in Model)
+        {
+            <tbody>
+                <tr>
+                    <td>
+                        @Html.ActionLink(item.Title, "Index", "Employee", new { id = item.ID }, new { @class = "fa fa-paperplane" })
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ID },new { @class = "btn btn-primary fa fa-pencil" }) |                      
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ID },new { @class = "btn btn-danger fa fa-trash" })
+                    </td>
+                </tr>
+            </tbody>
+        }
+
+    </table>
+</div>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $("#table").DataTable();
+        });
+    </script>
+}
