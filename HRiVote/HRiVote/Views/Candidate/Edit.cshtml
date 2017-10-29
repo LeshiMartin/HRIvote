@@ -1,0 +1,124 @@
+﻿@model HRiVote.Models.Candidate
+
+@{
+    ViewBag.Title = "Edit";
+}
+  <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Untitled</title>
+
+    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2017.3.1018/styles/kendo.common.min.css">
+    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2017.3.1018/styles/kendo.rtl.min.css">
+    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2017.3.1018/styles/kendo.default.min.css">
+    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2017.3.1018/styles/kendo.mobile.all.min.css">
+
+    <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2017.3.1018/js/angular.min.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2017.3.1018/js/jszip.min.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2017.3.1018/js/kendo.all.min.js"></script>
+</head>
+<body>
+    <div class="Back">
+        <h2>Edit</h2>
+
+
+        @using (Html.BeginForm("Edit", "Candidate", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <h4>Candidate</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.ID)
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PhoneNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CV, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <i class="fa fa-cloud-upload">@Html.TextBox("file", "Browse...", new { Type = "file" })</i>
+                        @Html.ValidationMessageFor(model => model.CV, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group ui-datepicker-next-hover">
+                    @Html.LabelFor(model => model.InterviewDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <i class="fa fa-calendar">@Html.EditorFor(model => model.InterviewDate, new { htmlAttributes = new { @class = "form-control" } })</i>
+                        @Html.ValidationMessageFor(model => model.InterviewDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.InterviewTime, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @*<input type="datetime-local" />*@
+                        <i class="fa fa-clock-o">@Html.EditorFor(x=>x.InterviewTime, new { htmlAttributes = new { @class = "form-control",Type="time" } })</i>
+                        @Html.ValidationMessageFor(model => model.InterviewTime, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.InterviewRound, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("InterviewRound", new List<SelectListItem> {
+    new SelectListItem{Text="First Round", Value="1", Selected=true},
+    new SelectListItem{Text="Second Round", Value="2"},
+    new SelectListItem{Text="Third Round", Value="3"}
+}, htmlAttributes: new { @class = "form-control" })
+                        <br class="form-control" />
+                        <br />
+                        @Html.ValidationMessageFor(model => model.InterviewRound, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Save" class="btn btn-default btn-success" />
+                    </div>
+                </div>
+            </div>
+        }
+
+        <div>
+            @Html.ActionLink(" Back to List", "Index", null, new { @class = "btn btn-info fa fa-backward" })
+        </div>
+
+    </div>
+    </body>
+</html>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
