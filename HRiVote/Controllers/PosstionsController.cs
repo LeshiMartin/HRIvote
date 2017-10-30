@@ -1,5 +1,6 @@
 ﻿using HRiVote.DAL;
 using HRiVote.Models;
+using HRiVote.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,30 +20,51 @@ namespace HRiVote.Controllers
 
             return View(db.positions.Where(x=>x.Status==true).ToList());
         }
-        public ActionResult Edit(int id)
+        public ActionResult AddPosition(int? id)
         {
-            var position = db.positions.Single(x => x.ID == id);
-            if (position == null)
+            var viewmodel = new PosstionSkilllViewModel()
             {
-                return HttpNotFound();
+                jobPosition = new JobPosition(),
+                skills = new Skills()
+            };
+            if (id.HasValue)
+            {
+                TempData["value"] = id;
             }
-            return View(position);
+            return View(viewmodel);
         }
-        [System.Web.Mvc.HttpPost]
+        [HttpPost]
+        [ActionName("AddPosition")]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(JobPosition possition)
+        public ActionResult Add(JobPosition jobPosition, string skill)
         {
             if (ModelState.IsValid)
             {
-                var postion = db.positions.Single(x => x.ID == possition.ID);
-               
-                postion.Title = possition.Title;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (!db.positions.Select(x => x.Title).Contains(jobPosition.Title))
+                {
+                    jobPosition.Status = true;
+                    db.positions.Add(jobPosition);
+                    db.SaveChanges();
+                }
+                if (!db.skilss.Select(x => x.Skill).Contains(skill))
+                {
+                    var skils = new Skills() { status = true, Skill = skill };
+                    db.skilss.Add(skils);
+                    db.SaveChanges();
+
+                }
+                var h = (int?)TempData["value"];
+                if (h.HasValue)
+                {
+                    return RedirectToAction("AddEmployee","Employee");
+                }
+                else
+                {
+                    return RedirectToAction("Index");
+                }
             }
-            return View(possition);
-            
+            return View(jobPosition);
         }
-        
+
     }
 }

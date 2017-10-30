@@ -4,13 +4,13 @@
     ViewBag.Title = "Index";
 }
 <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css">
-<div class="container Back">
+<div class="container Back col-sm-offset-1">
     <h2>Index</h2>
 
     <p>
-        @Html.ActionLink("Create New", "Create")
+        @Html.ActionLink("Create New", "AddPosition")
     </p>
-    <table id="table" class="table">
+    <table id="table" class="table table-bordered table-bordered">
         <thead>
             <tr>
                 <th>
@@ -27,21 +27,20 @@
                         @Html.ActionLink(item.Title, "Index", "Employee", new { id = item.ID }, new { @class = "fa fa-paperplane" })
                     </td>
                     <td>
-<<<<<<< HEAD
-                        @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @class = "btn btn-primary fa fa-pencil" }) |
-=======
-                        @Html.ActionLink("Edit", "Edit", new { id = item.ID },new { @class = "btn btn-primary fa fa-pencil" }) |                      
->>>>>>> 971db4c0b7ac89e00dc1ad772abd669c8da598e9
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ID },new { @class = "btn btn-primary fa fa-pencil" }) | 
+                        @if (item.Status == true)
+                        {
                         <button data-project-id="@item.ID" type="button" class="btn btn-danger fa fa-trash js-delete">Delete</button>
+                        }
+                        else
+                        {
+                            <button data-project-id="@item.ID" type="button" class="btn btn-primary fa fa-arrow-up js-update">Delete</button>
+                        }
                     </td>
                 </tr>
             </tbody>
         }
-<<<<<<< HEAD
-
-=======
         
->>>>>>> 971db4c0b7ac89e00dc1ad772abd669c8da598e9
 
     </table>
 </div>
@@ -55,6 +54,17 @@
                 $.ajax({
                     url: "/api/Possitons/" + button.attr("data-project-id"),
                     method: "DELETE",
+                    success: function () {
+                        button.parents("tr").remove();
+                        console.log("Success")
+                    }
+                })
+            });
+            $("#table").on("click", ".js-update", function () {
+                var button = $(this);
+                $.ajax({
+                    url: "/api/Possitons/" + button.attr("data-project-id"),
+                    method: "PUT",
                     success: function () {
                         button.parents("tr").remove();
                         console.log("Success")

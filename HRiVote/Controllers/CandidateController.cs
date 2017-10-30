@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using HRiVote.DAL;
 using HRiVote.Models;
 using System.IO;
+using HRiVote.ViewModels;
 
 namespace HRiVote.Controllers
 {
@@ -18,28 +19,36 @@ namespace HRiVote.Controllers
         private Entity db = new Entity();
 
         // GET: Candidate
-        public ActionResult Index(int? id)
+        public ActionResult Index(int id,int? candidateid)
         {
+            List<Candidate> Can = db.aplikanti.ToList();
+            List<Candidate> candidates = new List<Candidate>();
+            if (id > 0)
+            {
+                candidates = Can.Where(x => x.InterviewRound == id).ToList();
+            }
+            else
+            {
+                candidates = Can;
+            }
+        
             
-            
-                return View(db.aplikanti.Where(x=>x.InterviewRound==id).ToList());
+            var viewmodel = new CanddateViewModel()
+            {
+                Candidate = candidates
+            };
+
+            if (candidateid.HasValue)
+            {
+                viewmodel.candidate = viewmodel.Candidate.Single(x => x.ID == candidateid);
+            }
+
+                return View(viewmodel);
             
         }
 
         // GET: Candidate/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Candidate candidate = db.aplikanti.Find(id);
-            if (candidate == null)
-            {
-                return HttpNotFound();
-            }
-            return View(candidate);
-        }
+      
 
         // GET: Candidate/Create
         public ActionResult Create()

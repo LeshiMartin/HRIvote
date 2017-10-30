@@ -1,4 +1,4 @@
-﻿@model IEnumerable<HRiVote.Models.Candidate>
+﻿@model HRiVote.ViewModels.CanddateViewModel
 
 @{
     ViewBag.Title = "Index";
@@ -17,33 +17,33 @@
             <tr>
 
                 <th>
-                    @Html.DisplayNameFor(model => model.LastName)
+                    Last Name
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.FirstName)
+                    First Name
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Email)
+                    Email
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.PhoneNumber)
+                     Phone Number
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.CV)
+                    CV
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.InterviewDate)
+                    Interview Date
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.InterviewTime)
+                    Interview Time
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.InterviewRound)
+                    Interview Round
                 </th>
                 <th>Action Links</th>
             </tr>
         </thead>
-        @foreach (var item in Model)
+        @foreach (var item in Model.Candidate)
         {
             <tbody>
                 <tr>
@@ -92,7 +92,7 @@
                                 <span class="sr-only">Delete</span>
                             </a>*@
                         @Html.ActionLink(" Edit", "Edit", new { id = item.ID }, new { @class = "btn btn-primary fa fa-pencil" }) |
-                        @Html.ActionLink(" Details", "Details", new { id = item.ID }, new { @class = "btn btn-info fa fa-search" }) |
+                        @Html.ActionLink(" Details", "Index", new { candidateid = item.ID }, new { @class = "btn btn-info fa fa-search" }) |
                         @Html.ActionLink(" Delete", "Delete", new { id = item.ID }, new { @class = "btn btn-danger fa fa-trash" })
                     </td>
                 </tr>
@@ -101,6 +101,14 @@
 
     </table>
 </div>
+<br />
+<br />
+@if (Model.candidate != null)
+{
+    
+        @Html.Partial("_PartialCandidateView",Model.candidate)
+  
+}
 @section scripts{
     <script>
         $("#myTable").DataTable();

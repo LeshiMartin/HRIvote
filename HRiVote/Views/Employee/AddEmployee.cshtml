@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "AddEmployee";
 }
-<div class="Back">
+<div class="container Back col-sm-offset-1">
     <h2>AddEmployee</h2>
 
 
@@ -17,7 +17,7 @@
             <hr />
             @Html.ValidationSummary(true, "Please fix the following issues:", new { @class = "text-danger" })
 
-            @Html.ActionLink("Add a new Job Possition", "AddPosition", null, new { @class = "btn btn-primary fa fa-pencil" })
+            @Html.ActionLink("Add a new Job Possition", "AddPosition","Posstions", new { id = 1 }, new { @class = "btn btn-primary fa fa-pencil" })
             <div class="form-group">
                 @Html.LabelFor(model => model.employee.JobPositionID, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">

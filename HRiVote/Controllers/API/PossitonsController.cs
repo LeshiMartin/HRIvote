@@ -52,5 +52,12 @@ namespace HRiVote.Controllers.API
                 db.SaveChanges();
             }
         }
+        [HttpPut]
+        public void updatePosstion([FromBody]JobPosition position,int id)
+        {
+            var possition = db.positions.Single(x => x.ID == id);
+            position.Status = true;
+            db.SaveChanges();
+        }
     }
 }

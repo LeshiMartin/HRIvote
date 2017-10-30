@@ -18,8 +18,7 @@
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort>
-    </IISExpressSSLPort>
+    <IISExpressSSLPort>44333</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -206,12 +205,14 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\API\EmployeeApiController.cs" />
+    <Compile Include="Controllers\API\OpenController.cs" />
     <Compile Include="Controllers\API\PossitonsController.cs" />
     <Compile Include="Controllers\CalendarController.cs" />
     <Compile Include="Controllers\CandidateController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\OpenJobPossitionsController.cs" />
     <Compile Include="Controllers\PosstionsController.cs" />
     <Compile Include="Controllers\SkillsController.cs" />
     <Compile Include="DAL\Entity.cs" />
@@ -263,9 +264,6 @@
     <Compile Include="DAL\EntityMigrations\201710261405278_Update9.Designer.cs">
       <DependentUpon>201710261405278_Update9.cs</DependentUpon>
     </Compile>
-    <Compile Include="DAL\EntityMigrations\201710261451238_Update91.cs" />
-    <Compile Include="DAL\EntityMigrations\201710261451238_Update91.Designer.cs"/>
-      <DependentUpon>201710261451238_Update91.cs</DependentUpon>
     <Compile Include="DAL\EntityMigrations\201710261653130_update10.cs" />
     <Compile Include="DAL\EntityMigrations\201710261653130_update10.Designer.cs">
       <DependentUpon>201710261653130_update10.cs</DependentUpon>
@@ -307,6 +305,8 @@
     <Compile Include="Validations\Checker.cs" />
     <Compile Include="Validations\UnderAge.cs" />
     <Compile Include="Validations\Vacation.cs" />
+    <Compile Include="ViewModels\CanddateViewModel.cs" />
+    <Compile Include="ViewModels\EmployeesViewModel.cs" />
     <Compile Include="ViewModels\EmployeeViewModel.cs" />
     <Compile Include="ViewModels\PossitionsViewModel.cs" />
     <Compile Include="ViewModels\PosstionSkilllViewModel.cs" />
@@ -757,14 +757,12 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Employee\AddEmployee.cshtml" />
     <Content Include="Views\Employee\Index.cshtml" />
-    <Content Include="Views\Employee\AddPosition.cshtml" />
-    <Content Include="Views\Employee\Details.cshtml" />
+    <Content Include="Views\Posstions\AddPosition.cshtml" />
     <Content Include="Views\Employee\Delete.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="TimePicker\LICENSE" />
     <Content Include="Views\Candidate\Create.cshtml" />
     <Content Include="Views\Candidate\Delete.cshtml" />
-    <Content Include="Views\Candidate\Details.cshtml" />
     <Content Include="Views\Candidate\Edit.cshtml" />
     <Content Include="Views\Candidate\Index.cshtml" />
     <Content Include="Views\Shared\_Layout1.cshtml" />
@@ -775,6 +773,11 @@
     <Content Include="Views\Skills\Index.cshtml" />
     <Content Include="Views\Posstions\Index.cshtml" />
     <Content Include="Views\Shared\_PositionsPartial.cshtml" />
+    <Content Include="Views\OpenJobPossitions\Details.cshtml" />
+    <Content Include="Views\OpenJobPossitions\Index.cshtml" />
+    <Content Include="Views\OpenJobPossitions\OpenPosition.cshtml" />
+    <Content Include="Views\Shared\_PartialEmployeeView.cshtml" />
+    <Content Include="Views\Shared\_PartialCandidateView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -837,8 +840,6 @@
     <EmbeddedResource Include="DAL\EntityMigrations\201710261405278_Update9.resx">
       <DependentUpon>201710261405278_Update9.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DAL\EntityMigrations\201710261451238_Update91.resx"/>
-      <DependentUpon>201710261451238_Update91.cs</DependentUpon>
     <EmbeddedResource Include="DAL\EntityMigrations\201710261653130_update10.resx">
       <DependentUpon>201710261653130_update10.cs</DependentUpon>
     </EmbeddedResource>
