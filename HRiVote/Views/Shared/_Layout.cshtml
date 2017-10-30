@@ -98,6 +98,23 @@
 
                             </div>
                         </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title ">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse5">
+                                        @Html.TextBox("m", "Calendar", new { @class = "btn btn-info" })
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapse5" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    @Html.ActionLink(" Start Vacation", "OnLeaveDays", "Calendar", new { title = "Vacation" }, new { @class = "fa fa-paper-plane" })<br />
+                                    @Html.ActionLink(" Open Sick Day", "OnLeaveDays", "Calendar", new { title="Sick" }, new { @class = "fa fa-paper-plane" })<br />
+                                    @Html.ActionLink(" Official Leave", "OnLeaveDays", "Calendar",new { title="Official Leave"},new { @class="fa fa-paper-plane"})
+                                </div>
+
+                            </div>
+                        </div>
                             </div>
                         </div>
                     </div>
