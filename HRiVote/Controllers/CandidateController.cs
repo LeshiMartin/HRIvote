@@ -19,7 +19,7 @@ namespace HRiVote.Controllers
         private Entity db = new Entity();
 
         // GET: Candidate
-        public ActionResult Index(int id,int? candidateid)
+        public ActionResult Index(int? id,int? candidateid,int? updateid)
         {
             List<Candidate> Can = db.aplikanti.ToList();
             List<Candidate> candidates = new List<Candidate>();
@@ -42,11 +42,31 @@ namespace HRiVote.Controllers
             {
                 viewmodel.candidate = viewmodel.Candidate.Single(x => x.ID == candidateid);
             }
+            if (updateid.HasValue)
+            {
+                viewmodel.cans = viewmodel.Candidate.Where(x => x.ID == updateid).ToList();
+            }
 
                 return View(viewmodel);
             
         }
-
+        [HttpPost]
+        [ValidateAntiForgeryToken]       
+        public ActionResult Update(Candidate candidate)
+        {
+            var can = db.aplikanti.SingleOrDefault(x => x.ID == candidate.ID);
+            if (can == null)
+            {
+                return HttpNotFound();
+            }
+            else
+            {
+                can.InterviewDate = candidate.InterviewDate;
+                can.InterviewTime = candidate.InterviewTime;
+                db.SaveChanges();
+            }
+            return RedirectToAction("Index","Candidate");
+        }
         // GET: Candidate/Details/5
       
 
@@ -60,7 +80,7 @@ namespace HRiVote.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-      [ValidateAntiForgeryToken]
+         [ValidateAntiForgeryToken]
         public ActionResult Create( Candidate candidate, HttpPostedFileBase file, int? InterviewRound)
         {
             if (ModelState.IsValid)
@@ -143,30 +163,7 @@ namespace HRiVote.Controllers
         }
 
         // GET: Candidate/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Candidate candidate = db.aplikanti.Find(id);
-            if (candidate == null)
-            {
-                return HttpNotFound();
-            }
-            return View(candidate);
-        }
 
-        // POST: Candidate/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Candidate candidate = db.aplikanti.Find(id);
-            db.aplikanti.Remove(candidate);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
 
         protected override void Dispose(bool disposing)
         {

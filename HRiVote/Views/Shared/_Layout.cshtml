@@ -84,9 +84,20 @@
                         <br />
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                @Html.ActionLink(" List Of JobTitles", "Index", "Posstions", null, new { @class="fa fa-paper-plane"})
+                                <h4 class="panel-title ">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">
+                                        @Html.TextBox("m", "Job Titles", new { @class = "btn btn-info" })
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapse4" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    @Html.ActionLink(" Active Job Titles", "Index", "Posstions", new { status = true }, new { @class = "fa fa-paper-plane" })<br />
+                                    @Html.ActionLink(" Removed Job Titles", "Index", "Posstions", new { status = false }, new { @class = "fa fa-paper-plane" })<br />                                  
                                 </div>
-                                </div>
+
+                            </div>
+                        </div>
                             </div>
                         </div>
                     </div>

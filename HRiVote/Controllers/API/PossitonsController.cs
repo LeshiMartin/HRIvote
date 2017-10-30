@@ -55,9 +55,16 @@ namespace HRiVote.Controllers.API
         [HttpPut]
         public void updatePosstion([FromBody]JobPosition position,int id)
         {
-            var possition = db.positions.Single(x => x.ID == id);
-            position.Status = true;
-            db.SaveChanges();
+            var open = db.positions.Single(x => x.ID == id);
+            if (open == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
+            else
+            {
+                open.Status = true;
+                db.SaveChanges();
+            }
         }
     }
 }

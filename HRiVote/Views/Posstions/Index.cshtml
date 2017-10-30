@@ -3,14 +3,15 @@
 @{
     ViewBag.Title = "Index";
 }
+<br /><br /><br /><br />
 <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css">
-<div class="container Back col-sm-offset-1">
+<div class="container Back col-sm-offset-3 col-sm-6">
     <h2>Index</h2>
 
     <p>
         @Html.ActionLink("Create New", "AddPosition")
     </p>
-    <table id="table" class="table table-bordered table-bordered">
+    <table id="table" class="table table-bordered table-bordered ">
         <thead>
             <tr>
                 <th>
@@ -34,7 +35,7 @@
                         }
                         else
                         {
-                            <button data-project-id="@item.ID" type="button" class="btn btn-primary fa fa-arrow-up js-update">Delete</button>
+                            <button data-project-id="@item.ID" type="button" class="btn btn-primary fa fa-arrow-up js-update">Add</button>
                         }
                     </td>
                 </tr>
@@ -57,6 +58,7 @@
                     success: function () {
                         button.parents("tr").remove();
                         console.log("Success")
+                        
                     }
                 })
             });

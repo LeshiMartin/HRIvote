@@ -9,6 +9,10 @@ namespace HRiVote.Models
 {
     public class Candidate
     {
+        private Candidate candidate;
+
+       
+
         public int ID { get; set; }
 
         [Required]

@@ -15,10 +15,10 @@ namespace HRiVote.Controllers
     {
         private Entity db = new Entity();
         // GET: Posstions
-        public ActionResult Index()
+        public ActionResult Index(bool? status)
         {
 
-            return View(db.positions.Where(x=>x.Status==true).ToList());
+            return View(db.positions.Where(x=>x.Status==status).ToList());
         }
         public ActionResult AddPosition(int? id)
         {

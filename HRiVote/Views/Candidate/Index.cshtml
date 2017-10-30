@@ -10,96 +10,152 @@
     <p class="col-md-2">
         @Html.ActionLink(" Create New", "Create", null, new { @class = "btn btn-info fa fa-pencil" })
     </p>
-
-    @*<div class="table-bordered table-responsive text-center">*@
-    <table id="myTable" class="table table-hover table-responsive">
-        <thead>
-            <tr>
-
-                <th>
-                    Last Name
-                </th>
-                <th>
-                    First Name
-                </th>
-                <th>
-                    Email
-                </th>
-                <th>
-                     Phone Number
-                </th>
-                <th>
-                    CV
-                </th>
-                <th>
-                    Interview Date
-                </th>
-                <th>
-                    Interview Time
-                </th>
-                <th>
-                    Interview Round
-                </th>
-                <th>Action Links</th>
-            </tr>
-        </thead>
-        @foreach (var item in Model.Candidate)
-        {
-            <tbody>
+    <div class="form-group">
+        @*<div class="table-bordered table-responsive text-center">*@
+        <table id="myTable" class="table table-hover table-responsive">
+            <thead>
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.LastName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FirstName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Email)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.PhoneNumber)
-                    </td>
-                    <td>
-                        @if (item.CV == "Cv not Uploaded")
-                        {
-                            @Html.DisplayFor(x => item.CV)
-                        }
-                        else
-                        {
-                            <img src="@Url.Content(item.CV)" alt="@Html.DisplayFor(x=>item.CV)" width="100" />
-                        }
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.InterviewDate)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(x => item.InterviewTime)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.InterviewRound)
-                    </td>
-                    <td>
-                        @*<a href="@Url.Action("Edit", new { id = item.ID })">
-                                <i class="glyphicon glyphicon-edit" data-toggle="tooltip" title="Edit"></i>
-                                <span class="sr-only">Edit</span>
-                            </a>
-                            <a href="@Url.Action("Details", new { id = item.ID })">
-                                <i class="glyphicon glyphicon-list-alt" data-toggle="tooltip" title="Details"></i>
-                                <span class="sr-only">Details</span>
-                            </a>
-                            <a href="@Url.Action("Delete", new { id = item.ID })">
-                                <i class="glyphicon glyphicon-trash" data-toggle="tooltip" title="Delete"></i>
-                                <span class="sr-only">Delete</span>
-                            </a>*@
-                        @Html.ActionLink(" Edit", "Edit", new { id = item.ID }, new { @class = "btn btn-primary fa fa-pencil" }) |
-                        @Html.ActionLink(" Details", "Index", new { candidateid = item.ID }, new { @class = "btn btn-info fa fa-search" }) |
-                        @Html.ActionLink(" Delete", "Delete", new { id = item.ID }, new { @class = "btn btn-danger fa fa-trash" })
-                    </td>
-                </tr>
-            </tbody>
-        }
 
-    </table>
+                    <th>
+                        Last Name
+                    </th>
+                    <th>
+                        First Name
+                    </th>
+                    <th>
+                        Email
+                    </th>
+                    <th>
+                        Phone Number
+                    </th>
+                    <th>
+                        CV
+                    </th>
+                    <th>
+                        Interview Date
+                    </th>
+                    <th>
+                        Interview Time
+                    </th>
+                    <th>
+                        Interview Round
+                    </th>
+                    <th>Action Links</th>
+                </tr>
+            </thead>
+            @foreach (var item in Model.Candidate)
+            {
+                <tbody>
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LastName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FirstName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PhoneNumber)
+                        </td>
+                        <td>
+                            @if (item.CV == "Cv not Uploaded")
+                            {
+                                @Html.DisplayFor(x => item.CV)
+                            }
+                            else
+                            {
+                                <img src="@Url.Content(item.CV)" alt="@Html.DisplayFor(x=>item.CV)" width="100" />
+                            }
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.InterviewDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(x => item.InterviewTime)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.InterviewRound)
+                        </td>
+                        <td class="btn-group-sm">
+                            @*<a href="@Url.Action("Edit", new { id = item.ID })">
+                                    <i class="glyphicon glyphicon-edit" data-toggle="tooltip" title="Edit"></i>
+                                    <span class="sr-only">Edit</span>
+                                </a>
+                                <a href="@Url.Action("Details", new { id = item.ID })">
+                                    <i class="glyphicon glyphicon-list-alt" data-toggle="tooltip" title="Details"></i>
+                                    <span class="sr-only">Details</span>
+                                </a>
+                                <a href="@Url.Action("Delete", new { id = item.ID })">
+                                    <i class="glyphicon glyphicon-trash" data-toggle="tooltip" title="Delete"></i>
+                                    <span class="sr-only">Delete</span>
+                                </a>*@
+
+                            @Html.ActionLink(" Edit", "Edit", new { id = item.ID }, new { @class = "btn btn-primary btn-sm btn-group-sm fa fa-pencil" }) |
+                            @Html.ActionLink(" Details", "Index", new { candidateid = item.ID }, new { @class = "btn btn-info btn-sm btn-group-sm fa fa-search" }) |
+                            @Html.ActionLink(" Update Interview Date/Time", "Index", new { updateid = item.ID }, new { @class = "btn btn-primary btn-sm btn-group-sm fa fa-pencil" })
+                            <button class="btn btn-danger btn-sm btn-group-sm fa fa-trash js-delete" type="button" data-project-id="@item.ID">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            }
+
+            @if (Model.cans != null)
+            {
+                using (Html.BeginForm("Update", "Candidate", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+
+                    foreach (var items in Model.cans)
+                    {
+
+                        <tbody>
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => items.LastName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => items.FirstName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => items.Email)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => items.PhoneNumber)
+                                </td>
+                                <td>
+                                    @if (items.CV == "Cv not Uploaded")
+                                    {
+                                        @Html.DisplayFor(x => items.CV)
+                                    }
+                                    else
+                                    {
+                                        <img src="@Url.Content(items.CV)" alt="@Html.DisplayFor(x => items.CV)" width="100" />
+                                    }
+                                </td>
+                                <td>
+                                    @Html.EditorFor(x => items.InterviewDate, new { htmlAttributes = new { @class = "form-control" } })
+                                </td>
+                                <td>
+                                    @Html.EditorFor(x => items.InterviewTime, new { htmlAttributes = new { @class = "form-control" } })
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => items.InterviewRound)
+                                    @Html.HiddenFor(x => items.ID)
+                                </td>
+                                <td><input type="submit" class="btn btn-success" value="Update" /></td>
+                            </tr>
+                        </tbody>
+
+                    }
+                }
+            }
+
+
+        </table>
+    </div>
+
 </div>
 <br />
 <br />
@@ -112,6 +168,18 @@
 @section scripts{
     <script>
         $("#myTable").DataTable();
+
+        $("#myTable").on("click", ".js-delete", function () 
+        {
+            var self = $(this);
+            $.ajax({
+                url: "/api/Candidate/" + self.attr("data-project-id"),
+                method: "Delete",
+                success: function () {
+                    self.parents("tr").remove();
+                }
+            })
+        });
     </script>
     }
 
