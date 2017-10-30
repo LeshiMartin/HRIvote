@@ -13,8 +13,7 @@ namespace HRiVote.Models
         public int? EmployeeID { get; set; }
         public Employee employee { get; set; }
        
-        public int? CandidateID { get; set; }
-        public Candidate candidate { get; set; }
+       
         public string Title { get; set; }
         [DataType(DataType.Date), DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime? StartOfVacation { get; set; }

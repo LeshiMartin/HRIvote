@@ -277,6 +277,10 @@
     <Compile Include="DAL\EntityMigrations\201710271012322_OpenPosition Update.Designer.cs">
       <DependentUpon>201710271012322_OpenPosition Update.cs</DependentUpon>
     </Compile>
+    <Compile Include="DAL\EntityMigrations\201710301515394_Deleted the CandidateID from Calendar.cs" />
+    <Compile Include="DAL\EntityMigrations\201710301515394_Deleted the CandidateID from Calendar.Designer.cs">
+      <DependentUpon>201710301515394_Deleted the CandidateID from Calendar.cs</DependentUpon>
+    </Compile>
     <Compile Include="DAL\EntityMigrations\Configuration.cs" />
     <Compile Include="DAL\IdentityMigrations\201710190928386_InitialCreate.cs" />
     <Compile Include="DAL\IdentityMigrations\201710190928386_InitialCreate.Designer.cs">
@@ -848,6 +852,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DAL\EntityMigrations\201710271012322_OpenPosition Update.resx">
       <DependentUpon>201710271012322_OpenPosition Update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DAL\EntityMigrations\201710301515394_Deleted the CandidateID from Calendar.resx">
+      <DependentUpon>201710301515394_Deleted the CandidateID from Calendar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DAL\IdentityMigrations\201710190928386_InitialCreate.resx">
       <DependentUpon>201710190928386_InitialCreate.cs</DependentUpon>
