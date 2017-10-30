@@ -79,10 +79,10 @@
                             else
                             {<img src="@Url.Content(item.Photo)" alt="@Html.DisplayFor(x => item.Photo)" width="100" />}
                         </td>
-                        <td class="">
-                            @Html.ActionLink(" Edit", "Edit", new { id = item.ID }, new { @class = "fa fa-pencil btn btn-default btn-primary" }) |    
-                            @Html.ActionLink(" Details", "Index", new { id = item.ID }, new { @class = " fa fa-search btn  btn-info" }) |                    
-                            @Html.ActionLink(" Delete", "Delete", new { id = item.ID }, new { @class = "fa fa-trash btn btn-default btn-danger" })
+                        <td class="btn-group-sm">
+                            @Html.ActionLink(" Edit", "Edit", new { id = item.ID }, new { @class = "fa fa-pencil btn btn-sm btn-default btn-primary" }) |    
+                            @Html.ActionLink(" Details", "Index", new { id = item.ID }, new { @class = " fa fa-search btn btn-sm  btn-info" }) |                    
+                            @Html.ActionLink(" Delete", "Delete", new { id = item.ID }, new { @class = "fa fa-trash btn btn-sm btn-default btn-danger" })
                             
                         </td>
                     </tr>
