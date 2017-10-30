@@ -50,27 +50,7 @@ namespace HRiVote.Controllers
                 return View(viewmodel);
             
         }
-        [HttpPost]
-        [ValidateAntiForgeryToken]       
-        public ActionResult Update(Candidate candidate)
-        {
-            var can = db.aplikanti.SingleOrDefault(x => x.ID == candidate.ID);
-            if (can == null)
-            {
-                return HttpNotFound();
-            }
-            else
-            {
-                can.InterviewDate = candidate.InterviewDate;
-                can.InterviewTime = candidate.InterviewTime;
-                db.SaveChanges();
-            }
-            return RedirectToAction("Index","Candidate");
-        }
-        // GET: Candidate/Details/5
-      
-
-        // GET: Candidate/Create
+        
         public ActionResult Create()
         {
             return View();

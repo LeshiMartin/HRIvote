@@ -13,9 +13,9 @@ namespace HRiVote.Models
         public string Description { get; set; }
         [ScaffoldColumn(false)]
         public bool Status { get; set; }
-        [DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
-         public DateTime? StartOfJobOpenning { get; set; }
-        [DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        [DataType(DataType.Date), DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
+        public DateTime? StartOfJobOpenning { get; set; }
+        [DataType(DataType.Date), DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime? EndOfJobOpenning { get; set; }
     }
 }

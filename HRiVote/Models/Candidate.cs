@@ -39,12 +39,12 @@ namespace HRiVote.Models
         [Required]
         [CandidateDate]
         [Display(Name ="Датум на интервју")]
-        [DataType(DataType.Date), DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
+        [DataType(DataType.Date), DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime InterviewDate { get; set; }
 
         [CandidateTime]
         [Display(Name = "Време на интервју")]
-        [DataType(DataType.Time)/*, DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")*/]
+        [DataType(DataType.Time), DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd HH:mm:ss}")]
         public DateTime? InterviewTime { get; set; }
 
         [Required]

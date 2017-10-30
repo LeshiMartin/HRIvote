@@ -25,7 +25,8 @@ namespace HRiVote.Models
 
         [Required]
         [UnderAge]
-        [DataType(DataType.Date), DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}"), Display(Name = "Датум на раѓање")]
+        [DataType(DataType.Date), DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
+           [ Display(Name = "Датум на раѓање")]
         public DateTime BirthDate { get; set; }
 
         [Required]

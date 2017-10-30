@@ -20,5 +20,25 @@ namespace HRiVote.Controllers.API
             db.aplikanti.Remove(candidate);
             db.SaveChanges();
         }
+        [HttpPut]
+        public void UpdateInterviewDate([FromBody] Candidate candidate,int id)
+        {
+            var aplikant = db.aplikanti.Single(x => x.ID == id);
+            if (!ModelState.IsValid)
+            {
+                throw new HttpResponseException(HttpStatusCode.BadRequest);
+            }
+            if (aplikant == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
+            else
+            {
+                aplikant.InterviewDate = candidate.InterviewDate;
+                aplikant.InterviewTime = candidate.InterviewTime;
+                db.SaveChanges();
+                throw new HttpResponseException(HttpStatusCode.OK);
+            }
+        }
     }
 }

@@ -11,8 +11,10 @@
         @Html.ActionLink(" Create New", "Create", null, new { @class = "btn btn-info fa fa-pencil" })
     </p>
     <div class="form-group">
+        @using (Html.BeginForm())
+        {
         @*<div class="table-bordered table-responsive text-center">*@
-        <table id="myTable" class="table table-hover table-responsive">
+        <table id="myTable" class="table table-hover table-bordered table-responsive">
             <thead>
                 <tr>
 
@@ -66,7 +68,7 @@
                             }
                             else
                             {
-                                <img src="@Url.Content(item.CV)" alt="@Html.DisplayFor(x=>item.CV)" width="100" />
+                                <img src="@Url.Content(item.CV)" alt="@Html.DisplayFor(x => item.CV)" width="100" />
                             }
                         </td>
                         <td>
@@ -103,12 +105,11 @@
 
             @if (Model.cans != null)
             {
-                using (Html.BeginForm("Update", "Candidate", FormMethod.Post))
-                {
+
                     @Html.AntiForgeryToken()
 
-                    foreach (var items in Model.cans)
-                    {
+                foreach (var items in Model.cans)
+                {
 
                         <tbody>
                             <tr>
@@ -144,16 +145,17 @@
                                     @Html.DisplayFor(modelItem => items.InterviewRound)
                                     @Html.HiddenFor(x => items.ID)
                                 </td>
-                                <td><input type="submit" class="btn btn-success" value="Update" /></td>
+                                <td><input type="submit" class="btn btn-success js-success" data-project-id="" value="Update" /></td>
                             </tr>
                         </tbody>
 
-                    }
                 }
             }
+            
 
 
         </table>
+        }
     </div>
 
 </div>
@@ -175,6 +177,16 @@
             $.ajax({
                 url: "/api/Candidate/" + self.attr("data-project-id"),
                 method: "Delete",
+                success: function () {
+                    self.parents("tr").remove();
+                }
+            })
+        });
+        $("#myTable").on("click", ".js-success", function () {
+            var self = $(this);
+            $.ajax({
+                url: "api/Candidate/" + self.attr("data-project-id"),
+                method: "PUT",
                 success: function () {
                     self.parents("tr").remove();
                 }
