@@ -6,12 +6,13 @@
 <link rel="stylesheet" href="//cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css" />
 <div class="Back container">
     <h2 class="col-md-6 col-md-offset-5">List of Candidates</h2>
-
+    @ViewBag.Error
     <p class="col-md-2">
         @Html.ActionLink(" Create New", "Create", null, new { @class = "btn btn-info fa fa-pencil" })
     </p>
     <div class="form-group">
-        @using (Html.BeginForm())
+        @Html.ValidationSummary()
+        @using (Html.BeginForm("Update","Candidate",FormMethod.Post))
         {
         @*<div class="table-bordered table-responsive text-center">*@
         <table id="myTable" class="table table-hover table-bordered table-responsive">
@@ -136,14 +137,14 @@
                                     }
                                 </td>
                                 <td>
-                                    @Html.EditorFor(x => items.InterviewDate, new { htmlAttributes = new { @class = "form-control" } })
+                                   <input type="date" class="ui-datepicker-buttonpane" name="Date" id="Date"/>
                                 </td>
                                 <td>
-                                    @Html.EditorFor(x => items.InterviewTime, new { htmlAttributes = new { @class = "form-control" } })
+                                    <input type="time"class="bootstrap-timepicker"name="Time" id="Time" />
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => items.InterviewRound)
-                                    @Html.HiddenFor(x => items.ID)
+                                    @Html.HiddenFor(x => items.ID,new { @name = "ID" })
                                 </td>
                                 <td><input type="submit" class="btn btn-success js-success" data-project-id="" value="Update" /></td>
                             </tr>
@@ -182,16 +183,16 @@
                 }
             })
         });
-        $("#myTable").on("click", ".js-success", function () {
-            var self = $(this);
-            $.ajax({
-                url: "api/Candidate/" + self.attr("data-project-id"),
-                method: "PUT",
-                success: function () {
-                    self.parents("tr").remove();
-                }
-            })
-        });
+        //$("#myTable").on("click", ".js-success", function () {
+        //    var self = $(this);
+        //    $.ajax({
+        //        url: "api/Candidate/" + self.attr("data-project-id"),
+        //        method: "PUT",
+        //        success: function () {
+        //            self.parents("tr").remove();
+        //        }
+        //    })
+        //});
     </script>
     }
 

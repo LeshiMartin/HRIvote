@@ -21,9 +21,9 @@ namespace HRiVote.Controllers.API
             db.SaveChanges();
         }
         [HttpPut]
-        public void UpdateInterviewDate([FromBody] Candidate candidate,int id)
+        public void UpdateInterviewDate([FromBody] Candidate candidate,DateTime? Date,DateTime? Time)
         {
-            var aplikant = db.aplikanti.Single(x => x.ID == id);
+            var aplikant = db.aplikanti.Single(x => x.ID == candidate.ID);
             if (!ModelState.IsValid)
             {
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
@@ -34,8 +34,11 @@ namespace HRiVote.Controllers.API
             }
             else
             {
-                aplikant.InterviewDate = candidate.InterviewDate;
-                aplikant.InterviewTime = candidate.InterviewTime;
+               if(Date.HasValue || Time.HasValue)
+                {
+                    aplikant.InterviewDate = Date.Value;
+                    aplikant.InterviewTime = Time.Value;
+                }
                 db.SaveChanges();
                 throw new HttpResponseException(HttpStatusCode.OK);
             }

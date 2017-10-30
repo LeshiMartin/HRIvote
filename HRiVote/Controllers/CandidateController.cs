@@ -45,10 +45,37 @@ namespace HRiVote.Controllers
             if (updateid.HasValue)
             {
                 viewmodel.cans = viewmodel.Candidate.Where(x => x.ID == updateid).ToList();
+                TempData["id"] = updateid.Value;
             }
 
-                return View(viewmodel);
-            
+                return View(viewmodel);           
+        }
+        [HttpPost]
+        public ActionResult Update(DateTime? Date,DateTime? Time)
+        {
+            int ID = (int)TempData["id"];
+            TempData.Keep("id");
+            var aplikant = db.aplikanti.Single(x => x.ID == ID);
+            if(Date.HasValue && Time.HasValue)
+            {
+
+                if (Date.Value.Date>DateTime.Now.Date && Time.Value.Hour>DateTime.Now.Hour)
+                {
+                    aplikant.InterviewDate = Date.Value;
+                    aplikant.InterviewTime = Time.Value;
+                    db.SaveChanges();
+                }
+                else
+                {
+                    ViewBag.Error = "You must choose a Date/Time for Update";
+                }
+                
+            }
+            if(!Date.HasValue || !Time.HasValue)
+            {
+                ViewBag.Error = "You must choose a Date/Time for Update";
+            }
+            return RedirectToAction("Index");
         }
         
         public ActionResult Create()

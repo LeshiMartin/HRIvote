@@ -44,7 +44,7 @@ namespace HRiVote.Models
 
         [CandidateTime]
         [Display(Name = "Време на интервју")]
-        [DataType(DataType.Time), DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd HH:mm:ss}")]
+        [DataType(DataType.Time), DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm:ss}")]
         public DateTime? InterviewTime { get; set; }
 
         [Required]
