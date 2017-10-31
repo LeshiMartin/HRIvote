@@ -3,9 +3,9 @@
 @{
     ViewBag.Title = "Index";
 }
-<br /><br /><br /><br />
+<br /><br /><br /><br /><br />
 <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css">
-<div class="container Back col-sm-offset-3 col-sm-6">
+<div class="container Back col-sm-offset-3 col-sm-6" style="border: solid transparent;border-radius: 20px;">
     <h2>Index</h2>
 
     <p>
@@ -28,14 +28,14 @@
                         @Html.ActionLink(item.Title, "Index", "Employee", new { id = item.ID }, new { @class = "fa fa-paperplane" })
                     </td>
                     <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.ID },new { @class = "btn btn-primary fa fa-pencil" }) | 
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ID },new { @class = "btn1 btn-primary fa fa-pencil",@style= "padding: 7px 15px !important; font-size: 15px !important;border-radius: 15px !important;" }) | 
                         @if (item.Status == true)
                         {
-                        <button data-project-id="@item.ID" type="button" class="btn btn-danger fa fa-trash js-delete">Delete</button>
+                        <button data-project-id="@item.ID" type="button"style="padding: 7px 15px !important; font-size: 15px !important;border-radius: 15px !important" class="btn1 btn-danger fa fa-trash js-delete">Delete</button>
                         }
                         else
                         {
-                            <button data-project-id="@item.ID" type="button" class="btn btn-primary fa fa-arrow-up js-update">Add</button>
+                            <button data-project-id="@item.ID" type="button" style="padding: 7px 15px !important; font-size: 15px !important;border-radius: 15px !important" class="btn1 btn-primary fa fa-arrow-up js-update">Add</button>
                         }
                     </td>
                 </tr>

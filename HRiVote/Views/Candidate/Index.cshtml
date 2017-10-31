@@ -3,9 +3,10 @@
 @{
     ViewBag.Title = "Index";
 }
+<br /><br /><br /><br /><br />
 <link rel="stylesheet" href="//cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css" />
-<div class="Back container">
-    <h2 class="col-md-6 col-md-offset-5">List of Candidates</h2>
+<div class="Back container" style="border:solid transparent !important;border-radius: 20px !important;">
+    <h2 class="col-md-6 col-md-offset-5" >List of Candidates</h2>
     @ViewBag.Error
     <p class="col-md-2">
         @Html.ActionLink(" Create New", "Create", null, new { @class = "btn btn-info fa fa-pencil" })
@@ -15,7 +16,8 @@
         @using (Html.BeginForm("Update","Candidate",FormMethod.Post))
         {
         @*<div class="table-bordered table-responsive text-center">*@
-        <table id="myTable" class="table table-hover table-bordered table-responsive" width="100%">
+            @Html.AntiForgeryToken()
+        <table id="myTable" class="table table-hover table-bordered table-responsive" width="100">
             <thead>
                 <tr>
 
