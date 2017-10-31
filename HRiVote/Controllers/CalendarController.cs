@@ -42,7 +42,20 @@ namespace HRiVote.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                   
                     calendar.Title = title;
+                    if (calendar.Title == "Sick")
+                    {
+                        calendar.Color = "#ff0000";
+                    }
+                    if (calendar.Title == "Vacation")
+                    {
+                        calendar.Color = "#00ff21";
+                    }
+                    if(calendar.Title=="Official Leave")
+                    {
+                        calendar.Color = "#4800ff";
+                    }
                     var employee = db.emps.Single(x => x.ID == calendar.EmployeeID);
                     employee.IsAvailable = false;
                     db.kalendar.Add(calendar);
@@ -75,7 +88,11 @@ namespace HRiVote.Controllers
         }
         public JsonResult GetData()
         {
-            return new JsonResult { Data = db.kalendar.Include(x => x.employee).ToList(), JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            return new JsonResult { Data = db.kalendar.ToList(), JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
+
+
+
+
     }
 }

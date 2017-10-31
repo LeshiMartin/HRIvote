@@ -60,3 +60,12 @@ textarea {
     -ms-user-select: none;
     user-select: none;
 }
+.scheduler_container {
+    width: 100%;
+    height: 600px;
+    border: 1px solid #aeaeae;
+    margin-left: 120px;
+    margin-top: 50px;
+    padding-left: 30px;
+    color:#4800ff
+}
