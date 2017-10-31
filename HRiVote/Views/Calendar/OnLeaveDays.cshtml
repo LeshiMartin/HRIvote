@@ -1,0 +1,49 @@
+﻿@model HRiVote.ViewModels.CalendarViewModel
+<div class="container Back col-sm-offset-1" style="border: solid transparent;border-radius: 20px;">
+    @using (Html.BeginForm("Open","Calendar",FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>Calendar</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Calendar.EmployeeID, "Employee", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.Calendar.EmployeeID, new SelectList(Model.Employes, "ID", "FullName"), "---Select an Employee---", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Calendar.EmployeeID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Calendar.StartOfVacation, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Calendar.StartOfVacation, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Calendar.StartOfVacation, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Calendar.EndOfVacation, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Calendar.EndOfVacation, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Calendar.EndOfVacation, "", new { @class = "text-danger" })
+                </div>
+            </div>
+                @Html.HiddenFor(x=>x.Calendar.Id)
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+    <br />
+    <div class="container Back col-sm-offset-1" style="border: solid transparent;border-radius: 20px;">
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+</div>

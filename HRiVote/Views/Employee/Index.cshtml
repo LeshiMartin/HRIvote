@@ -11,7 +11,7 @@
 
     <div class="container">
         <p>
-            @Html.ActionLink("Create New", "AddEmployee", null, new { @class = "btn btn-primary fa fa-pencil" })
+            @Html.ActionLink("Create New", "AddEmployee", null, new { @class = "btn btn-primary fa fa-pencil", @style = "border-radius: 12px;padding: 6px 20px;font-size: 15px;" })
         </p>
         <br /><br />
         @using (Html.BeginForm("IndexPost", "Employee", FormMethod.Post))
@@ -58,20 +58,20 @@
             {
                 <tbody>
                     <tr>
-                        <td>
+                        <td style="border-radius: 12px;padding: 4px 10px;font-size: 13px;">
                             @Html.DisplayFor(modelItem => item.LastName)
                         </td>
-                        <td>
+                        <td style="border-radius: 12px;padding: 4px 10px;font-size: 13px;">
                             @Html.DisplayFor(modelItem => item.FirstName)
                         </td>
 
-                        <td>
+                        <td style="border-radius: 12px;padding: 4px 10px;font-size: 13px;">
                             @Html.DisplayFor(x => item.job.Title)
                         </td>
-                        <td>
+                        <td style="border-radius: 12px;padding: 4px 10px;font-size: 13px;">
                             @Html.DisplayFor(modelItem => item.IsAvailable)
                         </td>
-                        <td>
+                        <td style="border-radius: 12px;padding: 4px 10px;font-size: 13px;">
                             @if (item.Photo == "No photo uploaded")
                             {
                                 @Html.DisplayFor(x => item.Photo)
@@ -79,10 +79,10 @@
                             else
                             {<img src="@Url.Content(item.Photo)" alt="@Html.DisplayFor(x => item.Photo)" width="100" />}
                         </td>
-                        <td class="btn-group-sm">
-                            @Html.ActionLink(" Edit", "Edit", new { id = item.ID }, new { @class = "fa fa-pencil btn1 btn-sm btn-default btn-primary" }) |    
-                            @Html.ActionLink(" Details", "Index", new { id = item.ID }, new { @class = " fa fa-search btn1 btn-sm  btn-info" }) |                    
-                            @Html.ActionLink(" Delete", "Delete", new { id = item.ID }, new { @class = "fa fa-trash btn1 btn-sm btn-default btn-danger" })
+                        <td class="btn-group-sm"style="border-radius: 12px;padding: 4px 10px;font-size: 13px;">
+                            @Html.ActionLink(" Edit", "Edit", new { id = item.ID }, new { @class = "fa fa-pencil btn1 btn-sm btn-default btn-primary", @style = "border-radius: 12px;padding: 4px 10px;font-size: 13px;" }) |    
+                            @Html.ActionLink(" Details", "Index", new { id = item.ID }, new { @class = " fa fa-search btn1 btn-sm  btn-info", @style = "border-radius: 12px;padding: 4px 10px;font-size: 13px;" }) |                    
+                            @Html.ActionLink(" Delete", "Delete", new { id = item.ID }, new { @class = "fa fa-trash btn1 btn-sm btn-default btn-danger", @style = "border-radius: 12px;padding: 4px 10px;font-size: 13px;" })
                             
                         </td>
                     </tr>

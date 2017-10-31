@@ -4,7 +4,7 @@
 @{
     ViewBag.Title = "Details";
 }
-<div class="Back container">
+<div class="Back container" style="border: solid transparent;border-radius: 20px;">
     <h2>Details</h2>
 
     <div>
@@ -94,7 +94,7 @@
 <div class="Back container">
     <br />
     <p>
-        @Html.ActionLink(" Edit", "Edit", new { id = Model.ID }, new { @class = "btn btn-primary fa fa-pencil" }) |
-        @Html.ActionLink(" Back to List", "Index", null, new { @class = "btn btn-primary fa fa-backward" })
+        @Html.ActionLink(" Edit", "Edit", new { id = Model.ID }, new { @class = "btn btn-primary fa fa-pencil", @style = "border-radius: 12px;padding: 4px 10px;font-size: 13px;" }) |
+        @Html.ActionLink(" Back to List", "Index", null, new { @class = "btn btn-primary fa fa-backward", @style = "border-radius: 12px;padding: 4px 10px;font-size: 13px;" })
     </p>
 </div>

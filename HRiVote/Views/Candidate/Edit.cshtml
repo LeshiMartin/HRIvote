@@ -20,7 +20,7 @@
     <script src="https://kendo.cdn.telerik.com/2017.3.1018/js/kendo.all.min.js"></script>
 </head>
 <body>
-    <div class="Back container">
+    <div class="Back container"style="border: solid transparent;border-radius: 20px;">
         <h2>Edit</h2>
 
 
@@ -106,14 +106,14 @@
 
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Save" class="btn btn-default btn-success" />
+                        <input type="submit" value="Save" class="btn btn-default btn-success" style="border-radius: 12px;padding: 6px 20px;font-size: 15px;" />
                     </div>
                 </div>
             </div>
         }
 
         <div>
-            @Html.ActionLink(" Back to List", "Index", null, new { @class = "btn btn-info fa fa-backward" })
+            @Html.ActionLink(" Back to List", "Index", null, new { @class = "btn btn-info fa fa-backward", @style = "border-radius: 12px;padding: 8px 14px;font-size: 15px;" })
         </div>
 
     </div>

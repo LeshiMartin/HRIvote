@@ -6,9 +6,9 @@ using System.Web;
 
 namespace HRiVote.ViewModels
 {
-    public class PosstionSkilllViewModel
+    public class CalendarViewModel
     {
-        public JobPosition jobPosition { get; set; }
-        public Skills skills { get; set; }
+        public Calendar Calendar { get; set; }
+        public IEnumerable<Employee> Employes { get; set; }
     }
 }

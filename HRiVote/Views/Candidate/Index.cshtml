@@ -9,7 +9,7 @@
     <h2 class="col-md-6 col-md-offset-5" >List of Candidates</h2>
     @ViewBag.Error
     <p class="col-md-2">
-        @Html.ActionLink(" Create New", "Create", null, new { @class = "btn btn-info fa fa-pencil" })
+        @Html.ActionLink(" Create New", "Create", null, new { @class = "btn btn-info fa fa-pencil", @style = "border-radius: 12px;padding: 8px 10px;font-size: 15px;" })
     </p>
     <div class="form-group">
         @Html.ValidationSummary()
@@ -51,20 +51,20 @@
             @foreach (var item in Model.Candidate)
             {
                 <tbody>
-                    <tr>
-                        <td>
+                    <tr style="border-radius: 12px;padding: 4px 10px;font-size: 13px;">
+                        <td style="border-radius: 12px;padding: 4px 10px;font-size: 13px;">
                             @Html.DisplayFor(modelItem => item.LastName)
                         </td>
-                        <td>
+                        <td style="border-radius: 12px;padding: 4px 10px;font-size: 13px;">
                             @Html.DisplayFor(modelItem => item.FirstName)
                         </td>
-                        <td>
+                        <td style="border-radius: 12px;padding: 4px 10px;font-size: 13px;">
                             @Html.DisplayFor(modelItem => item.Email)
                         </td>
-                        <td>
+                        <td style="border-radius: 12px;padding: 4px 10px;font-size: 13px;">
                             @Html.DisplayFor(modelItem => item.PhoneNumber)
                         </td>
-                        <td>
+                        <td style="border-radius: 12px;padding: 4px 10px;font-size: 13px;">
                             @if (item.CV == "Cv not Uploaded")
                             {
                                 @Html.DisplayFor(x => item.CV)
@@ -74,16 +74,16 @@
                                 <img src="@Url.Content(item.CV)" alt="@Html.DisplayFor(x => item.CV)" width="100" />
                             }
                         </td>
-                        <td>
+                        <td style="border-radius: 12px;padding: 4px 10px;font-size: 13px;">
                             @Html.DisplayFor(modelItem => item.InterviewDate)
                         </td>
-                        <td>
+                        <td style="border-radius: 12px;padding: 4px 10px;font-size: 13px;">
                             @Html.DisplayFor(x => item.InterviewTime)
                         </td>
-                        <td>
+                        <td style="border-radius: 12px;padding: 4px 10px;font-size: 13px;">
                             @Html.DisplayFor(modelItem => item.InterviewRound)
                         </td>
-                        <td class="btn-group-sm">
+                        <td class="btn-group-sm" style="border-radius: 12px;padding: 4px 10px;font-size: 13px;">
                             @*<a href="@Url.Action("Edit", new { id = item.ID })">
                                     <i class="glyphicon glyphicon-edit" data-toggle="tooltip" title="Edit"></i>
                                     <span class="sr-only">Edit</span>
@@ -97,10 +97,10 @@
                                     <span class="sr-only">Delete</span>
                                 </a>*@
 
-                            @Html.ActionLink(" Edit", "Edit", new { id = item.ID }, new { @class = "btn btn-primary btn-sm btn-group-sm fa fa-pencil" }) |
-                            @Html.ActionLink(" Details", "Index", new { candidateid = item.ID }, new { @class = "btn btn-info btn-sm btn-group-sm fa fa-search" }) |
-                            @Html.ActionLink(" Update Interview Date/Time", "Index", new { updateid = item.ID }, new { @class = "btn btn-primary btn-sm btn-group-sm fa fa-pencil" })
-                            <button class="btn btn-danger btn-sm btn-group-sm fa fa-trash js-delete" type="button" data-project-id="@item.ID">Delete</button>
+                            @Html.ActionLink(" Edit", "Edit", new { id = item.ID }, new { @class = "btn btn-primary btn-sm btn-group-sm fa fa-pencil", @style = "border-radius: 12px;padding: 4px 10px;font-size: 13px;" }) |
+                            @Html.ActionLink(" Details", "Index", new { candidateid = item.ID }, new { @class = "btn btn-info btn-sm btn-group-sm fa fa-search", @style = "border-radius: 12px;padding: 4px 10px;font-size: 13px;" }) |
+                            @Html.ActionLink(" Update Interview Date/Time", "Index", new { updateid = item.ID }, new { @class = "btn btn-primary btn-sm btn-group-sm fa fa-pencil", @style = "border-radius: 12px;padding: 4px 10px;font-size: 13px;" })
+                            <button class="btn btn-danger btn-sm btn-group-sm fa fa-trash js-delete"style="border-radius: 12px;padding: 4px 10px;font-size: 13px;" type="button" data-project-id="@item.ID">Delete</button>
                         </td>
                     </tr>
                 </tbody>
@@ -115,20 +115,20 @@
                 {
 
                         <tbody>
-                            <tr>
-                                <td>
+                            <tr style="border-radius: 12px;padding: 4px 10px;font-size: 13px;">
+                                <td style="border-radius: 12px;padding: 4px 10px;font-size: 13px;">
                                     @Html.DisplayFor(modelItem => items.LastName)
                                 </td>
-                                <td>
+                                <td style="border-radius: 12px;padding: 4px 10px;font-size: 13px;">
                                     @Html.DisplayFor(modelItem => items.FirstName)
                                 </td>
-                                <td>
+                                <td style="border-radius: 12px;padding: 4px 10px;font-size: 13px;">
                                     @Html.DisplayFor(modelItem => items.Email)
                                 </td>
-                                <td>
+                                <td style="border-radius: 12px;padding: 4px 10px;font-size: 13px;">
                                     @Html.DisplayFor(modelItem => items.PhoneNumber)
                                 </td>
-                                <td>
+                                <td style="border-radius: 12px;padding: 4px 10px;font-size: 13px;">
                                     @if (items.CV == "Cv not Uploaded")
                                     {
                                         @Html.DisplayFor(x => items.CV)
@@ -138,17 +138,17 @@
                                         <img src="@Url.Content(items.CV)" alt="@Html.DisplayFor(x => items.CV)" width="100" />
                                     }
                                 </td>
-                                <td>
+                                <td style="border-radius: 12px;padding: 4px 10px;font-size: 13px;">
                                    <input type="date" class="ui-datepicker-buttonpane" name="Date" id="Date"/>
                                 </td>
-                                <td>
+                                <td style="border-radius: 12px;padding: 4px 10px;font-size: 13px;">
                                     <input type="time"class="bootstrap-timepicker"name="Time" id="Time" />
                                 </td>
-                                <td>
+                                <td style="border-radius: 12px;padding: 4px 10px;font-size: 13px;">
                                     @Html.DisplayFor(modelItem => items.InterviewRound)
                                     @Html.HiddenFor(x => items.ID,new { @name = "ID" })
                                 </td>
-                                <td><input type="submit" class="btn btn-success js-success" data-project-id="" value="Update" /></td>
+                                <td style="border-radius: 12px;padding: 4px 10px;font-size: 13px;"><input type="submit" class="btn btn-success js-success" data-project-id="" value="Update" /></td>
                             </tr>
                         </tbody>
 

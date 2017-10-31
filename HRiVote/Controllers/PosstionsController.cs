@@ -17,8 +17,16 @@ namespace HRiVote.Controllers
         // GET: Posstions
         public ActionResult Index(bool? status)
         {
-
-            return View(db.positions.Where(x=>x.Status==status).ToList());
+            var possitions = db.positions.ToList();
+            if (!status.HasValue)
+            {
+                possitions = db.positions.Where(x => x.Status == true).ToList();
+            }
+            else
+            {
+                possitions = db.positions.Where(c => c.Status == status).ToList();
+            }
+            return View(possitions);
         }
         public ActionResult AddPosition(int? id)
         {

@@ -4,7 +4,7 @@
     <br />
     <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css">
     <p>
-        @Html.ActionLink("Create New", "OpenPosition","",new { @class = "btn btn-primary fa fa-pencil" })
+        @Html.ActionLink("Create New", "OpenPosition","",new { @class = "btn btn-primary fa fa-pencil", @style = "border-radius: 12px;padding: 6px 20px;font-size: 15px;" })
     </p>
     
     <table id="mytable" class="table table-bordered">
@@ -28,29 +28,29 @@
         @foreach (var item in Model)
         {
         <tbody>
-            <tr>
-                <td>
+            <tr style="border-radius: 12px;padding: 4px 10px;font-size: 13px;">
+                <td style="border-radius: 12px;padding: 4px 10px;font-size: 13px;">
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
-                <td>
+                <td style="border-radius: 12px;padding: 4px 10px;font-size: 13px;">
                     @Html.DisplayFor(modelItem => item.Description)
                 </td>
-                <td>
+                <td style="border-radius: 12px;padding: 4px 10px;font-size: 13px;">
                     @Html.DisplayFor(modelItem => item.StartOfJobOpenning)
                 </td>
-                <td>
+                <td style="border-radius: 12px;padding: 4px 10px;font-size: 13px;">
                     @Html.DisplayFor(modelItem => item.EndOfJobOpenning)
                 </td>
-                <td>
-                    @Html.ActionLink("Edit", "UpdatePossition", new { id = item.ID }, new { @class = "btn btn-primary fa fa-pencil" }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "btn btn-info fa fa-search" }) |
+                <td style="border-radius: 12px;padding: 4px 10px;font-size: 13px;">
+                    @Html.ActionLink("Edit", "UpdatePossition", new { id = item.ID }, new { @class = "btn btn-primary fa fa-pencil", @style = "border-radius: 12px;padding: 4px 10px;font-size: 13px;" }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "btn btn-info fa fa-search", @style = "border-radius: 12px;padding: 4px 10px;font-size: 13px;" }) |
                     @if (item.Status == true)
                     {
-                        <button class="btn btn-danger fa fa-trash js-delete" data-project-id=" @item.ID"  type="button"> Delete</button>
+                        <button class="btn btn-danger fa fa-trash js-delete" style="border-radius: 12px;padding: 4px 10px;font-size: 13px;" data-project-id="@item.ID"  type="button"> Delete</button>
                     }
                     else
                     {
-                        <button class="btn btn-primary fa fa-arrow-up js-update" data-project-id=" @item.ID"  type="button"> Add</button>
+                        <button class="btn btn-primary fa fa-arrow-up js-update" data-project-id="@item.ID" style="border-radius: 12px;padding: 4px 10px;font-size: 13px;"  type="button"> Add</button>
                     }
                 </td>
             </tr>

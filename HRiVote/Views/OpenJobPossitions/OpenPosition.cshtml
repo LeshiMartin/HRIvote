@@ -1,5 +1,5 @@
 ﻿@model HRiVote.Models.OpenPosition
-<div class="container Back col-sm-offset-1">
+<div class="container Back col-sm-offset-1" style="border: solid transparent;border-radius: 20px;">
     @using (Html.BeginForm("Save","OpenJobPossitions",FormMethod.Post))
     {
         @Html.AntiForgeryToken()
@@ -83,13 +83,13 @@
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-success" />
+                    <input type="submit" value="Create" class="btn btn-success"style="border-radius: 12px;padding: 4px 10px;font-size: 13px;" />
                 </div>
             </div>
         </div>
     }
 
     <div>
-        @Html.ActionLink("Back to List", "Index","",new { @class = "btn btn-primary fa fa-backward" })
+        @Html.ActionLink("Back to List", "Index","",new { @class = "btn btn-primary fa fa-backward", style = "border-radius: 12px;padding: 6px 20px;font-size: 15px;" })
     </div>
 </div>

@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "AddPosition";
 }
-<div class="container Back col-sm-offset-1">
+<div class="container Back col-sm-offset-1" style="border: solid transparent;border-radius: 20px;">
     <h2>AddPosition</h2>
 
 
@@ -33,14 +33,14 @@
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-success" />
+                    <input type="submit" value="Create" class="btn btn-success"style = "border-radius: 12px;padding: 6px 20px;font-size: 15px;" />
                 </div>
             </div>
         </div>
     }
 
     <div>
-        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-info fa fa-backward" })
+        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-info fa fa-backward", style = "border-radius: 12px;padding: 6px 20px;font-size: 15px;" })
     </div>
 </div>
 @section Scripts {

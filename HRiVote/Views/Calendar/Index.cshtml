@@ -1,0 +1,95 @@
+﻿@*@model IEnumerable<HRiVote.Models.Calendar>*@
+@*<div class="container Back col-sm-offset-1" style="border: solid transparent;border-radius: 20px;">
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table table-responsive table-bordered table-hover">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.employee.FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(x => x.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartOfVacation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndOfVacation)
+            </th>
+            <th> Actions</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.employee.FullName)
+                </td>
+                <td>@Html.DisplayFor(x => item.Title)</td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartOfVacation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EndOfVacation)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+        </td>
+    </tr>
+        }
+
+    </table>
+</div>*@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.6.2/fullcalendar.min.css" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.6.2/fullcalendar.print.css"rel="stylesheet" />
+<div id="calendar">
+
+</div>
+
+@section scripts{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.6.2/fullcalendar.min.js"></script>
+    <script>
+        var events=[];
+        $.ajax({
+            type: "GET",
+            ulr: "/Calendar/GetData",
+            success: function (data) {
+                $.each(data, function (i, v) {
+                    events.push({
+                        Title: v.Title,
+                        FullName: v.Employee.FullName,
+                        StartOfVacation:moment(v.StartOfVacation),
+                        EndOfVacation:moment(v.EndOfVacation)
+                    });
+                })
+                GenerateCalendar(events);
+            },
+            error: function (error) {
+                alert("failed")
+            }
+
+        })
+
+        $(document).ready(function () {
+            function GenerateCalendar(events) {
+                $("#calendar").fullCalendar("destroy");
+                $("#calendar").fullCalendar({
+                    contentHeight: 400,
+                    defaultDate: new Date(),
+                    header: {
+                        left: "Prev,Next Today",
+                        center: "Title",
+                        right:"Month,Week"
+                    },
+                    eventLimit: true,
+                    events:events
+
+                })
+            }
+        });
+    </script>
+    }
