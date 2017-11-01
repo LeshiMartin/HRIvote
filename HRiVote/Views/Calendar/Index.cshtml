@@ -54,7 +54,7 @@
                     </div>
                     <div class="form-group">
                         <div class="dropdown">
-                            @Html.DropDownListFor(x=>x.Calendar.EmployeeID,new SelectList(Model.Employes,"ID","FullName"),"---select an Employee---",new { @class="form-control"})
+                           
                         </div>
                     </div>
                     <div class="form-group" id="divEndDate" style="display:none">
@@ -145,10 +145,10 @@
                         $("#modal #eventTitle").text(calEvent.title)
                         var $description = $('<div/>');
                         $description.append($("<p/>").html('<b> Start :</b>' + calEvent.start.format(" DD-MMM-YYYY")));
-                        //$description.append($("<p/>").html('<b>End :</b>'+calEvent.end.format(" DD-MMM-YYYY")));
+                        
                         $description.append($("<p/>").html('<b> Description : </b>' + calEvent.description));
                         $("#modal pDetails").empty().html($description);
-                        //alert(calEvent.start);
+                        
                         $('#pDetails').html($description);
                         $("#btn").val($id);
                         $("#modal").modal();
