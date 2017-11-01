@@ -337,6 +337,10 @@
     <Compile Include="DAL\EntityMigrations\201710311544093_ColortoCalendar.Designer.cs">
       <DependentUpon>201710311544093_ColortoCalendar.cs</DependentUpon>
     </Compile>
+    <Compile Include="DAL\EntityMigrations\201711011100413_DescriptionCalendar.cs" />
+    <Compile Include="DAL\EntityMigrations\201711011100413_DescriptionCalendar.Designer.cs">
+      <DependentUpon>201711011100413_DescriptionCalendar.cs</DependentUpon>
+    </Compile>
     <Compile Include="DAL\EntityMigrations\Configuration.cs" />
     <Compile Include="DAL\IdentityMigrations\201710190928386_InitialCreate.cs" />
     <Compile Include="DAL\IdentityMigrations\201710190928386_InitialCreate.Designer.cs">
@@ -1018,6 +1022,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DAL\EntityMigrations\201710311544093_ColortoCalendar.resx">
       <DependentUpon>201710311544093_ColortoCalendar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DAL\EntityMigrations\201711011100413_DescriptionCalendar.resx">
+      <DependentUpon>201711011100413_DescriptionCalendar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DAL\IdentityMigrations\201710190928386_InitialCreate.resx">
       <DependentUpon>201710190928386_InitialCreate.cs</DependentUpon>

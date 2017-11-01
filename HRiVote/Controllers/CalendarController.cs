@@ -44,7 +44,7 @@ namespace HRiVote.Controllers
                 {
                    
                     calendar.Title = title;
-                    if (calendar.Title == "Sick")
+                    if (calendar.Title == "Sick Leave")
                     {
                         calendar.Color = "#ff0000";
                     }
@@ -54,9 +54,11 @@ namespace HRiVote.Controllers
                     }
                     if(calendar.Title=="Official Leave")
                     {
-                        calendar.Color = "#4800ff";
+                        calendar.Color = "#00eaff";
                     }
+                    
                     var employee = db.emps.Single(x => x.ID == calendar.EmployeeID);
+                    calendar.Description = employee.FullName + " is on " + calendar.Title + " till : " + calendar.EndOfVacation.Value.ToShortDateString();
                     employee.IsAvailable = false;
                     db.kalendar.Add(calendar);
                     db.SaveChanges();
@@ -82,17 +84,85 @@ namespace HRiVote.Controllers
                 return RedirectToAction("Index");
             }
         }
+        public ActionResult Edit(int id)
+        {
+            var kalenadr = db.kalendar.Single(x => x.Id == id);
+            var viewmodel = new CalendarViewModel()
+            {
+                Calendar = kalenadr,
+                Employes = db.emps.Where(x => x.IsAvailable == true).ToList()
+            };
+            return View("OnLeaveDays", viewmodel);
+        }
         public ActionResult Index()
         {
-            return View();
+            var viewmodel = new CalendarViewModel
+            {
+                Calendar = new Calendar(),
+                Employes = db.emps.Where(x => x.IsAvailable == true).ToList()
+            };
+            return View(viewmodel);
         }
         public JsonResult GetData()
         {
             return new JsonResult { Data = db.kalendar.ToList(), JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
 
+        [HttpPost]
+        public JsonResult SaveEvent(Calendar e)
+        {
+            var status = false;
+            if (e.Id > 0)
+                {
+                    //Update the event
+                    var v = db.kalendar.Where(a => a.Id == e.Id).FirstOrDefault();
+                    if (v != null)
+                    {
+                        v.Title = e.Title;
+                        v.StartOfVacation = e.StartOfVacation;
+                        v.EndOfVacation = e.EndOfVacation;
+                        v.Description = e.Description;
+                        v.EmployeeID = e.EmployeeID;
+                        v.Color = e.Color;
+                    }
+                }
+                else
+                {
+                    db.kalendar.Add(e);
+                }
+                db.SaveChanges();
+            status = true;
+            
+            return new JsonResult { Data = new { status = status } };
+        }
+        [HttpPost]
+        public JsonResult DeleteEvent(int eventID)
+        {
+            var status = false;
+           
+            
+                var v = db.kalendar.Where(a => a.Id == eventID).FirstOrDefault();
+                if (v != null)
+                {
+                var employee = db.emps.Single(x => x.ID == v.EmployeeID);
+                    employee.IsAvailable = true;
+                    db.kalendar.Remove(v);
+                    db.SaveChanges();
+                    status = true;
+                }
+            
+            return new JsonResult { Data = new { status = status } };
+        }
+        //public ActionResult Edit(int id)
+        //{
+        //    var viewmodel = new CalendarViewModel
+        //    {
+        //        Calendar = new Calendar(),
+        //        Employes = db.emps.Where(x => x.IsAvailable == true).ToList()
+        //    };
 
-
+        //    return View("OnLeaveDays", viewmodel);
+        //}
 
     }
 }
