@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<HRiVote.Models.OpenPosition>
-<br /><br /><br /><br /><br />
+
 <div class="container Back col-sm-offset-1" style="border: solid transparent;border-radius: 20px;">
     <br />
     <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css">
@@ -29,19 +29,19 @@
         {
         <tbody>
             <tr style="border-radius: 12px;padding: 4px 10px;font-size: 13px;">
-                <td style="border-radius: 12px;padding: 4px 10px;font-size: 13px;">
+               <td>
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
-                <td style="border-radius: 12px;padding: 4px 10px;font-size: 13px;">
+               <td>
                     @Html.DisplayFor(modelItem => item.Description)
                 </td>
-                <td style="border-radius: 12px;padding: 4px 10px;font-size: 13px;">
+               <td>
                     @Html.DisplayFor(modelItem => item.StartOfJobOpenning)
                 </td>
-                <td style="border-radius: 12px;padding: 4px 10px;font-size: 13px;">
+               <td>
                     @Html.DisplayFor(modelItem => item.EndOfJobOpenning)
                 </td>
-                <td style="border-radius: 12px;padding: 4px 10px;font-size: 13px;">
+               <td>
                     @Html.ActionLink("Edit", "UpdatePossition", new { id = item.ID }, new { @class = "btn btn-primary fa fa-pencil", @style = "border-radius: 12px;padding: 4px 10px;font-size: 13px;" }) |
                     @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "btn btn-info fa fa-search", @style = "border-radius: 12px;padding: 4px 10px;font-size: 13px;" }) |
                     @if (item.Status == true)

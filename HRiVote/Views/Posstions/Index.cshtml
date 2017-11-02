@@ -3,7 +3,6 @@
 @{
     ViewBag.Title = "Index";
 }
-<br /><br /><br /><br /><br />
 <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css">
 <div class="container Back col-sm-offset-3 col-sm-6" style="border: solid transparent;border-radius: 20px;">
     <h2>List</h2>
@@ -24,10 +23,10 @@
         {
             <tbody>
                 <tr style="border-radius: 12px;padding: 4px 10px;font-size: 13px;">
-                    <td style="border-radius: 12px;padding: 4px 10px;font-size: 13px;">
+                   <td>
                         @Html.ActionLink(item.Title, "Index", "Employee", new { id = item.ID }, new { @class = "fa fa-paperplane" })
                     </td>
-                    <td style="border-radius: 12px;padding: 4px 10px;font-size: 13px;">
+                   <td>
                         @Html.ActionLink("Edit", "Edit", new { id = item.ID },new { @class = "btn1 btn-primary fa fa-pencil",@style= "padding: 7px 15px !important; font-size: 15px !important;border-radius: 15px !important;" }) | 
                         @if (item.Status == true)
                         {

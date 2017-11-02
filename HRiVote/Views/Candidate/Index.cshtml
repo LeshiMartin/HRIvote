@@ -3,9 +3,9 @@
 @{
     ViewBag.Title = "Index";
 }
-<br /><br /><br /><br /><br />
+
 <link rel="stylesheet" href="//cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css" />
-<div class="Back container" style="border:solid transparent !important;border-radius: 20px !important;">
+<div class="container Back col-sm-offset-1" >
     <h2 class="col-md-6 col-md-offset-5" >List of Candidates</h2>
     @ViewBag.Error
     <p class="col-md-2">
@@ -14,10 +14,9 @@
     <div class="form-group">
         @Html.ValidationSummary()
         @using (Html.BeginForm("Update","Candidate",FormMethod.Post))
-        {
-        @*<div class="table-bordered table-responsive text-center">*@
+        {       
             @Html.AntiForgeryToken()
-        <table id="myTable" class="table table-hover table-bordered table-responsive" width="100">
+        <table id="myTable" class="table table-hover table-bordered table-responsive">
             <thead>
                 <tr>
 
@@ -52,19 +51,19 @@
             {
                 <tbody>
                     <tr style="border-radius: 12px;padding: 4px 10px;font-size: 13px;">
-                        <td style="border-radius: 12px;padding: 4px 10px;font-size: 13px;">
+                       <td>
                             @Html.DisplayFor(modelItem => item.LastName)
                         </td>
-                        <td style="border-radius: 12px;padding: 4px 10px;font-size: 13px;">
+                       <td>
                             @Html.DisplayFor(modelItem => item.FirstName)
                         </td>
-                        <td style="border-radius: 12px;padding: 4px 10px;font-size: 13px;">
+                       <td>
                             @Html.DisplayFor(modelItem => item.Email)
                         </td>
-                        <td style="border-radius: 12px;padding: 4px 10px;font-size: 13px;">
+                       <td>
                             @Html.DisplayFor(modelItem => item.PhoneNumber)
                         </td>
-                        <td style="border-radius: 12px;padding: 4px 10px;font-size: 13px;">
+                       <td>
                             @if (item.CV == "Cv not Uploaded")
                             {
                                 @Html.DisplayFor(x => item.CV)
@@ -74,13 +73,13 @@
                                 <img src="@Url.Content(item.CV)" alt="@Html.DisplayFor(x => item.CV)" width="100" />
                             }
                         </td>
-                        <td style="border-radius: 12px;padding: 4px 10px;font-size: 13px;">
+                       <td>
                             @Html.DisplayFor(modelItem => item.InterviewDate)
                         </td>
-                        <td style="border-radius: 12px;padding: 4px 10px;font-size: 13px;">
+                       <td>
                             @Html.DisplayFor(x => item.InterviewTime)
                         </td>
-                        <td style="border-radius: 12px;padding: 4px 10px;font-size: 13px;">
+                       <td>
                             @Html.DisplayFor(modelItem => item.InterviewRound)
                         </td>
                         <td class="btn-group-sm" style="border-radius: 12px;padding: 4px 10px;font-size: 13px;">
@@ -105,7 +104,6 @@
                     </tr>
                 </tbody>
             }
-
             @if (Model.cans != null)
             {
 
@@ -116,19 +114,19 @@
 
                         <tbody>
                             <tr style="border-radius: 12px;padding: 4px 10px;font-size: 13px;">
-                                <td style="border-radius: 12px;padding: 4px 10px;font-size: 13px;">
+                               <td>
                                     @Html.DisplayFor(modelItem => items.LastName)
                                 </td>
-                                <td style="border-radius: 12px;padding: 4px 10px;font-size: 13px;">
+                               <td>
                                     @Html.DisplayFor(modelItem => items.FirstName)
                                 </td>
-                                <td style="border-radius: 12px;padding: 4px 10px;font-size: 13px;">
+                               <td>
                                     @Html.DisplayFor(modelItem => items.Email)
                                 </td>
-                                <td style="border-radius: 12px;padding: 4px 10px;font-size: 13px;">
+                               <td>
                                     @Html.DisplayFor(modelItem => items.PhoneNumber)
                                 </td>
-                                <td style="border-radius: 12px;padding: 4px 10px;font-size: 13px;">
+                               <td>
                                     @if (items.CV == "Cv not Uploaded")
                                     {
                                         @Html.DisplayFor(x => items.CV)
@@ -138,25 +136,21 @@
                                         <img src="@Url.Content(items.CV)" alt="@Html.DisplayFor(x => items.CV)" width="100" />
                                     }
                                 </td>
-                                <td style="border-radius: 12px;padding: 4px 10px;font-size: 13px;">
+                               <td>
                                    <input type="date" class="ui-datepicker-buttonpane" name="Date" id="Date"/>
                                 </td>
-                                <td style="border-radius: 12px;padding: 4px 10px;font-size: 13px;">
+                               <td>
                                     <input type="time"class="bootstrap-timepicker"name="Time" id="Time" />
                                 </td>
-                                <td style="border-radius: 12px;padding: 4px 10px;font-size: 13px;">
+                               <td>
                                     @Html.DisplayFor(modelItem => items.InterviewRound)
                                     @Html.HiddenFor(x => items.ID,new { @name = "ID" })
                                 </td>
-                                <td style="border-radius: 12px;padding: 4px 10px;font-size: 13px;"><input type="submit" class="btn btn-success js-success" data-project-id="" value="Update" /></td>
+                               <td><input type="submit" class="btn btn-success js-success" data-project-id="" value="Update" /></td>
                             </tr>
-                        </tbody>
-
+                      </tbody>
                 }
-            }
-            
-
-
+            }            
         </table>
         }
     </div>
@@ -185,16 +179,7 @@
                 }
             })
         });
-        //$("#myTable").on("click", ".js-success", function () {
-        //    var self = $(this);
-        //    $.ajax({
-        //        url: "api/Candidate/" + self.attr("data-project-id"),
-        //        method: "PUT",
-        //        success: function () {
-        //            self.parents("tr").remove();
-        //        }
-        //    })
-        //});
+     
     </script>
     }
 

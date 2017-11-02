@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Index";
 }
-<br /><br /><br /><br /><br />
+
 <div class="container Back col-sm-offset-1" style="border: solid transparent;border-radius: 20px;">
     <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css">
 
@@ -58,20 +58,20 @@
             {
                 <tbody>
                     <tr>
-                        <td style="border-radius: 12px;padding: 4px 10px;font-size: 13px;">
+                       <td>
                             @Html.DisplayFor(modelItem => item.LastName)
                         </td>
-                        <td style="border-radius: 12px;padding: 4px 10px;font-size: 13px;">
+                       <td>
                             @Html.DisplayFor(modelItem => item.FirstName)
                         </td>
 
-                        <td style="border-radius: 12px;padding: 4px 10px;font-size: 13px;">
+                       <td>
                             @Html.DisplayFor(x => item.job.Title)
                         </td>
-                        <td style="border-radius: 12px;padding: 4px 10px;font-size: 13px;">
+                       <td>
                             @Html.DisplayFor(modelItem => item.IsAvailable)
                         </td>
-                        <td style="border-radius: 12px;padding: 4px 10px;font-size: 13px;">
+                       <td>
                             @if (item.Photo == "No photo uploaded")
                             {
                                 @Html.DisplayFor(x => item.Photo)
@@ -79,7 +79,7 @@
                             else
                             {<img src="@Url.Content(item.Photo)" alt="@Html.DisplayFor(x => item.Photo)" width="100" />}
                         </td>
-                        <td class="btn-group-sm"style="border-radius: 12px;padding: 4px 10px;font-size: 13px;">
+                        <td class="btn-group-sm">
                             @Html.ActionLink(" Edit", "Edit", new { id = item.ID }, new { @class = "fa fa-pencil btn1 btn-sm btn-default btn-primary", @style = "border-radius: 12px;padding: 4px 10px;font-size: 13px;" }) |    
                             @Html.ActionLink(" Details", "Index", new { id = item.ID }, new { @class = " fa fa-search btn1 btn-sm  btn-info", @style = "border-radius: 12px;padding: 4px 10px;font-size: 13px;" }) |                    
                             @Html.ActionLink(" Delete", "Delete", new { id = item.ID }, new { @class = "fa fa-trash btn1 btn-sm btn-default btn-danger", @style = "border-radius: 12px;padding: 4px 10px;font-size: 13px;" })

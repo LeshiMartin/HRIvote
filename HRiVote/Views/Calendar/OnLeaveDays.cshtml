@@ -1,6 +1,6 @@
 ﻿@model HRiVote.ViewModels.CalendarViewModel
 <div class="container Back col-sm-offset-1" style="border: solid transparent;border-radius: 20px;">
-    @using (Html.BeginForm("Open","Calendar",FormMethod.Post))
+    @using (Html.BeginForm("Open","Calendar",FormMethod.Post,new { enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
 
@@ -48,6 +48,13 @@
                     @Html.ValidationMessageFor(model => model.Calendar.EndOfVacation, "", new { @class = "text-danger" })
                 </div>
             </div>
+            <div class="form-group">
+                @Html.Label("File Upload", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <i class="fa fa-cloud-upload"></i>
+                    <input type="file" class="btn " id="file" name="file" value="Search" />
+                </div>
+            </div>
                 @Html.HiddenFor(x=>x.Calendar.Id)
                 @Html.HiddenFor(x=>x.Calendar.EmployeeID)
             <div class="form-group">
@@ -61,7 +68,8 @@
 
     <br />
     <div class="container Back col-sm-offset-1" style="border: solid transparent;border-radius: 20px;">
-    <div>
-        @Html.ActionLink("Back to List", "Index")
+    <div class="pull-right">
+        @Html.ActionLink("Back to List", "Index","",new { @class = "btn btn-primary fa fa-backward",
+       @style = "border-radius: 12px;padding: 6px 20px;font-size: 15px;" })
     </div>
 </div>

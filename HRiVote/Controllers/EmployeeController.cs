@@ -134,7 +134,7 @@ namespace HRiVote.Controllers
                 }
                 else
                 {
-                    empl.Photo = "No Photo Uploade";
+                    empl.Photo = "No Photo Uploaded";
                 }
                 List<Skills> skils = new List<Skills>();
                 foreach (var item in skills)

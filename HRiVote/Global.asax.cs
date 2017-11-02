@@ -1,23 +1,17 @@
-﻿using AutoMapper;
-using HRiVote.App_Start;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Http;
+﻿using IdentitySample.Models;
+using System.Data.Entity;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 
-namespace HRiVote
+namespace IdentitySample
 {
+    // Note: For instructions on enabling IIS7 classic mode, 
+    // visit http://go.microsoft.com/?LinkId=301868
     public class MvcApplication : System.Web.HttpApplication
     {
-
-        void Application_Start()
+        protected void Application_Start()
         {
-            Mapper.Initialize(x => x.AddProfile<MapProfile>());
-            GlobalConfiguration.Configure(WebApiConfig.Register);
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

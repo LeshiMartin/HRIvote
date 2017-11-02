@@ -18,7 +18,7 @@
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort>44333</IISExpressSSLPort>
+    <IISExpressSSLPort>44387</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -161,6 +161,10 @@
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="SendGrid, Version=9.8.0.0, Culture=neutral, PublicKeyToken=4f047e93159395ca, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sendgrid.9.9.0\lib\net452\SendGrid.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.2.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -268,7 +272,9 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OpenJobPossitionsController.cs" />
     <Compile Include="Controllers\PosstionsController.cs" />
+    <Compile Include="Controllers\RolesAdminController.cs" />
     <Compile Include="Controllers\SkillsController.cs" />
+    <Compile Include="Controllers\UserAdminController.cs" />
     <Compile Include="DAL\Entity.cs" />
     <Compile Include="DAL\EntityMigrations\201710231412400_InitialCreate.cs" />
     <Compile Include="DAL\EntityMigrations\201710231412400_InitialCreate.Designer.cs">
@@ -342,6 +348,18 @@
     <Compile Include="DAL\EntityMigrations\201711011100413_DescriptionCalendar.Designer.cs">
       <DependentUpon>201711011100413_DescriptionCalendar.cs</DependentUpon>
     </Compile>
+    <Compile Include="DAL\EntityMigrations\201711021020363_Added Column too Calendar.cs" />
+    <Compile Include="DAL\EntityMigrations\201711021020363_Added Column too Calendar.Designer.cs">
+      <DependentUpon>201711021020363_Added Column too Calendar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\EntityMigrations\201711021316276_Column in Calendar.cs" />
+    <Compile Include="DAL\EntityMigrations\201711021316276_Column in Calendar.Designer.cs">
+      <DependentUpon>201711021316276_Column in Calendar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\EntityMigrations\201711021434564_New Domain Model.cs" />
+    <Compile Include="DAL\EntityMigrations\201711021434564_New Domain Model.Designer.cs">
+      <DependentUpon>201711021434564_New Domain Model.cs</DependentUpon>
+    </Compile>
     <Compile Include="DAL\EntityMigrations\Configuration.cs" />
     <Compile Include="DAL\IdentityMigrations\201710190928386_InitialCreate.cs" />
     <Compile Include="DAL\IdentityMigrations\201710190928386_InitialCreate.Designer.cs">
@@ -353,9 +371,11 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AdminViewModel.cs" />
     <Compile Include="Models\Calendar.cs" />
     <Compile Include="Models\Candidate.cs" />
     <Compile Include="Models\Employee.cs" />
+    <Compile Include="Models\EmployeeFiles.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\JobPosition.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -471,6 +491,9 @@
     <Content Include="bin\System.Web.WebPages.xml" />
     <Content Include="bin\WebGrease.dll" />
     <Content Include="Content\bootstrap-lumen.css" />
+    <Content Include="Content\bootstrap-slate.css" />
+    <Content Include="Content\bootstrap-solar.css" />
+    <Content Include="Content\bootstrap-spacelab.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -960,6 +983,20 @@
     <Content Include="Views\Shared\_PartialCandidateView.cshtml" />
     <Content Include="Views\Calendar\OnLeaveDays.cshtml" />
     <Content Include="Views\Calendar\Index.cshtml" />
+    <Content Include="Views\UsersAdmin\Index.cshtml" />
+    <Content Include="Views\UsersAdmin\Edit.cshtml" />
+    <Content Include="Views\UsersAdmin\Details.cshtml" />
+    <Content Include="Views\UsersAdmin\Delete.cshtml" />
+    <Content Include="Views\UsersAdmin\Create.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\RolesAdmin\Index.cshtml" />
+    <Content Include="Views\RolesAdmin\Edit.cshtml" />
+    <Content Include="Views\RolesAdmin\Details.cshtml" />
+    <Content Include="Views\RolesAdmin\Delete.cshtml" />
+    <Content Include="Views\RolesAdmin\Create.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Account\DisplayEmail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1027,6 +1064,15 @@
     <EmbeddedResource Include="DAL\EntityMigrations\201711011100413_DescriptionCalendar.resx">
       <DependentUpon>201711011100413_DescriptionCalendar.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DAL\EntityMigrations\201711021020363_Added Column too Calendar.resx">
+      <DependentUpon>201711021020363_Added Column too Calendar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DAL\EntityMigrations\201711021316276_Column in Calendar.resx">
+      <DependentUpon>201711021316276_Column in Calendar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DAL\EntityMigrations\201711021434564_New Domain Model.resx">
+      <DependentUpon>201711021434564_New Domain Model.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DAL\IdentityMigrations\201710190928386_InitialCreate.resx">
       <DependentUpon>201710190928386_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
@@ -1054,7 +1100,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>63524</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:63524/</IISUrl>
+          <IISUrl>https://localhost:44387/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
