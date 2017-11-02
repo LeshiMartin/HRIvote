@@ -59,7 +59,7 @@ namespace HRiVote.Controllers
             if(Date.HasValue && Time.HasValue)
             {
 
-                if (Date.Value.Date>DateTime.Now.Date && Time.Value.Hour>DateTime.Now.Hour)
+                if (Date.Value.Date>DateTime.Now.Date )
                 {
                     aplikant.InterviewDate = Date.Value;
                     aplikant.InterviewTime = Time.Value;

@@ -27,5 +27,6 @@ namespace HRiVote.DAL
         public DbSet<Skills> skilss { get; set; }
         public DbSet<Calendar> kalendar { get; set; }
         public DbSet<JobPosition> positions { get; set; }
+        public DbSet<EmployeeFiles> empf { get; set; }
     }
 }

@@ -26,6 +26,7 @@ textarea {
 }
 .Back{
     background-color:rgba(17, 17, 17, 0.3) !important;
+    border-radius:0%!important;
      
 }
 
@@ -39,6 +40,10 @@ textarea {
 }
 .btn-sm, .btn-group-sm > .btn {
     padding: 4px 10px 2px;
+    
+}
+.btn-primary{
+    margin:10px !important;
 }
 
 .btn1 {
@@ -76,7 +81,7 @@ textarea {
     margin-left: -15px;
     margin-right: -15px;
     padding: 3em 5em;
-    background-color:#006461;
+    background-color:#0788ca;
 }
 .fc table {
     width: 100%;
@@ -84,9 +89,7 @@ textarea {
     table-layout: fixed;
     border-collapse: collapse;
     border-spacing: 0;
-    border:solid 2px;
-    background-color:#e1e1e1;
-
+    background-color: #ffffff;
 }
 .fc-view, .fc-view>table {
     position: relative;
@@ -101,5 +104,40 @@ textarea {
     border-width: 1px;
     padding: 0;
     vertical-align: top;
-    font-size: 17px;
+    font-size: 13px;
+}
+.panel {
+    margin-bottom: 20px;
+    /* background-color: #b7b7b7; */
+    border: 1px solid transparent;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+.marg{
+        margin-left: 260px;
+}
+.navbar-inverse {
+    /* background-image: -webkit-linear-gradient(#6d94bf, #446e9b 50%, #3e648d); */
+    /*background-image: -o-linear-gradient(#6d94bf, #446e9b 50%, #3e648d);*/
+    /* background-image: -webkit-gradient(linear, left top, left bottom, from(#6d94bf), color-stop(50%, #446e9b), to(#3e648d)); */
+    /* background-image: linear-gradient(#6d94bf, #446e9b 50%, #3e648d); */
+    /* background-repeat: no-repeat; */
+    /*filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff6d94bf', endColorstr='#ff3e648d', GradientType=0);*/
+    /* -webkit-filter: none; */
+    /* filter: none; */
+    /* border: 1px solid #345578; */
+    /* text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3); */
+}
+
+.navbar-inverse {
+     background-color: #ffffff;
+        border-color:#fff;
+}
+.panel-group{
+    background:none;
+    background-color:#fff;
+}
+.none{
+    background:none;
 }

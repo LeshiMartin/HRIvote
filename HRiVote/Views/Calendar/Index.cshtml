@@ -3,7 +3,7 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
 <link href="~/Content/Site.css" rel="stylesheet" />
 @model HRiVote.ViewModels.CalendarViewModel
-    <h1 class="text-center"style="font-weight:500;">Calendar</h1>
+    @*<h1 class="text-center marg"style="font-weight:500;">Calendar</h1>*@
 <div id="calendar" class="col-sm-10 col-sm-offset-2 "style="border:solid 1px black;">
     <div id="modal" class="modal fade" role="dialog">
         <div class="modal-dialog">
@@ -55,8 +55,9 @@
                             events.push({
                                 empid:v.EmployeeID,
                                 eventId: v.Id,
-                                title: v.Title,
+                                title: v.EmpName,
                                 start: moment(v.StartOfVacation),
+                                end:v.EndOfVacation!=null ? moment(v.EndOfVacation):null,
                                 description: v.Description,
                                 color: v.Color
                             });
@@ -66,9 +67,7 @@
                     error: function (error) {
                         alert("Failed");
                     }
-
                 })
-
             }
             function GenerateCalendar(events) {
                 $('#calendar').fullCalendar('destroy');
@@ -100,23 +99,24 @@
             $('#btnEdit').click(function get() {               
                 location.href = '@Url.Action("Edit", "Calendar")?id='+ID
             });
-            })
+            
             $('#btnDelete').click(function () {
                 if (selected != null && confirm('Are you sure?')) {
                     $.ajax({
-                        type: "POST",
-                        url: '/Calendar/DeleteEvent',
-                        data: { 'eventID': selected.eventId },
-                        success: function (data) {
-                            $('#myModal').modal('hide');
-                            FetchEventAndRenderCalendar();
+                        type: "Delete",
+                        url: '@Url.Action("Calendar","api")?id=' +ID,
+                       // data: { 'id': selected.eventId },
+                        success: function () {
+                            $('#modal').modal('hide');
+                            location.href = '@Url.Action("Index","Calendar")';
                         },
                         error: function () {
                         alert('Failed');
             }
        })
     }
-})
+            })
+        })
     </script>
 
  }

@@ -30,5 +30,6 @@ namespace HRiVote.Models
         public string Description { get; set; }
         [ScaffoldColumn(false)]
         public bool status { get; set; }
+        public string EmpName { get; set; }
     }
 }

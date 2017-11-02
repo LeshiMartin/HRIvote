@@ -161,6 +161,10 @@
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="SendGrid, Version=9.8.0.0, Culture=neutral, PublicKeyToken=4f047e93159395ca, processorArchitecture=MSIL">
+      <HintPath>..\packages\Sendgrid.9.9.0\lib\net452\SendGrid.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.2.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -342,6 +346,18 @@
     <Compile Include="DAL\EntityMigrations\201711011100413_DescriptionCalendar.Designer.cs">
       <DependentUpon>201711011100413_DescriptionCalendar.cs</DependentUpon>
     </Compile>
+    <Compile Include="DAL\EntityMigrations\201711021020363_Added Column too Calendar.cs" />
+    <Compile Include="DAL\EntityMigrations\201711021020363_Added Column too Calendar.Designer.cs">
+      <DependentUpon>201711021020363_Added Column too Calendar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\EntityMigrations\201711021316276_Column in Calendar.cs" />
+    <Compile Include="DAL\EntityMigrations\201711021316276_Column in Calendar.Designer.cs">
+      <DependentUpon>201711021316276_Column in Calendar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\EntityMigrations\201711021434564_New Domain Model.cs" />
+    <Compile Include="DAL\EntityMigrations\201711021434564_New Domain Model.Designer.cs">
+      <DependentUpon>201711021434564_New Domain Model.cs</DependentUpon>
+    </Compile>
     <Compile Include="DAL\EntityMigrations\Configuration.cs" />
     <Compile Include="DAL\IdentityMigrations\201710190928386_InitialCreate.cs" />
     <Compile Include="DAL\IdentityMigrations\201710190928386_InitialCreate.Designer.cs">
@@ -356,6 +372,7 @@
     <Compile Include="Models\Calendar.cs" />
     <Compile Include="Models\Candidate.cs" />
     <Compile Include="Models\Employee.cs" />
+    <Compile Include="Models\EmployeeFiles.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\JobPosition.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -471,6 +488,9 @@
     <Content Include="bin\System.Web.WebPages.xml" />
     <Content Include="bin\WebGrease.dll" />
     <Content Include="Content\bootstrap-lumen.css" />
+    <Content Include="Content\bootstrap-slate.css" />
+    <Content Include="Content\bootstrap-solar.css" />
+    <Content Include="Content\bootstrap-spacelab.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -1026,6 +1046,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DAL\EntityMigrations\201711011100413_DescriptionCalendar.resx">
       <DependentUpon>201711011100413_DescriptionCalendar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DAL\EntityMigrations\201711021020363_Added Column too Calendar.resx">
+      <DependentUpon>201711021020363_Added Column too Calendar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DAL\EntityMigrations\201711021316276_Column in Calendar.resx">
+      <DependentUpon>201711021316276_Column in Calendar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DAL\EntityMigrations\201711021434564_New Domain Model.resx">
+      <DependentUpon>201711021434564_New Domain Model.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DAL\IdentityMigrations\201710190928386_InitialCreate.resx">
       <DependentUpon>201710190928386_InitialCreate.cs</DependentUpon>

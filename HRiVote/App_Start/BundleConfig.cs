@@ -26,7 +26,7 @@ namespace HRiVote
            
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap-lumen.css",
+                      "~/Content/bootstrap-spacelab.css",
                       "~/Content/font-awesome.css",
                       "~/Content/DataTables/css/dataTables.css",
                       "~/Content/site.css"));
