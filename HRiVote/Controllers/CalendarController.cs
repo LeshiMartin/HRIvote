@@ -35,28 +35,29 @@ namespace HRiVote.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Open(Calendar calendar)
         {
-            var title = TempData["title"].ToString();
-            TempData.Keep("title");
+            
             var viewmodel = new CalendarViewModel() { Employes = db.emps.Where(x=>x.IsAvailable==true).ToList() };
             if (calendar.Id == 0)
             {
+                var title = TempData["title"].ToString();
+                TempData.Keep("title");
                 if (ModelState.IsValid)
                 {
                    
                     calendar.Title = title;
                     if (calendar.Title == "Sick Leave")
                     {
-                        calendar.Color = "#ff0000";
+                        calendar.Color = "#bd180e";
                     }
                     if (calendar.Title == "Vacation")
                     {
-                        calendar.Color = "#00ff21";
+                        calendar.Color = "#23a127";
                     }
-                    if(calendar.Title=="Official Leave")
+                    if (calendar.Title == "Official Leave")
                     {
-                        calendar.Color = "#00eaff";
+                        calendar.Color = "##bd180e";
                     }
-                    
+
                     var employee = db.emps.Single(x => x.ID == calendar.EmployeeID);
                     calendar.Description = employee.FullName + " is on " + calendar.Title + " till : " + calendar.EndOfVacation.Value.ToShortDateString();
                     employee.IsAvailable = false;
@@ -79,18 +80,34 @@ namespace HRiVote.Controllers
                 kalendar.EmployeeID = calendar.EmployeeID;
                 kalendar.EndOfVacation = calendar.EndOfVacation;
                 kalendar.StartOfVacation = calendar.StartOfVacation;
-                kalendar.Title = title;
+                kalendar.Title = calendar.Title;
+                calendar.Description = employee.FullName + " is on " + calendar.Title + " till : " + calendar.EndOfVacation.Value.ToShortDateString();
+                if (calendar.Title == "Sick Leave")
+                {
+                    calendar.Color = "#bd180e";
+                }
+                if (calendar.Title == "Vacation")
+                {
+                    calendar.Color = "#23a127";
+                }
+                if (calendar.Title == "Official Leave")
+                {
+                    calendar.Color = "##bd180e";
+                }
+                kalendar.Color = calendar.Color;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
         }
         public ActionResult Edit(int id)
         {
-            var kalenadr = db.kalendar.Single(x => x.Id == id);
+            var kalenadr = db.kalendar.Include(c=>c.employee).Single(x => x.Id == id);
+            var emps = db.emps.Where(x => x.IsAvailable == true).ToList();
+            emps.Add(kalenadr.employee);
             var viewmodel = new CalendarViewModel()
             {
                 Calendar = kalenadr,
-                Employes = db.emps.Where(x => x.IsAvailable == true).ToList()
+                Employes = emps
             };
             return View("OnLeaveDays", viewmodel);
         }

@@ -8,14 +8,31 @@
             <h4>Calendar</h4>
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+          
+            
             <div class="form-group">
                 @Html.LabelFor(model => model.Calendar.EmployeeID, "Employee", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownListFor(model => model.Calendar.EmployeeID, new SelectList(Model.Employes, "ID", "FullName"), "---Select an Employee---", new { @class = "form-control" })
+                    @Html.DropDownListFor(model => model.Calendar.EmployeeID, new SelectList(Model.Employes, "ID", "FullName",Model.Calendar.Id), "---Select an Employee---", new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.Calendar.EmployeeID, "", new { @class = "text-danger" })
                 </div>
             </div>
-
+            
+            @if (Model.Calendar.Id > 0)
+            {
+                <div class="form-group">
+                    @Html.LabelFor(x => x.Calendar.Title,new { @class="control-label col-md-2"})
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(x => x.Calendar.Title, new List<SelectListItem>()
+                   {
+                       new SelectListItem() {Text="Sick Leave",Value="Sick Leave" },
+                       new SelectListItem() {Text="Vacation",Value="Vacation" },
+                       new SelectListItem() {Text="Official leave",Value="Official leave" } },
+                       "--- Select---",new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.Calendar.Title, "",new { @class="text-danger"})
+                    </div>
+                </div>
+            }
             <div class="form-group">
                 @Html.LabelFor(model => model.Calendar.StartOfVacation, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -32,6 +49,7 @@
                 </div>
             </div>
                 @Html.HiddenFor(x=>x.Calendar.Id)
+                @Html.HiddenFor(x=>x.Calendar.EmployeeID)
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <input type="submit" value="Create" class="btn btn-default" />

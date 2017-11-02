@@ -28,5 +28,7 @@ namespace HRiVote.Models
         public DateTime? EndOfVacation { get; set; }
         [ScaffoldColumn(false)]
         public string Description { get; set; }
+        [ScaffoldColumn(false)]
+        public bool status { get; set; }
     }
 }
