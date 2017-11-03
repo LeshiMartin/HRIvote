@@ -13,6 +13,8 @@ using Microsoft.Owin.Security;
 using HRiVote.Models;
 using System.Net.Mail;
 using System.Net;
+using System.Net.Mime;
+using System.Configuration;
 
 namespace HRiVote
 {
@@ -20,9 +22,59 @@ namespace HRiVote
     {
         public Task SendAsync(IdentityMessage message)
         {
-          
+
             // Plug in your email service here to send an email.
-            return Task.FromResult(0);
+            //return Task.FromResult(0);
+            return Task.Factory.StartNew(() => { sendMail(message); });
+        }
+        void sendMail(IdentityMessage message)
+        {
+            #region formatter
+            string text = string.Format("Please click on this link to {0}: {1}", message.Subject, message.Body);
+            string html = "Please confirm your account by clicking this link: " + message.Body;
+
+            html += HttpUtility.HtmlEncode(@"Or click on the copy the following link on the browser:" + message.Body);
+            #endregion
+
+            MailMessage msg = new MailMessage();
+            msg.From = new MailAddress(ConfigurationManager.AppSettings["Email"].ToString());
+            msg.To.Add(new MailAddress(message.Destination));
+            msg.Subject = message.Subject;
+            msg.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(text, null, MediaTypeNames.Text.Plain));
+            msg.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(html, null, MediaTypeNames.Text.Html));
+
+            SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", Convert.ToInt32(587));
+            System.Net.NetworkCredential credentials = new System.Net.NetworkCredential(ConfigurationManager.AppSettings["Email"].ToString(), ConfigurationManager.AppSettings["Password"].ToString());
+            smtpClient.Credentials = credentials;
+            smtpClient.EnableSsl = true;
+
+            smtpClient.Send(msg);
+            //MailMessage message = new MailMessage();
+
+            //message.From = new MailAddress("test10@ivote.mk");
+
+
+
+            //message.To.Add(new MailAddress(msg.Destination));
+
+            ////message.To.Add(new MailAddress("recipient2@foo.bar.com"));
+
+            ////message.To.Add(new MailAddress("recipient3@foo.bar.com"));
+
+
+
+            //message.CC.Add(new MailAddress("carboncopy@foo.bar.com"));
+
+            //message.Subject = msg.Subject;
+
+            //message.Body = msg.Body;
+
+
+
+            //SmtpClient client = new SmtpClient();
+
+            //client.Send(message);
+
         }
     }
 

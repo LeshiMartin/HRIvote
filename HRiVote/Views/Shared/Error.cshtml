@@ -1,15 +1,17 @@
 ﻿@model System.Web.Mvc.HandleErrorInfo
 @{
     ViewBag.Title = "Error";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
 }
 
-<h2>Error</h2>
-<br /><br />
-<h3>
-    An Error occured while processing your request please try again if this Error persists contact the Administrator!!!
-</h3>
-<br /><br /><hr />
-<h4>Error Details:</h4>
-<p>Controller Name: @Model.ControllerName</p>
-<p>Action Name: @Model.ActionName</p>
-<p>Exception: @Model.Exception</p>  
+<h1 class="text-danger">Error.</h1>
+@{
+    if (String.IsNullOrEmpty(ViewBag.errorMessage))
+    {
+        <h2 class="text-danger">An error occurred while processing your request.</h2>
+    }
+    else
+    {
+        <h2 class="text-danger">@ViewBag.errorMessage</h2>
+    }
+}

@@ -141,3 +141,6 @@ textarea {
 .none{
     background:none;
 }
+.input-validation-error{
+    border-color:red;
+}

@@ -3,7 +3,7 @@
     ViewBag.Title = "Register";
     Layout = "~/Views/Shared/_Layout1.cshtml";
 }
-<div class="container">
+<div class="container col-sm-offset-1">
     <h2>@ViewBag.Title.</h2>
 
     @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
