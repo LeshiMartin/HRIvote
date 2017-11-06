@@ -89,18 +89,18 @@
                     </dt>
 
                     <dd>
+                       @if (Model.CV == "No CV uploaded")
+                       {
                         @Html.DisplayFor(model => model.CV)
+                       }
+                       else
+                       {
+                        <a href="@Url.Content(Model.CV)"><img src="@Url.Content(Model.CV)" alt="@Html.DisplayFor(x=>x.CV)" width="100" /></a>
+                       }
                     </dd>
-
+                    
                     <dt>
-                        @if (Model.CV == "No CV uploaded")
-                        {
-                            @Html.DisplayNameFor(model => model.CV)
-                        }
-                        else
-                        {
-                            <a href="@Url.Content(Model.CV)"><img src="@Url.Content(Model.CV)" alt="@Html.DisplayFor(x=>x.CV)" width="100" /></a>
-                        }
+                        @Html.DisplayNameFor(x=>x.Photo)
                     </dt>
 
                     <dd>

@@ -144,3 +144,11 @@ textarea {
 .input-validation-error{
     border-color:red;
 }
+.btn:hover, .btn:focus, .btn.focus {
+    color: #7d7d7d;
+    text-decoration: none;
+}
+a {
+    color: #474949;
+    text-decoration: none;
+}

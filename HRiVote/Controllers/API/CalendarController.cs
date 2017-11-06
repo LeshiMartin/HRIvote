@@ -26,8 +26,8 @@ namespace HRiVote.Controllers.API
             else
             {
                 var emp = db.emps.Single(x => x.ID == cal.EmployeeID);
-                cal.status = false;
-                emp.IsAvailable = true;
+                cal.Remove();
+               // emp.IsAvailable = true;
                 db.SaveChanges();
                 //db.kalendar.Remove()
             }

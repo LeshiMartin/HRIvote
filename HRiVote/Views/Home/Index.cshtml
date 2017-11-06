@@ -1,8 +1,26 @@
-﻿
-@{
-    ViewBag.Title = "Index";
+﻿@{
+    ViewBag.Title = "Dojo Tree";
 }
 
-<h2 class="text-center">Calendar</h2>
+
+<link rel="stylesheet"
+      href="https://ajax.googleapis.com/ajax/libs/dojo/1.7.1/dojo/resources/dojo.css">
+<link rel="stylesheet"
+      href="https://ajax.googleapis.com/ajax/libs/dojo/1.7.1/dijit/themes/claro/claro.css">
+<!-- load dojo and provide config via data attribute -->
 
 
+
+<div class="container col-md-offset-1">
+    <div style=" width: 400px; margin: 10px;">
+        <div id="tree"></div>
+    </div>
+    <div id="add-new-child"></div>
+    <div id="remove-child"></div>
+</div>
+@section scripts{
+    <script src="https://ajax.googleapis.com/ajax/libs/dojo/1.7.1/dojo/dojo.js"
+        data-dojo-config="async: true, isDebug: true, parseOnLoad: true"></script>
+        <script src="~/Scripts/tree.js">
+        </script>
+    }

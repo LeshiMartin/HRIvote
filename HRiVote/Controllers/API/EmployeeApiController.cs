@@ -53,19 +53,7 @@ namespace HRiVote.Controllers.API
             {
                 throw new HttpResponseException(HttpStatusCode.NotFound);
             }
-            employee.LastName = employe.LastName;
-            employee.Achievements = employe.Achievements;
-            employee.BirthDate = employe.BirthDate;
-            employee.CV = employe.CV;
-            employee.Email = employe.Email;
-            employee.FirstName = employe.FirstName;
-            employee.IsAvailable = employe.IsAvailable;
-            employee.job = employe.job;
-            employee.JobPositionID = employe.JobPositionID;
-            employee.Phone = employe.Phone;
-            employee.Photo = employe.Photo;
-           // employee.Projects = employe.Projects;
-            employee.VacationDays = employe.VacationDays;
+            employee.Updated(employe, employee);
             db.SaveChanges();
             throw new HttpResponseException(HttpStatusCode.OK);
 

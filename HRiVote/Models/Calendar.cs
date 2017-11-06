@@ -20,18 +20,55 @@ namespace HRiVote.Models
         [Required]
         public string Title { get; set; }
         [ScaffoldColumn(false)]
-        public string Color { get; set; }
+        public string Color { get;private set; }
        
-        [DataType(DataType.Date), DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         [CalendarStart]
         public DateTime? StartOfVacation { get; set; }
-        [DataType(DataType.Date), DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         [CalendarEnd]
         public DateTime? EndOfVacation { get; set; }
         [ScaffoldColumn(false)]
-        public string Description { get; set; }
+        public string Description { get;private set; }
         [ScaffoldColumn(false)]
-        public bool status { get; set; }
-        public string EmpName { get; set; }
+        public bool status { get; private set; }
+        public string EmpName { get; private set; }
+        public Calendar()
+        {
+
+        }
+        public void description(Employee employee)
+        {
+
+            if (Title == "Sick")
+            {
+               Color = "#bd180e";
+            }
+            if (Title == "Vacation")
+            {
+                Color = "#23a127";
+            }
+            if (Title == "Official Leave")
+            {
+                Color = "#345578";
+            }
+
+            EmpName = employee.FullName;
+            Description = employee.FullName + " is on " + Title + " till : " + EndOfVacation.Value.ToShortDateString();
+            status = true;
+        }
+        public void Update(Calendar oldCalendar,Calendar NewCalendar)
+        {
+            NewCalendar.Title = oldCalendar.Title;
+            NewCalendar.StartOfVacation = oldCalendar.StartOfVacation;
+            NewCalendar.EmployeeID = oldCalendar.EmployeeID;
+            NewCalendar.EndOfVacation = oldCalendar.EndOfVacation;
+        }
+        public void Remove()
+        {
+            status = false;
+        }
     }
 }

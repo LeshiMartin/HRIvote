@@ -1,6 +1,7 @@
 ﻿using HRiVote.Validations;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
@@ -40,7 +41,7 @@ namespace HRiVote.Models
 
         public string Achievements { get; set; }
 
-        public virtual ICollection<Skills> skils { get; set; }
+        public virtual ICollection<Skills> skils { get;private set; }
 
         [Display(Name = "Позиција")]
         public JobPosition job { get; set; }
@@ -54,7 +55,41 @@ namespace HRiVote.Models
         public string Email { get; set; }
         public string CV { get; set; }
         public string Photo { get; set; }
-       
+
+        public Employee()
+        {
+            skils = new Collection<Skills>();
+                    
+        }
+     
+        public void Created(Employee emps)
+        {
+            
+            emps.FullName = emps.LastName + " " + emps.FirstName;
+            emps.EmploymentStatus = true;
+            
+
+        }
+        public void Updated(Employee oldEMployee,Employee newEmployee)
+        {
+            newEmployee.Achievements = oldEMployee.Achievements;
+            newEmployee.BirthDate = oldEMployee.BirthDate;
+            newEmployee.Email = oldEMployee.Email;
+            newEmployee.FirstName = oldEMployee.FirstName;
+            newEmployee.IsAvailable = oldEMployee.IsAvailable;
+            newEmployee.JobPositionID = oldEMployee.JobPositionID;
+            newEmployee.LastName = oldEMployee.LastName;
+            newEmployee.FullName = newEmployee.LastName + " " + newEmployee.FirstName;
+            newEmployee.Phone = oldEMployee.Phone;
+            newEmployee.VacationDays = oldEMployee.VacationDays;
+         
+        }
+        public void Remove()
+        {
+            var emp = new Employee();
+            emp.EmploymentStatus=false;
+        }
+
         
     }
 }
