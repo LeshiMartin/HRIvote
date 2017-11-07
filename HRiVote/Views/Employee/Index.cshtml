@@ -3,9 +3,11 @@
 @{
     ViewBag.Title = "Index";
 }
-
+<link href="~/Content/DataTables/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/dataTables.jqueryui.min.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
 <div class="container Back col-sm-offset-1" style="border: solid transparent;border-radius: 20px;">
-    <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css">
+   
 
     <h2 class="text-center">Index</h2>
 
@@ -104,6 +106,9 @@
 
 
 @section scripts{
+<script src="~/Scripts/DataTables/dataTables.bootstrap.min.js"></script>
+<script src="~/Scripts/DataTables/dataTables.jqueryui.min.js"></script>
+<script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
     <script>
         $(document).ready(function () {
             $("#myTable").DataTable();

@@ -17,7 +17,7 @@ namespace HRiVote.Validations
             {
                 if (context.emps.Select(x => x.Email).Contains(emp.Email))
                 {
-                    return new ValidationResult("There is allreadt an Employee wiht this email account");
+                    return new ValidationResult("There is allready an Employee wiht this email account");
                 }
                 else
                 {

@@ -301,6 +301,8 @@
     <Compile Include="Controllers\API\CalendarController.cs" />
     <Compile Include="Controllers\API\CandidateController.cs" />
     <Compile Include="Controllers\API\EmployeeApiController.cs" />
+    <Compile Include="Controllers\API\EmployeeFileController.cs" />
+    <Compile Include="Controllers\API\FileController.cs" />
     <Compile Include="Controllers\API\OpenController.cs" />
     <Compile Include="Controllers\API\PossitonsController.cs" />
     <Compile Include="Controllers\CalendarController.cs" />
@@ -414,6 +416,14 @@
     <Compile Include="DAL\EntityMigrations\201711061307266_DOJOTREE.Designer.cs">
       <DependentUpon>201711061307266_DOJOTREE.cs</DependentUpon>
     </Compile>
+    <Compile Include="DAL\EntityMigrations\201711070814039_FileModel.cs" />
+    <Compile Include="DAL\EntityMigrations\201711070814039_FileModel.Designer.cs">
+      <DependentUpon>201711070814039_FileModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\EntityMigrations\201711071335474_AddedColumn.cs" />
+    <Compile Include="DAL\EntityMigrations\201711071335474_AddedColumn.Designer.cs">
+      <DependentUpon>201711071335474_AddedColumn.cs</DependentUpon>
+    </Compile>
     <Compile Include="DAL\EntityMigrations\Configuration.cs" />
     <Compile Include="DAL\IdentityMigrations\201710190928386_InitialCreate.cs" />
     <Compile Include="DAL\IdentityMigrations\201710190928386_InitialCreate.Designer.cs">
@@ -428,6 +438,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Calendar.cs" />
     <Compile Include="Models\Candidate.cs" />
+    <Compile Include="Models\FIleModel.cs" />
     <Compile Include="Models\Node.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\EmployeeFiles.cs" />
@@ -451,6 +462,7 @@
     <Compile Include="Validations\Vacation.cs" />
     <Compile Include="ViewModels\CalendarViewModel.cs" />
     <Compile Include="ViewModels\CanddateViewModel.cs" />
+    <Compile Include="ViewModels\EmployeeFilesViewModel.cs" />
     <Compile Include="ViewModels\EmployeesViewModel.cs" />
     <Compile Include="ViewModels\EmployeeViewModel.cs" />
     <Compile Include="ViewModels\PossitionsViewModel.cs" />
@@ -732,6 +744,8 @@
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
     <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
@@ -748,6 +762,20 @@
     <Content Include="Content\themes\base\images\ui-icons_ffffff_256x240.png" />
     <Content Include="Content\themes\base\jquery-ui.css" />
     <Content Include="Content\themes\base\jquery-ui.min.css" />
+    <Content Include="Content\themes\base\jquery.ui.accordion.css" />
+    <Content Include="Content\themes\base\jquery.ui.all.css" />
+    <Content Include="Content\themes\base\jquery.ui.autocomplete.css" />
+    <Content Include="Content\themes\base\jquery.ui.base.css" />
+    <Content Include="Content\themes\base\jquery.ui.button.css" />
+    <Content Include="Content\themes\base\jquery.ui.core.css" />
+    <Content Include="Content\themes\base\jquery.ui.datepicker.css" />
+    <Content Include="Content\themes\base\jquery.ui.dialog.css" />
+    <Content Include="Content\themes\base\jquery.ui.progressbar.css" />
+    <Content Include="Content\themes\base\jquery.ui.resizable.css" />
+    <Content Include="Content\themes\base\jquery.ui.selectable.css" />
+    <Content Include="Content\themes\base\jquery.ui.slider.css" />
+    <Content Include="Content\themes\base\jquery.ui.tabs.css" />
+    <Content Include="Content\themes\base\jquery.ui.theme.css" />
     <Content Include="Content\themes\base\menu.css" />
     <Content Include="Content\themes\base\progressbar.css" />
     <Content Include="Content\themes\base\resizable.css" />
@@ -763,6 +791,10 @@
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Images\1 Enter PS.PNG" />
+    <Content Include="Images\2 Choose material.png" />
+    <Content Include="Images\3 List of uploaded materials for ps.png" />
+    <Content Include="Images\4 List of uploaded materials for batch ps.png" />
     <Content Include="Photos\iVoteLogo1200_Transparent1.png" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -783,6 +815,8 @@
     <Content Include="bin\roslyn\vbc.exe.config" />
     <Content Include="bin\roslyn\vbc.rsp" />
     <Content Include="bin\roslyn\VBCSCompiler.exe.config" />
+    <Content Include="Scripts\bootbox.js" />
+    <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -796,6 +830,13 @@
     <Content Include="Content\DataTables\css\semanticui.scss" />
     <Content Include="Content\DataTables\css\mixins.scss" />
     <Content Include="Content\DataTables\css\common.scss" />
+    <None Include="Scripts\jquery-1.12.4-vsdoc.js" />
+    <Content Include="Scripts\fullcalendar.js" />
+    <Content Include="Scripts\fullcalendar.min.js" />
+    <Content Include="Scripts\gcal.js" />
+    <Content Include="Scripts\jquery-1.12.4.js" />
+    <Content Include="Scripts\jquery-1.12.4.min.js" />
+    <Content Include="Scripts\jquery-1.12.4.min.map" />
     <None Include="Scripts\jquery-3.2.1.intellisense.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.min.js" />
@@ -873,21 +914,15 @@
     <Content Include="Scripts\DataTables\responsive.jqueryui.min.js" />
     <Content Include="Scripts\DataTables\responsive.semanticui.js" />
     <Content Include="Scripts\DataTables\responsive.semanticui.min.js" />
-    <Content Include="Scripts\fullcalendar.js" />
-    <Content Include="Scripts\fullcalendar.min.js" />
-    <Content Include="Scripts\gcal.js" />
-    <Content Include="Scripts\gcal.min.js" />
-    <Content Include="Scripts\jquery-3.2.1.js" />
-    <Content Include="Scripts\jquery-3.2.1.min.js" />
-    <Content Include="Scripts\jquery-3.2.1.slim.js" />
     <Content Include="Scripts\jquery-3.2.1.slim.min.js" />
-    <Content Include="Scripts\jquery-3.2.1.slim.min.map" />
-    <Content Include="Scripts\jquery-3.2.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui-1.8.11.js" />
+    <Content Include="Scripts\jquery-ui-1.8.11.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\DataTables\jquery.min.js" />
     <Content Include="Scripts\lib\cupertino\images\ui-bg_diagonals-thick_90_eeeeee_40x40.png" />
     <Content Include="Scripts\lib\cupertino\images\ui-bg_glass_100_e4f1fb_1x400.png" />
     <Content Include="Scripts\lib\cupertino\images\ui-bg_glass_50_3baae3_1x400.png" />
@@ -903,13 +938,9 @@
     <Content Include="Scripts\lib\cupertino\images\ui-icons_ffffff_256x240.png" />
     <Content Include="Scripts\lib\cupertino\jquery-ui.min.css" />
     <Content Include="Scripts\lib\jquery-ui.min.js" />
-    <Content Include="Scripts\DataTables\jquery.min.js" />
+    <Content Include="Scripts\lib\jquery.min.js" />
     <Content Include="Scripts\lib\moment.min.js" />
     <Content Include="Scripts\locale-all.js" />
-    <Content Include="Scripts\locale\af.js" />
-    <Content Include="Scripts\locale\ar-dz.js" />
-    <Content Include="Scripts\locale\ar-kw.js" />
-    <Content Include="Scripts\locale\ar-ly.js" />
     <Content Include="Scripts\locale\ar-ma.js" />
     <Content Include="Scripts\locale\ar-sa.js" />
     <Content Include="Scripts\locale\ar-tn.js" />
@@ -919,7 +950,6 @@
     <Content Include="Scripts\locale\cs.js" />
     <Content Include="Scripts\locale\da.js" />
     <Content Include="Scripts\locale\de-at.js" />
-    <Content Include="Scripts\locale\de-ch.js" />
     <Content Include="Scripts\locale\de.js" />
     <Content Include="Scripts\locale\el.js" />
     <Content Include="Scripts\locale\en-au.js" />
@@ -929,7 +959,6 @@
     <Content Include="Scripts\locale\en-nz.js" />
     <Content Include="Scripts\locale\es-do.js" />
     <Content Include="Scripts\locale\es.js" />
-    <Content Include="Scripts\locale\et.js" />
     <Content Include="Scripts\locale\eu.js" />
     <Content Include="Scripts\locale\fa.js" />
     <Content Include="Scripts\locale\fi.js" />
@@ -945,7 +974,6 @@
     <Content Include="Scripts\locale\is.js" />
     <Content Include="Scripts\locale\it.js" />
     <Content Include="Scripts\locale\ja.js" />
-    <Content Include="Scripts\locale\kk.js" />
     <Content Include="Scripts\locale\ko.js" />
     <Content Include="Scripts\locale\lb.js" />
     <Content Include="Scripts\locale\lt.js" />
@@ -954,7 +982,6 @@
     <Content Include="Scripts\locale\ms-my.js" />
     <Content Include="Scripts\locale\ms.js" />
     <Content Include="Scripts\locale\nb.js" />
-    <Content Include="Scripts\locale\nl-be.js" />
     <Content Include="Scripts\locale\nl.js" />
     <Content Include="Scripts\locale\nn.js" />
     <Content Include="Scripts\locale\pl.js" />
@@ -1024,7 +1051,6 @@
     <Content Include="Views\Employee\Index.cshtml" />
     <Content Include="Views\Posstions\AddPosition.cshtml" />
     <Content Include="Views\Employee\Delete.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="TimePicker\LICENSE" />
     <Content Include="Views\Candidate\Create.cshtml" />
     <Content Include="Views\Candidate\Edit.cshtml" />
@@ -1047,10 +1073,12 @@
     <Content Include="Views\Shared\Info.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Home\generateRoot.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Images\" />
+    <Folder Include="Images\NewFolder\" />
     <Folder Include="obj\Debug\TempPE\" />
     <Folder Include="Views\Menu\" />
     <Folder Include="Views\Tree\" />
@@ -1135,6 +1163,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DAL\EntityMigrations\201711061307266_DOJOTREE.resx">
       <DependentUpon>201711061307266_DOJOTREE.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DAL\EntityMigrations\201711070814039_FileModel.resx">
+      <DependentUpon>201711070814039_FileModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DAL\EntityMigrations\201711071335474_AddedColumn.resx">
+      <DependentUpon>201711071335474_AddedColumn.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DAL\IdentityMigrations\201710190928386_InitialCreate.resx">
       <DependentUpon>201710190928386_InitialCreate.cs</DependentUpon>

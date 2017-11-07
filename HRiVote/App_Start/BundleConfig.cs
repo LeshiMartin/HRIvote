@@ -10,8 +10,10 @@ namespace HRiVote
         {
             bundles.Add(new ScriptBundle("~/bundles/lib").Include(
                         "~/Scripts/jquery-{version}.js",
-                         "~/Scripts/bootstrap.js",
+                        "~/Scripts/jquery-3.2.1.intellisense.js",
+                        "~/Scripts/bootstrap.min.js",
                         "~/Scripts/respond.js",
+                        "~/Scripts/bootbox.min.js",
                         "~/Scripts/DataTables/DataTables.bootstrap.js",
                         "~/Scripts/DataTables/jquery.dataTables.js"));
 

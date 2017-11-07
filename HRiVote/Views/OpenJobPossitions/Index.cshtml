@@ -66,24 +66,65 @@
 
           $("#mytable").on("click", ".js-delete", function () {
               var button = $(this);
-              $.ajax({
-                  url: "/api/Open/" + button.attr("data-project-id"),
-                  method: "DELETE",
-                  success: function () {
-                      button.parents("tr").remove();
-                      console.log("Success")
+              var dialog = bootbox.dialog({
+                  title: 'Remove',
+                  message: "<p>Are you sure you want to remove it</p>",
+                  buttons: {
+                      no: {
+                          label: "no",
+                          className: 'btn-danger',
+                          callback: function () {
+                              dialog.modal('hide')
+                          }
+                      },
+                      ok: {
+                          label: "ok",
+                          className: 'btn-default',
+                          callback: function () {
+                              $.ajax({
+                                  url: "/api/Open/" + button.attr("data-project-id"),
+                                  method: "DELETE",
+                                  success: function () {
+
+                                      button.parents("tr").remove();
+                                  }
+                              })
+
+                          }
+                      }
                   }
-              })
+              });
           });
           $("#mytable").on("click", ".js-update", function () {
               var self = $(this);
-              $.ajax({
-                  url: "/api/Open/" + self.attr("data-project-id"),
-                  method: "PUT",
-                  success: function () {
-                      self.parents("tr").remove();
+              var dialog = bootbox.dialog({
+                  title: 'Remove',
+                  message: "<p>Are you sure you want to remove it</p>",
+                  buttons: {
+                      no: {
+                          label: "no",
+                          className: 'btn-danger',
+                          callback: function () {
+                              dialog.modal('hide')
+                          }
+                      },
+                      ok: {
+                          label: "ok",
+                          className: 'btn-default',
+                          callback: function () {
+                              $.ajax({
+                                  url: "/api/Open/" + button.attr("data-project-id"),
+                                  method: "Put",
+                                  success: function () {
+
+                                      self.parents("tr").remove();
+                                  }
+                              })
+
+                          }
+                      }
                   }
-              })
+              });
           });
       });
     </script>

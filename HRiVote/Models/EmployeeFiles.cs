@@ -10,6 +10,7 @@ namespace HRiVote.Models
     {
         public int Id { get; set; }
         [Required]
+        public string Type { get; set; }
         public string File { get; set; }
         public int EmployeeID { get; set; }
         public Employee employee { get; set; }

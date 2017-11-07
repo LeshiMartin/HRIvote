@@ -37,7 +37,11 @@ namespace HRiVote.Controllers
         public ActionResult Open(Calendar calendar, HttpPostedFileBase file)
         {
             
-            var viewmodel = new CalendarViewModel() { Employes = db.emps.Where(x=>x.IsAvailable==true).ToList() };
+            var viewmodel = new CalendarViewModel()
+            {
+                Calendar = new Calendar(),
+                Employes = db.emps.Where(x=>x.IsAvailable==true).ToList()
+            };
             if (calendar.Id == 0)
             {
                 var employee = db.emps.Single(x => x.ID == calendar.EmployeeID);
@@ -45,14 +49,26 @@ namespace HRiVote.Controllers
                 {
                     var title = TempData["title"].ToString();
                     TempData.Keep("title");
-                    calendar.Title = title;
+                    calendar.Title = title;                    
+                    Upload(file, employee, calendar);
+                    calendar.description(employee);
+                    if (ModelState.IsValid)
+                    {
+                        
+                        db.kalendar.Add(calendar);
+                        db.SaveChanges();
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        return View("OnLeaveDays", viewmodel);
+                    }
                 }
-              
-                calendar.description(employee);
-                Upload(file, employee);
-                db.kalendar.Add(calendar);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                else
+                {
+                    return View("OnLeaveDays", viewmodel);
+                }  
+                
              }
   
             else
@@ -65,7 +81,7 @@ namespace HRiVote.Controllers
                         var employee = db.emps.Single(x => x.ID == calendar.EmployeeID);
                         kalendar.Update(calendar, kalendar);
                         kalendar.description(employee);
-                        Upload(file,employee);
+                        Upload(file,employee,calendar);
                         db.SaveChanges();
                         return RedirectToAction("Index"); 
                     }
@@ -112,7 +128,7 @@ namespace HRiVote.Controllers
         }
 
    
-        public void Upload(HttpPostedFileBase file,Employee employee)
+        public void Upload(HttpPostedFileBase file,Employee employee,Calendar calendar)
         {
             if (file != null && file.ContentLength > 0)
             {
@@ -123,6 +139,7 @@ namespace HRiVote.Controllers
                 {
                     EmployeeID = employee.ID,
                     File = "~/Images/" + file.FileName,
+                    Type = calendar.Title
                 };
                 db.empf.Add(files);
                 db.SaveChanges();

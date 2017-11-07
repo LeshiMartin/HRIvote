@@ -3,7 +3,9 @@
 @{
     ViewBag.Title = "Index";
 }
-<link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css">
+<link href="~/Content/DataTables/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/dataTables.jqueryui.min.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
 <div class="container Back col-sm-offset-3 col-sm-6" style="border: solid transparent;border-radius: 20px;">
     <h2>List</h2>
 
@@ -46,33 +48,76 @@
 </div>
 
 @section scripts{
+<script src="~/Scripts/DataTables/dataTables.bootstrap.min.js"></script>
+<script src="~/Scripts/DataTables/dataTables.jqueryui.min.js"></script>
+<script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
     <script>
+
         $(document).ready(function () {
             $("#table").DataTable();
             $("#table").on("click", ".js-delete", function () {
                 var button = $(this);
-                $.ajax({
-                    url: "/api/Possitons/" + button.attr("data-project-id"),
-                    method: "DELETE",
-                    success: function () {
-                        button.parents("tr").remove();
-                        console.log("Success")
-                        
+                var dialog = bootbox.dialog({
+                    title: 'Remove',
+                    message: "<p>Are you sure you want to remove it</p>",
+                    buttons: {
+                        no: {
+                            label: "no",
+                            className: 'btn-danger',
+                            callback: function () {
+                                dialog.modal('hide')
+                            }
+                        },
+                        ok: {
+                            label: "ok",
+                            className: 'btn-default',
+                            callback: function () {
+                                $.ajax({
+                                    url: "/api/Possitons/" + button.attr("data-project-id"),
+                                    method: "DELETE",
+                                    success: function () {
+
+                                        button.parents("tr").remove();
+                                    }
+                                })
+                                
+                            }
+                        }
                     }
-                })
+                });
+               
             });
             $("#table").on("click", ".js-update", function () {
                 var button = $(this);
-                $.ajax({
-                    url: "/api/Possitons/" + button.attr("data-project-id"),
-                    method: "PUT",
-                    success: function () {
-                        button.parents("tr").remove();
-                        console.log("Success")
-                    }
-                })
-            });
+                var dialog = bootbox.dialog({
+                    title: 'Remove',
+                    message: "<p>Are you sure you want to remove it</p>",
+                    buttons: {
+                        no: {
+                            label: "no",
+                            className: 'btn-danger',
+                            callback: function () {
+                                dialog.modal('hide')
+                            }
+                        },
+                        ok: {
+                            label: "ok",
+                            className: 'btn-default',
+                            callback: function () {
+                                $.ajax({
+                                    url: "/api/Possitons/" + button.attr("data-project-id"),
+                                    method: "PUT",
+                                    success: function () {
 
+                                        button.parents("tr").remove();
+                                    }
+                                })
+
+                            }
+                        }
+                    }
+                });
+            });
         });
     </script>
 }

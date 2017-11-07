@@ -3,8 +3,9 @@
 @{
     ViewBag.Title = "Index";
 }
-
-<link rel="stylesheet" href="//cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css" />
+<link href="~/Content/DataTables/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/dataTables.jqueryui.min.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
 <div class="container Back col-sm-offset-1" >
     <h2 class="col-md-6 col-md-offset-5" >List of Candidates</h2>
     @ViewBag.Error
@@ -165,19 +166,43 @@
   
 }
 @section scripts{
+<script src="~/Scripts/jquery-3.2.1.intellisense.js"></script>
+<script src="~/Scripts/bootbox.min.js"></script>
     <script>
+
         $("#myTable").DataTable();
 
         $("#myTable").on("click", ".js-delete", function () 
         {
             var self = $(this);
-            $.ajax({
-                url: "/api/Candidate/" + self.attr("data-project-id"),
-                method: "Delete",
-                success: function () {
-                    self.parents("tr").remove();
+            var dialog = bootbox.dialog({
+                title: 'Remove',
+                message: "<p>Are you sure you want to remove it</p>",
+                buttons: {
+                    no: {
+                        label: "no",
+                        className: 'btn-danger',
+                        callback: function () {
+                            dialog.modal('hide')
+                        }
+                    },
+                    ok: {
+                        label: "ok",
+                        className: 'btn-default',
+                        callback: function () {
+                            $.ajax({
+                                url: "/api/Candidate/" + button.attr("data-project-id"),
+                                method: "DELETE",
+                                success: function () {
+
+                                    button.parents("tr").remove();
+                                }
+                            })
+
+                        }
+                    }
                 }
-            })
+            });
         });
      
     </script>

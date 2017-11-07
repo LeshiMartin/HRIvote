@@ -2,48 +2,77 @@
 using HRiVote.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
+using System.Security.Permissions;
 using System.Web;
 using System.Web.Mvc;
-
+using System.Data.Entity;
+using HRiVote.ViewModels;
 
 namespace DojoTree.Controllers
 {
+
     public class HomeController : Controller
     {
+        Entity db;
+        public HomeController()
+        {
+            db = new Entity();
+        }
         public ActionResult Index()
         {
-            ViewBag.Message = "Tree supporting CRUD operations Using Dojo Tree, Entity Framework, Asp .Net MVC";
-            return View();
+            var employeefiles = db.empf.Include(c=>c.employee).ToList();
+            return View(employeefiles);
         }
-
-        public ActionResult generateRoot()
+        [HttpPost]
+        public ActionResult IndexPost(string Titles)
         {
-            try
+            var empls = db.empf.Include(e=>e.employee).Where(x => x.Type == Titles).ToList();
+            return View("Index", empls);
+        }
+        public ActionResult Edit(int id)
+        {
+            var emp = db.empf.Single(x => x.Id == id);
+            if (emp == null)
             {
-                Entity db = new Entity();
-                Node node = new Node();
-
-                node = db.Nodes.Find(1);
-                if (node == null)
-                {
-                    //If you deleted Root manually, this couldn't make Root again
-                    //because Root Id must be "1", so you must drop the 
-                    //Tree table and rebuild it
-                    //or change the Root Id in "tree.js"
-
-                    Node rootNode = new Node();
-                    rootNode.Name = "Uploads";
-                    rootNode.ParentID = 0;
-                    db.Nodes.Add(rootNode);
-
-                    db.SaveChanges();
-                    ViewBag.Message = "Some Nodes have been generated";
-                }
-                else { ViewBag.Message = "Root Exists."; }
+                return HttpNotFound();
             }
-            catch { ViewBag.Message = "An Error occurred"; }
-            return View();
+            var viewmodel = new EmployeeFilesViewModel()
+            {
+                files = emp,
+                emplloyees = db.emps.ToList()
+            };
+            return View(viewmodel);
+        }
+        [HttpPost]
+        public ActionResult EditPost(HttpPostedFileBase file,EmployeeFiles emplo)
+        {
+            if (emplo.Id > 0)
+            {
+                var emp = db.empf.Single(x => x.Id == emplo.Id);
+                Upload(file, emp);
+                emp.EmployeeID = emplo.EmployeeID;
+                emp.Type = emplo.Type;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return HttpNotFound();
+            }
+
+        }
+        public void Upload(HttpPostedFileBase file,EmployeeFiles emplo)
+        {
+            if (file != null && file.ContentLength > 0)
+            {
+                var name = Path.GetFileName(file.FileName);
+                var path = Path.Combine(Server.MapPath("~/Images"), name);
+                file.SaveAs(path);
+                emplo.File = "~/Images/" + file.FileName;
+            }
         }
     }
 }
