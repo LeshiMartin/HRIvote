@@ -16,39 +16,39 @@ namespace HRiVote.Models
         public int ID { get; set; }
 
         [Required]
-        [Display(Name = "Презиме")]
+        //[Display(Name = "Презиме")]
         public string LastName { get; set; }
 
         [Required]
-        [Display(Name = "Име")]
+     //   [Display(Name = "Име")]
         public string FirstName { get; set; }
 
         [Required]
-        [Display(Name = "Е-маил"), DataType(DataType.EmailAddress)]
+       // [Display(Name = "Е-маил"), DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
         [Required]
-        [Display(Name ="Телефон")]
+        //[Display(Name ="Телефон")]
         [DataType(DataType.PhoneNumber)]
         public string PhoneNumber { get; set; }
 
        // [Required]
-        [Display(Name = "CV")]
+        //[Display(Name = "CV")]
         public string CV { get; set; }
 
         [Required]
         [CandidateDate]
-        [Display(Name ="Датум на интервју")]
+       // [Display(Name ="Датум на интервју")]
         [DataType(DataType.Date), DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime InterviewDate { get; set; }
 
         [CandidateTime]
-        [Display(Name = "Време на интервју")]
+        //[Display(Name = "Време на интервју")]
         [DataType(DataType.Time), DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm:ss}")]
         public DateTime? InterviewTime { get; set; }
 
         [Required]
-        [Display(Name ="Круг на интервју")]
+       // [Display(Name ="Круг на интервју")]
         public int InterviewRound { get; set; }
 
         //public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)

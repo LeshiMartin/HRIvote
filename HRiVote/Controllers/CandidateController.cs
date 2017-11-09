@@ -45,38 +45,52 @@ namespace HRiVote.Controllers
             if (updateid.HasValue)
             {
                 viewmodel.cans = viewmodel.Candidate.Where(x => x.ID == updateid).ToList();
+               // viewmodel.Candidate = viewmodel.Candidate.Except(viewmodel.cans);
                 TempData["id"] = updateid.Value;
             }
 
                 return View(viewmodel);           
         }
         [HttpPost]
-        public ActionResult Update(DateTime? Date,DateTime? Time)
+        [ValidateAntiForgeryToken]
+        //[ActionName("Index")]
+        public ActionResult IndexPost(HttpPostedFileBase file,Candidate item)
         {
-            int ID = (int)TempData["id"];
-            TempData.Keep("id");
-            var aplikant = db.aplikanti.Single(x => x.ID == ID);
-            if(Date.HasValue && Time.HasValue)
+            //int ID = (int)TempData["id"];
+            //TempData.Keep("id");
+            //var aplikant = db.aplikanti.Single(x => x.ID == ID);
+            var viewmodl = new CanddateViewModel()
             {
-
-                if (Date.Value.Date>DateTime.Now.Date )
+                Candidate = db.aplikanti.ToList()
+            };
+            if (ModelState.IsValid)
+            {
+                if (file != null && file.ContentLength > 0)
                 {
-                    aplikant.InterviewDate = Date.Value;
-                    aplikant.InterviewTime = Time.Value;
-                    db.SaveChanges();
+                    string _FileName = Path.GetFileName(file.FileName);
+                    string _path = Path.Combine(Server.MapPath("~/Managment/Document's"), _FileName);
+                    file.SaveAs(_path);
+                    item.CV = "~/Managment/Document's" + file.FileName;
                 }
                 else
                 {
-                    ViewBag.Error = "You must choose a Date/Time for Update";
+                    item.CV = "Cv not Uploaded";
+                    //ViewBag.Message = "Cv not Uploaded";
                 }
-                
+                var candidate = db.aplikanti.Single(x => x.ID == item.ID);
+                candidate.FirstName = item.FirstName;
+                candidate.LastName = item.LastName;
+                candidate.Email = item.Email;
+                candidate.InterviewDate = item.InterviewDate;
+                candidate.InterviewRound = item.InterviewRound;
+                candidate.InterviewTime = item.InterviewTime;
+                candidate.PhoneNumber = item.PhoneNumber;
+                db.SaveChanges();
+                return RedirectToAction("Index");
             }
-            if(!Date.HasValue || !Time.HasValue)
-            {
-                ViewBag.Error = "You must choose a Date/Time for Update";
-            }
-            return RedirectToAction("Index");
+            return View("Index",viewmodl);
         }
+        
         
         public ActionResult Create()
         {
@@ -95,9 +109,9 @@ namespace HRiVote.Controllers
                 if (file != null && file.ContentLength > 0)
                 {
                     string _FileName = Path.GetFileName(file.FileName);
-                    string _path = Path.Combine(Server.MapPath("~/Uploads"), _FileName);
+                    string _path = Path.Combine(Server.MapPath("~/Managment/Document's"), _FileName);
                     file.SaveAs(_path);
-                    candidate.CV = "~/Uploads/" + file.FileName;
+                    candidate.CV = "~/Managment/Document's" + file.FileName;
                 }
                 else
                 {
@@ -117,59 +131,7 @@ namespace HRiVote.Controllers
 
             return View(candidate);
         }
-
-        // GET: Candidate/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Candidate candidate = db.aplikanti.Find(id);
-            if (candidate == null)
-            {
-                return HttpNotFound();
-            }
-            return View(candidate);
-        }
-
-        // POST: Candidate/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,LastName,FirstName,Email,PhoneNumber,InterviewDate,InterviewTime, InterviewRound")] Candidate candidate, HttpPostedFileBase file, int? InterviewRound)
-        {
-            if (ModelState.IsValid)
-            {
-                if (file != null && file.ContentLength > 0)
-                {
-                    string _FileName = Path.GetFileName(file.FileName);
-                    string _path = Path.Combine(Server.MapPath("~/Uploads"), _FileName);
-                    file.SaveAs(_path);
-                    candidate.CV = "~/Uploads/" + file.FileName;
-                }
-                else
-                {
-                    candidate.CV = "Cv not Uploaded";
-                    //ViewBag.Message = "Cv not Uploaded";
-                }
-                
-                db.Entry(candidate).State = EntityState.Modified;
-               
-                if(InterviewRound.HasValue)
-                {
-                    candidate.InterviewRound = InterviewRound.Value;
-                }
-                //candidate.InterviewTime = Time.Value;
-                //candidate.InterviewDate = Date.Value;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(candidate);
-        }
-
-        // GET: Candidate/Delete/5
+      
 
 
         protected override void Dispose(bool disposing)

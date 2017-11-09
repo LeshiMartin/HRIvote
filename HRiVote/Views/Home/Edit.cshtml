@@ -26,7 +26,7 @@
                  new SelectListItem() {Text="Sick",Value="Sick",Selected=false },
                  new SelectListItem() {Text="Official Leave",Value="Official Leave",Selected=false }
         }, "---Filter---", new { @class = "form-control" })
-           })
+           
                 @Html.ValidationMessageFor(model => model.files.Type, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -56,5 +56,5 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Index",null,new { @class = "btn btn-primary fa fa-backward" })
 </div>

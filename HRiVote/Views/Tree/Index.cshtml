@@ -1,0 +1,72 @@
+﻿@model HRiVote.ViewModels.FileViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@using (Html.BeginForm("Upload", "Tree", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="container col-sm-offset-1">
+        <h2 class="text-center">File Viewer</h2>
+        <br /><br /><br />
+    <div class="row">
+        <div class="col-sm-1">
+            <span class="glyphicon glyphicon-upload"></span> 
+       
+            <input type="file" name="file" />
+        </div>
+        <div class="col-sm-2 col-sm-offset-1" style="margin-top: 7px;">
+            <p class="text-danger">@ViewBag.Error</p>
+            @Html.HiddenFor(x => x.files)
+            <input type="submit" value="upload" class="btn btn-primary" />
+        </div>
+    </div>
+    <div class="row">
+     @foreach (var item in Model.pics)
+     {
+         var file = item.Substring(32);
+
+
+            <div class="col-md-2 col-md-offset-1">
+               @if (Model.name == file)
+               {
+                @Html.ActionLink(" " + file, "Index", new { name = file }, new { @class = "js-click glyphicon glyphicon-folder-open", @style = "font-size:20px;color:darkorange" })
+               }
+               else
+               {
+              @Html.ActionLink(" " + file, "Index", new { name = file }, new {@class = "js-click glyphicon glyphicon-folder-close", @style = "font-size:20px;color:darkorange" })
+               }
+            </div>
+     }
+    
+    </div>
+    <br /><br />
+    <div class="row">
+     
+        @foreach (var imgPath in Directory.GetFiles(Server.MapPath(Model.files)))
+        {
+            var img = new FileInfo(imgPath);
+            <div class="col-md-2 col-md-offset-1">
+                <a href="@Url.Content(String.Format(Model.files + "/{0}", img.Name))"><img src="@Url.Content(String.Format(Model.files + "/{0}", img.Name))" alt="@imgPath" width="200" /></a>  
+                @Html.ActionLink(" Delete","Delete", new { path = imgPath }, new { @class = "btn btn-danger glyphicon glyphicon-trash" })               
+            </div>
+            
+               
+            
+        }
+    </div>
+    
+    @Html.HiddenFor(x => x.name,new { @id="file"})
+</div>
+}
+@section scripts{
+<script src="~/Scripts/jquery-1.12.4.min.js"></script>
+<script src="~/Scripts/jquery-3.2.1.intellisense.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+          
+        });
+    </script>
+    }

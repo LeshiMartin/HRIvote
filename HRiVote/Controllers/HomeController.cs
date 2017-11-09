@@ -69,9 +69,9 @@ namespace DojoTree.Controllers
             if (file != null && file.ContentLength > 0)
             {
                 var name = Path.GetFileName(file.FileName);
-                var path = Path.Combine(Server.MapPath("~/Images"), name);
+                var path = Path.Combine(Server.MapPath("~/Managment/Document's"), name);
                 file.SaveAs(path);
-                emplo.File = "~/Images/" + file.FileName;
+                emplo.File = "~/Managment/Document's/" + file.FileName;
             }
         }
     }

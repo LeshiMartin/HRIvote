@@ -4,9 +4,7 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<link href="~/Content/DataTables/css/dataTables.bootstrap.min.css" rel="stylesheet" />
-<link href="~/Content/DataTables/css/dataTables.jqueryui.min.css" rel="stylesheet" />
-<link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+
 <div class="container col-sm-offset-1">
     <h2 class="text-center">Index</h2>
     @using (Html.BeginForm("IndexPost", "Home", FormMethod.Post))
@@ -36,9 +34,10 @@
                 </th>
             </tr>
         </thead>
-        @foreach (var item in Model)
-        {
-            <tbody>
+        <tbody>
+            @foreach (var item in Model)
+            {
+
                 <tr>
                     <td>
                         @Html.DisplayFor(modelItem => item.employee.LastName)
@@ -49,22 +48,18 @@
                     <td>@Html.DisplayFor(x => item.Type)</td>
                     <td>
                         @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                        <button type="button"class="btn btn-danger js-delete"id="btn" data-project-id="@item.Id">Delete</button>
+                        <button type="button" class="btn btn-danger js-delete" id="btn" data-project-id="@item.Id">Delete</button>
                     </td>
                 </tr>
-            </tbody>
-        }
 
+            }
+        </tbody>
     </table>
+    
     }
 </div>
    
 @section scripts{
-
-<script src="~/Scripts/DataTables/dataTables.bootstrap.min.js"></script>
-<script src="~/Scripts/DataTables/dataTables.jqueryui.min.js"></script>
-<script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         $("#table").DataTable();
@@ -75,15 +70,15 @@
                 message: "<p>Are you sure you want to remove it</p>",
                 buttons: {
                     no: {
-                        label: "no",
-                        className: 'btn-danger',
+                        label: "Cancel",
+                        className: 'btn1 btn-default',
                         callback: function () {
                             dialog.modal('hide')
                         }
                     },
                     ok: {
-                        label: "ok",
-                        className: 'btn-default',
+                        label: "Yes",
+                        className: 'btn1 btn-danger',
                         callback: function () {
                             $.ajax({
                                 url: "/api/EmployeeFile/" + button.attr("data-project-id"),

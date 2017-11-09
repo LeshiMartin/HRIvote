@@ -26,9 +26,10 @@ namespace HRiVote.Controllers.API
             }
             else
             {
-
+                var path = System.Web.Hosting.HostingEnvironment.MapPath(empl.File);
+               
+                File.Delete(path);
                 db.empf.Remove(empl);
-                // emp.IsAvailable = true;
                 db.SaveChanges();
 
             }

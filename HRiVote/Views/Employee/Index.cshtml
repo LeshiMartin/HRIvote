@@ -3,34 +3,33 @@
 @{
     ViewBag.Title = "Index";
 }
-<link href="~/Content/DataTables/css/dataTables.bootstrap.min.css" rel="stylesheet" />
-<link href="~/Content/DataTables/css/dataTables.jqueryui.min.css" rel="stylesheet" />
-<link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
 <div class="container Back col-sm-offset-1" style="border: solid transparent;border-radius: 20px;">
-   
+
 
     <h2 class="text-center">Index</h2>
 
     <div class="container">
         <p>
-            @Html.ActionLink("Create New", "AddEmployee", null, new { @class = "btn btn-primary fa fa-pencil", @style = "border-radius: 12px;padding: 6px 20px;font-size: 15px;" })
+            @Html.ActionLink("Create New", "AddEmployee", null, new { @class = "btn btn-primary glyphicon glyphicon-pencil", @style = "border-radius: 12px;padding: 6px 20px;font-size: 15px;" })
         </p>
         <br /><br />
         @using (Html.BeginForm("IndexPost", "Employee", FormMethod.Post))
         {
-            <div class="col-sm-4 ">
-                @Html.Label("Job Possitions")
-                @Html.DropDownList("pos", new SelectList(Model.positions, "ID", "Title"), "---Filter by Job Posstions---", new { @class = "form-control", @id = "pos" })
+            <div>
+                <div class="col-sm-4 ">
+                    @Html.Label("Job Possitions")
+                    @Html.DropDownList("pos", new SelectList(Model.positions, "ID", "Title"), "---Filter by Job Posstions---", new { @class = "form-control", @id = "pos" })
+                </div>
+                <div class="col-sm-4 ">
+                    @Html.Label("Skills")
+                    @Html.DropDownList("skil", new SelectList(Model.skils, "ID", "Skill"), "---Filter by Skills---", new { @class = "form-control", @id = "skil" })
+                </div>
+                <br /><br />
+                <input type="submit" class="btn btn-default" value="search " />
             </div>
-            <div class="col-sm-4 ">
-                @Html.Label("Skills")
-                @Html.DropDownList("skil", new SelectList(Model.skils, "ID", "Skill"), "---Filter by Skills---", new { @class = "form-control", @id = "skil" })
-            </div>
-            <br /><br />
-            <input type="submit" class="btn btn-success"value="search " />
         }
     </div>
-    <div >
+    <div>
         <br /><br />
         <table id="myTable" class="table table-hover table-bordered col-sm-offset-3" style="float:right;">
             <thead>
@@ -56,41 +55,42 @@
                     <th>Action Links</th>
                 </tr>
             </thead>
-            @foreach (var item in Model.emps)
+            <tbody>
+                @foreach (var item in Model.emps)
             {
-                <tbody>
+
                     <tr>
-                       <td>
+                        <td>
                             @Html.DisplayFor(modelItem => item.LastName)
                         </td>
-                       <td>
+                        <td>
                             @Html.DisplayFor(modelItem => item.FirstName)
                         </td>
 
-                       <td>
+                        <td>
                             @Html.DisplayFor(x => item.job.Title)
                         </td>
-                       <td>
+                        <td>
                             @Html.DisplayFor(modelItem => item.IsAvailable)
                         </td>
-                       <td>
+                        <td>
                             @if (item.Photo == "No photo uploaded")
-                            {
+                {
                                 @Html.DisplayFor(x => item.Photo)
                             }
                             else
                             {<img src="@Url.Content(item.Photo)" alt="@Html.DisplayFor(x => item.Photo)" width="100" />}
                         </td>
                         <td class="btn-group-sm">
-                            @Html.ActionLink(" Edit", "Edit", new { id = item.ID }, new { @class = "fa fa-pencil btn1 btn-sm btn-default btn-primary", @style = "border-radius: 12px;padding: 4px 10px;font-size: 13px;" }) |    
-                            @Html.ActionLink(" Details", "Index", new { id = item.ID }, new { @class = " fa fa-search btn1 btn-sm  btn-info", @style = "border-radius: 12px;padding: 4px 10px;font-size: 13px;" }) |                    
-                            @Html.ActionLink(" Delete", "Delete", new { id = item.ID }, new { @class = "fa fa-trash btn1 btn-sm btn-default btn-danger", @style = "border-radius: 12px;padding: 4px 10px;font-size: 13px;" })
-                            
+                            @Html.ActionLink(" Edit", "Edit", new { id = item.ID }, new { @class = "glyphicon glyphicon-pencil btn btn-sm btn-default btn-primary", @style = "border-radius: 12px;padding: 4px 10px;font-size: 13px;" }) |
+                            @Html.ActionLink(" Details", "Index", new { id = item.ID }, new { @class = " fa fa-search btn btn-sm  btn-info", @style = "border-radius: 12px;padding: 4px 10px;font-size: 13px;" }) |
+                            @Html.ActionLink(" Delete", "Delete", new { id = item.ID }, new { @class = "glyphicon glyphicon-trash btn btn-sm btn-default btn-danger", @style = "border-radius: 12px;padding: 4px 10px;font-size: 13px;" })
+
                         </td>
                     </tr>
-                </tbody>
-            }
 
+                }
+            </tbody>
 
         </table>
 
@@ -99,22 +99,41 @@
 
 <br />
 <br />
-@if(Model.employee != null)
+@if (Model.employee != null)
 {
-    @Html.Partial("_PartialEmployeeView", Model.employee)
+    @Html.HiddenFor(x => x.employee.ID, new { @id = "id" })
+    <div class="container col-sm-offset-1">
+        <div id="modal" class="modal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header" style="border:solid 1px black;">
+                        <h2>Details</h2>
+                        <h4>Employee</h4>
+                    </div>
+                    <div class="modal-body" style="font-size:15px !important;">
+                        @Html.Partial("_PartialEmployeeView", Model.employee)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 }
 
-
 @section scripts{
-<script src="~/Scripts/DataTables/dataTables.bootstrap.min.js"></script>
-<script src="~/Scripts/DataTables/dataTables.jqueryui.min.js"></script>
-<script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
     <script>
         $(document).ready(function () {
-            $("#myTable").DataTable();
+            var id = document.getElementById("id")
 
-          
-        });
+            if (id != null) {
+                $("#modal").show();
+            }
+
+            $('#myTable').DataTable();
+        } );
+
+
+        
     </script>
 
 }

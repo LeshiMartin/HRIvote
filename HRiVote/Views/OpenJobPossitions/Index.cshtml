@@ -1,69 +1,146 @@
-﻿@model IEnumerable<HRiVote.Models.OpenPosition>
+﻿@model HRiVote.ViewModels.OpenJobViewModel
 
 <div class="container Back col-sm-offset-1" style="border: solid transparent;border-radius: 20px;">
     <br />
     <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css">
     <p>
-        @Html.ActionLink("Create New", "OpenPosition","",new { @class = "btn btn-primary fa fa-pencil", @style = "border-radius: 12px;padding: 6px 20px;font-size: 15px;" })
+        @Html.ActionLink(" CreateNew", "OpenPosition","",new { @class = "btn btn-primary glyphicon glyphicon-pencil", @style = "border-radius: 12px;padding: 6px 20px;font-size: 15px;" })
     </p>
-    
-    <table id="mytable" class="table table-bordered">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Name)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Description)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.StartOfJobOpenning)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.EndOfJobOpenning)
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        @foreach (var item in Model)
-        {
-        <tbody>
-            <tr style="border-radius: 12px;padding: 4px 10px;font-size: 13px;">
-               <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-               <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>
-               <td>
-                    @Html.DisplayFor(modelItem => item.StartOfJobOpenning)
-                </td>
-               <td>
-                    @Html.DisplayFor(modelItem => item.EndOfJobOpenning)
-                </td>
-               <td>
-                    @Html.ActionLink("Edit", "UpdatePossition", new { id = item.ID }, new { @class = "btn btn-primary fa fa-pencil", @style = "border-radius: 12px;padding: 4px 10px;font-size: 13px;" }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "btn btn-info fa fa-search", @style = "border-radius: 12px;padding: 4px 10px;font-size: 13px;" }) |
-                    @if (item.Status == true)
+    <div class="form-group">
+        <table id="mytable" class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Description
+                    </th>
+                    <th>
+                        Start of Job Oppenning
+                    </th>
+                    <th>
+                        End of Job Oppenning
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.opens)
+                {
+                    if (Model.Edit != null)
                     {
-                        <button class="btn btn-danger fa fa-trash js-delete" style="border-radius: 12px;padding: 4px 10px;font-size: 13px;" data-project-id="@item.ID"  type="button"> Delete</button>
-                    }
+                            foreach (var tag in Model.Edit)
+                            {
+                                <tr>
+                                    @if (item.ID == tag.ID)
+                                    {
+                                        using (Html.BeginForm("IndexPost", "OpenJobPossitions", FormMethod.Post))
+                                        {
+                                            @Html.AntiForgeryToken()
+                                            @Html.HiddenFor(x => item.ID)
+                                            <td>@Html.EditorFor(x => item.Name)</td>
+                                            <td>@Html.EditorFor(x => item.Description)</td>
+                                            <td>@Html.EditorFor(x => item.StartOfJobOpenning)</td>
+                                            <td>@Html.EditorFor(x => item.EndOfJobOpenning)</td>
+                                            <td>
+                                                <input type="submit" value="Update" class="btn btn-success glyphicon glyphicon-pencil" />
+                                                @Html.ActionLink(" Return", "Index", null, new { @class = "btn btn-primary fa fa-backward" })
+                                            </td>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Name)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Description)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.StartOfJobOpenning)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.EndOfJobOpenning)
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink("Details", "Index", new { id = item.ID }, new { @class = "btn btn-info fa fa-search" }) |
+                                            @Html.ActionLink("Edit", "Index", new { Editid = item.ID }, new { @class = "btn btn-primary glyphicon glyphicon-pencil" }) |
+                                            @if (item.Status == true)
+                                            {
+                                                <button class="btn btn-danger glyphicon glyphicon-trash js-delete" data-project-id="@item.ID" type="button"> Delete</button>
+                                            }
+                                            else
+                                            {
+                                                <button class="btn btn-primary glyphicon glyphicon-arrow-up js-update" data-project-id="@item.ID" type="button"> Add</button>
+                                            } 
+                                         </td>
+                                    }
+                                  </tr>
+                            }
+                        }
+                    
                     else
                     {
-                        <button class="btn btn-primary fa fa-arrow-up js-update" data-project-id="@item.ID" style="border-radius: 12px;padding: 4px 10px;font-size: 13px;"  type="button"> Add</button>
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StartOfJobOpenning)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EndOfJobOpenning)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Details", "Index", new { id = item.ID }, new { @class = "btn btn-info fa fa-search" }) |
+                            @Html.ActionLink("Edit", "Index", new { Editid = item.ID }, new { @class = "btn btn-primary glyphicon glyphicon-pencil" }) |
+                            @if (item.Status == true)
+                            {
+                                <button class="btn btn-danger glyphicon glyphicon-trash js-delete"  data-project-id="@item.ID" type="button"> Delete</button>
+                            }
+                            else
+                            {
+                                <button class="btn btn-primary glyphicon glyphicon-arrow-up js-update" data-project-id="@item.ID"  type="button"> Add</button>
+                            }
+                        </td>
+                    </tr>
                     }
-                </td>
-            </tr>
-        </tbody>
-        }
-
-    </table>
+                }
+            </tbody>
+        </table>
+    </div>
 </div>
+@if (Model.open != null)
+{
+    @Html.HiddenFor(x => x.open.ID, new { @id = "id" })
+    <div class="container col-sm-offset-1">
+        <div id="modal" class="modal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header" style="border:solid 1px black;">
+                        <h2>Details</h2>
+                        <h4>OpenPosition</h4>
+                    </div>
+                    <div class="modal-body" style="font-size:15px !important;">
+                        @Html.Partial("_PartialOpenView", Model.open)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
 @section scripts{
   <script>
       $(document).ready(function () {
           $("#mytable").DataTable();
-
+          var id = document.getElementById("id")
+          if (id != null) {
+              $("#modal").show();
+          }
           $("#mytable").on("click", ".js-delete", function () {
               var button = $(this);
               var dialog = bootbox.dialog({
@@ -71,15 +148,15 @@
                   message: "<p>Are you sure you want to remove it</p>",
                   buttons: {
                       no: {
-                          label: "no",
-                          className: 'btn-danger',
+                          label: "Cancel",
+                          className: 'btn1 btn-default',
                           callback: function () {
                               dialog.modal('hide')
                           }
                       },
                       ok: {
-                          label: "ok",
-                          className: 'btn-default',
+                          label: "Yes",
+                          className: 'btn1 btn-danger',
                           callback: function () {
                               $.ajax({
                                   url: "/api/Open/" + button.attr("data-project-id"),
@@ -103,14 +180,14 @@
                   buttons: {
                       no: {
                           label: "no",
-                          className: 'btn-danger',
+                          className: 'btn1 btn-danger',
                           callback: function () {
                               dialog.modal('hide')
                           }
                       },
                       ok: {
                           label: "ok",
-                          className: 'btn-default',
+                          className: 'btn1 btn-default',
                           callback: function () {
                               $.ajax({
                                   url: "/api/Open/" + button.attr("data-project-id"),

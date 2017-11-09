@@ -44,46 +44,57 @@ namespace HRiVote.Controllers
             };
             if (calendar.Id == 0)
             {
-                var employee = db.emps.Single(x => x.ID == calendar.EmployeeID);
-                if (TempData["title"]!=null)
+                if (calendar.EmployeeID != null || calendar.EmployeeID > 0)
                 {
-                    var title = TempData["title"].ToString();
-                    TempData.Keep("title");
-                    calendar.Title = title;                    
-                    Upload(file, employee, calendar);
-                    calendar.description(employee);
-                    if (ModelState.IsValid)
+                    var employee = db.emps.Single(x => x.ID == calendar.EmployeeID);
+                    if (TempData["title"] != null)
                     {
-                        
-                        db.kalendar.Add(calendar);
-                        db.SaveChanges();
-                        return RedirectToAction("Index");
+                        var title = TempData["title"].ToString();
+                        TempData.Keep("title");
+                        calendar.Title = title;
+                        Upload(file, employee, calendar);
+                        calendar.description(employee);
+                        if (ModelState.IsValid)
+                        {
+                            db.kalendar.Add(calendar);
+                            db.SaveChanges();
+                            return RedirectToAction("Index");
+                        }
+                        else
+                        {
+                            return View("OnLeaveDays", viewmodel);
+                        }
                     }
                     else
                     {
                         return View("OnLeaveDays", viewmodel);
                     }
+
                 }
+
+
                 else
                 {
+                    ModelState.AddModelError("", "You Must Select an Employee ");
                     return View("OnLeaveDays", viewmodel);
-                }  
-                
-             }
-  
+                }
+
+
+            }
+
             else
             {
                 if (ModelState.IsValid)
                 {
-                    if (calendar.EmployeeID!=null)
+                    if (calendar.EmployeeID != null)
                     {
                         var kalendar = db.kalendar.Single(x => x.Id == calendar.Id);
                         var employee = db.emps.Single(x => x.ID == calendar.EmployeeID);
                         kalendar.Update(calendar, kalendar);
                         kalendar.description(employee);
-                        Upload(file,employee,calendar);
+                        Upload(file, employee, calendar);
                         db.SaveChanges();
-                        return RedirectToAction("Index"); 
+                        return RedirectToAction("Index");
                     }
                     else
                     {
@@ -133,12 +144,12 @@ namespace HRiVote.Controllers
             if (file != null && file.ContentLength > 0)
             {
                 var name = Path.GetFileName(file.FileName);
-                var path = Path.Combine(Server.MapPath("~/Images"), name);
+                var path = Path.Combine(Server.MapPath("~/Managment/Document's"), name);
                 file.SaveAs(path);
                 EmployeeFiles files = new EmployeeFiles()
                 {
                     EmployeeID = employee.ID,
-                    File = "~/Images/" + file.FileName,
+                    File = "~/Managment/Document's/" + file.FileName,
                     Type = calendar.Title
                 };
                 db.empf.Add(files);

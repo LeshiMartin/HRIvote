@@ -2,6 +2,7 @@
 <link href="~/Content/fullcalendar.print.css" rel="stylesheet" media="print" />
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
 <link href="~/Content/Site.css" rel="stylesheet" />
+
 @model HRiVote.ViewModels.CalendarViewModel
     @*<h1 class="text-center marg"style="font-weight:500;">Calendar</h1>*@
 <div id="calendar" class="col-sm-10 col-sm-offset-2 "style="border:solid 1px black;">
@@ -14,12 +15,14 @@
                 </div>
                 <div class="modal-body" style="font-size:15px !important;">
                     <p id="pDetails"></p>
-                    <button id="btnDelete" class="btn btn-default btn-sm pull-right">
+                    <div>
+                    <button id="btnDelete" class="btn btn-danger btn-sm pull-right">
                         <span class="glyphicon glyphicon-remove"></span> Remove
                     </button>
-                    <button id="btnEdit" class="btn btn-default btn-sm pull-right" style="margin-right:5px;">
+                    <button id="btnEdit" class="btn btn-primary btn-sm pull-right" style="margin-right:5px;">
                         <span class="glyphicon glyphicon-pencil"></span> Edit
-                    </button>                                    
+                    </button>
+                    </div>                                 
                 </div>
                 <div class="modal-footer" style="border:solid 1px black;">
                     
@@ -101,20 +104,41 @@
             });
             
             $('#btnDelete').click(function () {
-                if (selected != null && confirm('Are you sure?')) {
-                    $.ajax({
-                        type: "Delete",
-                        url: '@Url.Action("Calendar","api")?id=' +ID,
-                       // data: { 'id': selected.eventId },
-                        success: function () {
-                            $('#modal').modal('hide');
-                            location.href = '@Url.Action("Index","Calendar")';
-                        },
-                        error: function () {
-                        alert('Failed');
-            }
-       })
-    }
+                if (selected != null) {
+                    var dialog = bootbox.dialog({
+                        title: 'Remove',
+                        message: "<p>Are you sure you want to remove it</p>",
+                        buttons: {
+                            no: {
+                                label: "Cancel",
+                                className: 'btn1 btn-default',
+                                callback: function () {
+                                    dialog.modal('hide')
+                                }
+                            },
+                            ok: {
+                                label: "Yes",
+                                className: 'btn1 btn-danger',
+                                callback: function () {
+                                    $.ajax({
+                                        type: "Delete",
+                                        url: '@Url.Action("Calendar","api")?id=' + ID,
+                                        // data: { 'id': selected.eventId },
+                                        success: function () {
+                                            $('#modal').modal('hide');
+                                            location.href = '@Url.Action("Index","Calendar")';
+                                        },
+                                        error: function () {
+                                            alert('Failed');
+                                        }
+                                    })
+
+                                }
+                            }
+                        }
+                    });
+                   
+                 }
             })
         })
     </script>

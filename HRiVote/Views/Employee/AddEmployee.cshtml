@@ -17,7 +17,7 @@
             <hr />
             @Html.ValidationSummary(true, "Please fix the following issues:", new { @class = "text-danger" })
 
-            @Html.ActionLink("Add a new Job Possition", "AddPosition","Posstions", new { id = 1 }, new { @class = "btn btn-primary fa fa-pencil", style = "border-radius: 12px;padding: 6px 20px;font-size: 15px;" })
+            @Html.ActionLink("Add a new Job Possition", "AddPosition","Posstions", new { id = 1 }, new { @class = "btn btn-primary glyphicon glyphicon-pencil", style = "border-radius: 12px;padding: 6px 20px;font-size: 15px;" })
             <div class="form-group">
                 @Html.LabelFor(model => model.employee.JobPositionID, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -58,9 +58,9 @@
 
             <div class="form-group">
                 @Html.LabelFor(model => model.employee.IsAvailable, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    <div class="checkbox">
-                        @Html.EditorFor(model => model.employee.IsAvailable)
+                <div class="col-md-10 checkbox-inline">
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.employee.IsAvailable,new { htmlAttributes = new { @class = "checkbox" } })
                         @Html.ValidationMessageFor(model => model.employee.IsAvailable, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -117,7 +117,7 @@
 
             <div class="form-group">
                 <div class="col-md-offset-2  col-md-10 ">
-                    <input type="submit" value="Create" class="btn btn-default btn-success"style = "border-radius: 12px;padding: 6px 20px;font-size: 15px;" />
+                    <input type="submit" value="Save" class="btn btn-default btn-success"style = "border-radius: 12px;padding: 6px 20px;font-size: 15px;" />
                 </div>
             </div>
         </div>

@@ -31,6 +31,8 @@ namespace HRiVote
                       "~/Content/bootstrap-spacelab.css",
                       "~/Content/font-awesome.css",
                       "~/Content/DataTables/css/dataTables.css",
+                      "~/Content/DataTables/css/dataTables.bootstrap.min.css",
+                      "~/Content/DataTables/css/dataTables.jqueryui.min.css",
                       "~/Content/site.css"));
         }
     }

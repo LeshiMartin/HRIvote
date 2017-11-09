@@ -1,5 +1,6 @@
-﻿@model HRiVote.Models.OpenPosition
-<div class="container Back col-sm-offset-1",style="border: solid transparent;border-radius: 20px;">
+﻿
+@model HRiVote.Models.OpenPosition
+<div class="container Back col-sm-offset-1" ,style="border: solid transparent;border-radius: 20px;">
     <div>
         <h4>OpenPosition</h4>
         <hr />
@@ -39,7 +40,7 @@
         </dl>
     </div>
     <p>
-        @Html.ActionLink("Edit", "UpdatePossition", new { id = Model.ID }, new { @class = "btn btn-primary glyphicon glyphicon-pencil", @style = "border-radius: 12px;padding: 6px 20px;font-size: 15px;" }) |
-        @Html.ActionLink("Back to List", "Index", "", new { @class = "btn btn-primary fa fa-backward", @style = "border-radius: 12px;padding: 6px 20px;font-size: 15px;" })
+        
+        @Html.ActionLink("Back to List", "Index",new { status=true,id = 0 }, new { @class = "btn btn-primary fa fa-backward", @style = "border-radius: 12px;padding: 6px 20px;font-size: 15px;" })
     </p>
 </div>

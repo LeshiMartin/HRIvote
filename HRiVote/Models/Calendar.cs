@@ -12,12 +12,12 @@ namespace HRiVote.Models
     {
        
         public int Id { get; set; }
-        [Required]
+        
         public int? EmployeeID { get; set; }
         
         public Employee employee { get; set; }            
         [ScaffoldColumn(false)]
-        [Required]
+        
         public string Title { get; set; }
         [ScaffoldColumn(false)]
         public string Color { get;private set; }
@@ -25,10 +25,12 @@ namespace HRiVote.Models
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         [CalendarStart]
+        [Required]
         public DateTime? StartOfVacation { get; set; }
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         [CalendarEnd]
+        [Required]
         public DateTime? EndOfVacation { get; set; }
         [ScaffoldColumn(false)]
         public string Description { get;private set; }
@@ -56,7 +58,10 @@ namespace HRiVote.Models
             }
 
             EmpName = employee.FullName;
-            Description = employee.FullName + " is on " + Title + " till : " + EndOfVacation.Value.ToShortDateString();
+            if (EndOfVacation.HasValue)
+            {
+                Description = employee.FullName + " is on " + Title + " till : " + EndOfVacation.Value.ToShortDateString();
+            }
             status = true;
         }
         public void Update(Calendar oldCalendar,Calendar NewCalendar)

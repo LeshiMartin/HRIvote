@@ -3,14 +3,12 @@
 @{
     ViewBag.Title = "Index";
 }
-<link href="~/Content/DataTables/css/dataTables.bootstrap.min.css" rel="stylesheet" />
-<link href="~/Content/DataTables/css/dataTables.jqueryui.min.css" rel="stylesheet" />
-<link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+
 <div class="container Back col-sm-offset-3 col-sm-6" style="border: solid transparent;border-radius: 20px;">
     <h2>List</h2>
 
     <p>
-        @Html.ActionLink("Create New", "AddPosition","",new { @class = "btn btn-primary fa fa-pencil", @style = "border-radius: 12px;padding: 4px 10px;font-size: 13px;" })
+        @Html.ActionLink("Create New", "AddPosition","",new { @class = "btn btn-primary glyphicon glyphicon-pencil", @style = "border-radius: 12px;padding: 4px 10px;font-size: 13px;" })
     </p>
     <table id="table" class="table table-bordered table-bordered ">
         <thead>
@@ -21,28 +19,29 @@
                 <th width="250" class="text-center"> Actions</th>
             </tr>
         </thead>
-        @foreach (var item in Model)
-        {
-            <tbody>
-                <tr style="border-radius: 12px;padding: 4px 10px;font-size: 13px;">
-                   <td>
+        <tbody>
+            @foreach (var item in Model)
+            {
+
+                <tr>
+                    <td>
                         @Html.ActionLink(item.Title, "Index", "Employee", new { id = item.ID }, new { @class = "fa fa-paperplane" })
                     </td>
-                   <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.ID },new { @class = "btn1 btn-primary fa fa-pencil",@style= "padding: 7px 15px !important; font-size: 15px !important;border-radius: 15px !important;" }) | 
+                    <td>
+
                         @if (item.Status == true)
-                        {
-                        <button data-project-id="@item.ID" type="button"style="padding: 7px 15px !important; font-size: 15px !important;border-radius: 15px !important" class="btn1 btn-danger fa fa-trash js-delete">Delete</button>
+                {
+                            <button data-project-id="@item.ID" type="button" class="btn btn-danger glyphicon glyphicon-trash js-delete">Delete</button>
                         }
                         else
                         {
-                            <button data-project-id="@item.ID" type="button" style="padding: 7px 15px !important; font-size: 15px !important;border-radius: 15px !important" class="btn1 btn-primary fa fa-arrow-up js-update">Add</button>
+                            <button data-project-id="@item.ID" type="button" class="btn btn-primary glyphicon glyphicon-arrow-up js-update">Add</button>
                         }
                     </td>
                 </tr>
-            </tbody>
-        }
-        
+
+            }
+        </tbody>  
 
     </table>
 </div>
@@ -62,21 +61,20 @@
                     message: "<p>Are you sure you want to remove it</p>",
                     buttons: {
                         no: {
-                            label: "no",
-                            className: 'btn-danger',
+                            label: "Cancel",
+                            className: 'btn1 btn-default',
                             callback: function () {
                                 dialog.modal('hide')
                             }
                         },
                         ok: {
-                            label: "ok",
-                            className: 'btn-default',
+                            label: "Yes",
+                            className: 'btn1 btn-danger',
                             callback: function () {
                                 $.ajax({
                                     url: "/api/Possitons/" + button.attr("data-project-id"),
                                     method: "DELETE",
                                     success: function () {
-
                                         button.parents("tr").remove();
                                     }
                                 })
@@ -95,14 +93,14 @@
                     buttons: {
                         no: {
                             label: "no",
-                            className: 'btn-danger',
+                            className: 'btn1 btn-danger',
                             callback: function () {
                                 dialog.modal('hide')
                             }
                         },
                         ok: {
                             label: "ok",
-                            className: 'btn-default',
+                            className: 'btn1 btn-default',
                             callback: function () {
                                 $.ajax({
                                     url: "/api/Possitons/" + button.attr("data-project-id"),

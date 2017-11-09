@@ -103,13 +103,13 @@
 
         </dl>
 
-        @using (Html.BeginForm())
+        @using (Html.BeginForm("DeletePost","Employee",FormMethod.Post))
         {
             @Html.AntiForgeryToken()
-
+            @Html.HiddenFor(x=>x.ID)
             <div class="form-actions no-color">
-                <input type="submit" value="Delete" class="btn btn-default btn-danger fa fa-trash" style = "border-radius: 12px;padding: 6px 20px;font-size: 15px;" /> |
-                @Html.ActionLink(" Back to List", "Index", null, new { @class = "btn btn-primary fa fa-pencil", @style = "border-radius: 12px;padding: 6px 20px;font-size: 15px;" })
+                <input type="submit" value="Delete" class="btn btn-default btn-danger glyphicon glyphicon-trash" style = "border-radius: 12px;padding: 6px 20px;font-size: 15px;" /> |
+                @Html.ActionLink(" Back to List", "Index", null, new { @class = "btn btn-primary glyphicon glyphicon-pencil", @style = "border-radius: 12px;padding: 6px 20px;font-size: 15px;" })
             </div>
         }
     </div>

@@ -127,6 +127,15 @@ namespace HRiVote.Controllers
             }
             return View(emp);
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeletePost(int id)
+        {
+            var employee = db.emps.Find(id);
+            db.emps.Remove(employee);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
       
         public ActionResult Index(bool? status, int? id)
         {
@@ -147,7 +156,15 @@ namespace HRiVote.Controllers
             };
             if (id.HasValue)
             {
-                viewmodel.employee = viewmodel.emps.Single(x => x.ID == id);
+                List<int> ids = db.emps.Select(x => x.ID).ToList();
+                if (ids.Contains(id.Value))
+                {
+                    viewmodel.employee = db.emps.Single(x => x.ID == id);
+                }
+            }
+            else
+            {
+              
             }
 
             return View(viewmodel);
@@ -199,9 +216,9 @@ namespace HRiVote.Controllers
                 if (file != null && file.ContentLength > 0)
                 {
                     var name = Path.GetFileName(file.FileName);
-                    var path = Path.Combine(Server.MapPath("~/Images"), name);
+                    var path = Path.Combine(Server.MapPath("~/Managment/CV'S"), name);
                     file.SaveAs(path);
-                    employee.CV = "~/Images/" + file.FileName;
+                    employee.CV = "~/Managment/CV'S/" + file.FileName;
                 }
                 else
                 {
@@ -213,9 +230,9 @@ namespace HRiVote.Controllers
                 if (file1 != null && file1.ContentLength > 0)
                 {
                     var name1 = Path.GetFileName(file1.FileName);
-                    var path1 = Path.Combine(Server.MapPath("~/Images"), name1);
+                    var path1 = Path.Combine(Server.MapPath("~/Managment/Photos"), name1);
                     file1.SaveAs(path1);
-                    employee.Photo = "~/Images/" + file1.FileName;
+                    employee.Photo = "~/Managment/Photos/" + file1.FileName;
                 }
                 else
                 {

@@ -1,5 +1,6 @@
 ﻿using HRiVote.DAL;
 using HRiVote.Models;
+using HRiVote.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,9 +13,9 @@ namespace HRiVote.Controllers
     {
         private Entity db = new Entity();
         // GET: OpenJobPossitions
-        public ActionResult Index(bool? status)
+        public ActionResult Index(bool? status, int? id, int? Editid)
         {
-           List< OpenPosition> open = new List<OpenPosition>();
+            List<OpenPosition> open = new List<OpenPosition>();
             if (status.HasValue)
             {
                 open = db.pozicii.Where(x => x.Status == status).ToList();
@@ -24,7 +25,45 @@ namespace HRiVote.Controllers
             {
                 open = db.pozicii.ToList();
             }
-            return View(open);
+            var ViewModel = new OpenJobViewModel
+            {
+                opens = open,
+            };
+            List<int> ids = db.pozicii.Select(x => x.ID).ToList();
+            if (id.HasValue)
+            {
+                if (ids.Contains(id.Value))
+                {
+                    ViewModel.open = ViewModel.opens.Single(x => x.ID == id); 
+                }
+            }
+            if (Editid.HasValue)
+            {
+                ViewModel.Edit = ViewModel.opens.Where(x => x.ID == Editid).ToList();
+            }
+
+            return View(ViewModel);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult IndexPost(OpenPosition item)
+        {
+            var job = db.pozicii.Single(x => x.ID == item.ID);
+            if(job == null)
+            {
+                return HttpNotFound();
+            }
+            else
+            {
+                //item.Update(item, job);
+                job.Description = item.Description;
+                job.EndOfJobOpenning = item.EndOfJobOpenning;
+                job.Name = item.Name;
+                job.StartOfJobOpenning = item.StartOfJobOpenning;
+                job.Status = true;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
         }
         public ActionResult OpenPosition()
         {
@@ -32,18 +71,18 @@ namespace HRiVote.Controllers
             return View(open);
 
         }
-        public ActionResult UpdatePossition(int id)
-        {
-            var possition = db.pozicii.Single(x => x.ID == id);
-            return View("OpenPosition", possition);
-        }
+        //public ActionResult UpdatePossition(int id)
+        //{
+        //    var possition = db.pozicii.Single(x => x.ID == id);
+        //    return View("OpenPosition", possition);
+        //}
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Save(OpenPosition open)
         {
             if (open.ID == 0)
             {
-                
+
                 if (ModelState.IsValid)
                 {
                     open.Status = true;
@@ -54,30 +93,27 @@ namespace HRiVote.Controllers
                 else
                 {
                     ModelState.AddModelError("", "We couldn't validate your input please try again");
-                    return View(open);
+                    return View("OpenPosition", open);
                 }
             }
             else
             {
                 var pos = db.pozicii.Single(x => x.ID == open.ID);
-                pos.Name = open.Name;
-                pos.StartOfJobOpenning = open.StartOfJobOpenning;
-                pos.Description = open.Description;
-                pos.EndOfJobOpenning = open.EndOfJobOpenning;
+                pos.Update(open, pos);
                 pos.Status = true;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
         }
-        public ActionResult Details(int id)
-        {
-            var pos = db.pozicii.Find(id);
-            if (pos == null)
-            {
-                return HttpNotFound();
+        //public ActionResult Details(int id)
+        //{
+        //    var pos = db.pozicii.Find(id);
+        //    if (pos == null)
+        //    {
+        //        return HttpNotFound();
 
-            }
-            return View(pos);
-        }
+        //    }
+        //    return View(pos);
+        //}
     }
 }

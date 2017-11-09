@@ -7,14 +7,15 @@
     @Html.AntiForgeryToken()
 
         <div class="dropdown">
-            <label class="dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-               @User.Identity.GetUserName()
+            <label class="dropdown-toggle " type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               @User.Identity.GetUserName()  <span class="glyphicon glyphicon-arrow-down"></span>
             </label>
             <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
              <ul>
                  <li class="dropdown-item" ></li>
                  <li class="dropdown-item" >@Html.ActionLink("Calendar","Index","Calendar")</li>               
-                 <li class="dropdown-item">@Html.ActionLink("Home","Index","Home")</li>
+                 <li class="dropdown-item">@Html.ActionLink("Employees File's","Index","Home")</li>
+                 <li class="dropdown-item">@Html.ActionLink("File Viewer","Index","Tree",new { name = "Images" },"")</li>
                  <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
              </ul>
             </div>

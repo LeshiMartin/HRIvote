@@ -305,6 +305,7 @@
     <Compile Include="Controllers\API\FileController.cs" />
     <Compile Include="Controllers\API\OpenController.cs" />
     <Compile Include="Controllers\API\PossitonsController.cs" />
+    <Compile Include="Controllers\API\TreeController.cs" />
     <Compile Include="Controllers\CalendarController.cs" />
     <Compile Include="Controllers\CandidateController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
@@ -424,6 +425,22 @@
     <Compile Include="DAL\EntityMigrations\201711071335474_AddedColumn.Designer.cs">
       <DependentUpon>201711071335474_AddedColumn.cs</DependentUpon>
     </Compile>
+    <Compile Include="DAL\EntityMigrations\201711081024472_CalendarChanges.cs" />
+    <Compile Include="DAL\EntityMigrations\201711081024472_CalendarChanges.Designer.cs">
+      <DependentUpon>201711081024472_CalendarChanges.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\EntityMigrations\201711090943269_FluentAPi.cs" />
+    <Compile Include="DAL\EntityMigrations\201711090943269_FluentAPi.Designer.cs">
+      <DependentUpon>201711090943269_FluentAPi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\EntityMigrations\201711091543578_CalendarChanges1.cs" />
+    <Compile Include="DAL\EntityMigrations\201711091543578_CalendarChanges1.Designer.cs">
+      <DependentUpon>201711091543578_CalendarChanges1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DAL\EntityMigrations\201711091548225_OpenPossitionsChanges.cs" />
+    <Compile Include="DAL\EntityMigrations\201711091548225_OpenPossitionsChanges.Designer.cs">
+      <DependentUpon>201711091548225_OpenPossitionsChanges.cs</DependentUpon>
+    </Compile>
     <Compile Include="DAL\EntityMigrations\Configuration.cs" />
     <Compile Include="DAL\IdentityMigrations\201710190928386_InitialCreate.cs" />
     <Compile Include="DAL\IdentityMigrations\201710190928386_InitialCreate.Designer.cs">
@@ -465,6 +482,8 @@
     <Compile Include="ViewModels\EmployeeFilesViewModel.cs" />
     <Compile Include="ViewModels\EmployeesViewModel.cs" />
     <Compile Include="ViewModels\EmployeeViewModel.cs" />
+    <Compile Include="ViewModels\FileViewModel.cs" />
+    <Compile Include="ViewModels\OpenJobViewModel.cs" />
     <Compile Include="ViewModels\PossitionsViewModel.cs" />
     <Compile Include="ViewModels\PosstionSkilllViewModel.cs" />
   </ItemGroup>
@@ -791,11 +810,12 @@
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Images\1 Enter PS.PNG" />
-    <Content Include="Images\2 Choose material.png" />
-    <Content Include="Images\3 List of uploaded materials for ps.png" />
-    <Content Include="Images\4 List of uploaded materials for batch ps.png" />
-    <Content Include="Photos\iVoteLogo1200_Transparent1.png" />
+    <Content Include="Managment\bootstrap-lumen.txt" />
+    <Content Include="Managment\Images\1 Enter PS.PNG" />
+    <Content Include="Managment\Images\2 Choose material.png" />
+    <Content Include="Managment\Images\3 List of uploaded materials for ps.png" />
+    <Content Include="Managment\Images\4 List of uploaded materials for batch ps.png" />
+    <Content Include="Managment\Photos\iVoteLogo1200_Transparent1.png" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
@@ -1072,16 +1092,17 @@
     <Content Include="Views\Calendar\Index.cshtml" />
     <Content Include="Views\Shared\Info.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Home\generateRoot.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Edit.cshtml" />
+    <Content Include="Views\Tree\Index.cshtml" />
+    <Content Include="Views\Shared\_PartialOpenView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Images\NewFolder\" />
+    <Folder Include="Managment\CV%27S\" />
+    <Folder Include="Managment\Document%27s\" />
     <Folder Include="obj\Debug\TempPE\" />
     <Folder Include="Views\Menu\" />
-    <Folder Include="Views\Tree\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">
@@ -1169,6 +1190,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DAL\EntityMigrations\201711071335474_AddedColumn.resx">
       <DependentUpon>201711071335474_AddedColumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DAL\EntityMigrations\201711081024472_CalendarChanges.resx">
+      <DependentUpon>201711081024472_CalendarChanges.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DAL\EntityMigrations\201711090943269_FluentAPi.resx">
+      <DependentUpon>201711090943269_FluentAPi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DAL\EntityMigrations\201711091543578_CalendarChanges1.resx">
+      <DependentUpon>201711091543578_CalendarChanges1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DAL\EntityMigrations\201711091548225_OpenPossitionsChanges.resx">
+      <DependentUpon>201711091548225_OpenPossitionsChanges.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DAL\IdentityMigrations\201710190928386_InitialCreate.resx">
       <DependentUpon>201710190928386_InitialCreate.cs</DependentUpon>

@@ -21,9 +21,9 @@ namespace HRiVote.DAL.EntityMigrations
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("Entity.Candidate", t => t.CandidateID)
-                .ForeignKey("Entity.Employee", t => t.EmployeeID)
+                .ForeignKey("Entity.Employee", t => t.EmployeeID,cascadeDelete:true)
                 .ForeignKey("Entity.ProjectManagement", t => t.ProjectManagementID)
-                .Index(t => t.EmployeeID)
+                .Index(t => t.EmployeeID )
                 .Index(t => t.ProjectManagementID)
                 .Index(t => t.CandidateID);
             

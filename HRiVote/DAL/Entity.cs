@@ -18,6 +18,12 @@ namespace HRiVote.DAL
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
             modelBuilder.HasDefaultSchema("Entity");
+            modelBuilder.Entity<Calendar>()
+                            .HasKey(c => c.Id)
+                            .HasRequired(c => c.employee)
+                            .WithMany()
+                            .WillCascadeOnDelete(true);
+
             base.OnModelCreating(modelBuilder);
         }
         public DbSet<Employee> emps { get; set; }
