@@ -38,6 +38,9 @@
                         Interview Time
                     </th>
                     <th>
+                        Remarks
+                    </th>
+                    <th>
                         Interview Round
                     </th>
                     <th>Action Links</th>
@@ -81,6 +84,9 @@
                                         </td>
                                         <td>
                                             @Html.EditorFor(x => item.InterviewTime)
+                                        </td>
+                                        <td>
+                                            @Html.EditorFor(x=>item.Remarks)
                                         </td>
                                         <td>
                                             @Html.DropDownListFor(modelItem => item.InterviewRound, new List<SelectListItem> {
@@ -127,12 +133,15 @@
                                         @Html.DisplayFor(x => item.InterviewTime)
                                     </td>
                                     <td>
+                                        @Html.DisplayFor(x=>item.Remarks)
+                                    </td>
+                                    <td>
                                         @Html.DisplayFor(modelItem => item.InterviewRound)
                                     </td>
                                     <td>
                                         @Html.ActionLink(" Details", "Index", new { candidateid = item.ID }, new { @class = "btn btn-info glyphicon glyphicon-info-sign" })<br />
                                         @Html.ActionLink(" Edit", "Index", new { updateid = item.ID }, new { @class = "btn btn-primary glyphicon glyphicon-pencil" })         <br />
-                                        <button class="btn btn-danger btn-sm btn-group-sm glyphicon glyphicon-trash js-delete" type="button" data-project-id="@item.ID"> Delete</button>
+                                        <button class="btn btn-danger  glyphicon glyphicon-trash js-delete" type="button" data-project-id="@item.ID"> Delete</button>
 
                                     </td>
                                 }
@@ -171,6 +180,9 @@
                             </td>
                             <td>
                                 @Html.DisplayFor(x => item.InterviewTime)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(x=>item.Remarks)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.InterviewRound)

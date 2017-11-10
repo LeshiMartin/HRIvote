@@ -441,6 +441,10 @@
     <Compile Include="DAL\EntityMigrations\201711091548225_OpenPossitionsChanges.Designer.cs">
       <DependentUpon>201711091548225_OpenPossitionsChanges.cs</DependentUpon>
     </Compile>
+    <Compile Include="DAL\EntityMigrations\201711101549532_AddedRemarks.cs" />
+    <Compile Include="DAL\EntityMigrations\201711101549532_AddedRemarks.Designer.cs">
+      <DependentUpon>201711101549532_AddedRemarks.cs</DependentUpon>
+    </Compile>
     <Compile Include="DAL\EntityMigrations\Configuration.cs" />
     <Compile Include="DAL\IdentityMigrations\201710190928386_InitialCreate.cs" />
     <Compile Include="DAL\IdentityMigrations\201710190928386_InitialCreate.Designer.cs">
@@ -483,6 +487,7 @@
     <Compile Include="ViewModels\EmployeesViewModel.cs" />
     <Compile Include="ViewModels\EmployeeViewModel.cs" />
     <Compile Include="ViewModels\FileViewModel.cs" />
+    <Compile Include="ViewModels\Nottifications.cs" />
     <Compile Include="ViewModels\OpenJobViewModel.cs" />
     <Compile Include="ViewModels\PositionSkillViewModel.cs" />
     <Compile Include="ViewModels\PossitionsViewModel.cs" />
@@ -1202,6 +1207,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DAL\EntityMigrations\201711091548225_OpenPossitionsChanges.resx">
       <DependentUpon>201711091548225_OpenPossitionsChanges.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DAL\EntityMigrations\201711101549532_AddedRemarks.resx">
+      <DependentUpon>201711101549532_AddedRemarks.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DAL\IdentityMigrations\201710190928386_InitialCreate.resx">
       <DependentUpon>201710190928386_InitialCreate.cs</DependentUpon>

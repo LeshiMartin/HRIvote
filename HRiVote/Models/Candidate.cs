@@ -35,7 +35,7 @@ namespace HRiVote.Models
        // [Required]
         //[Display(Name = "CV")]
         public string CV { get; set; }
-
+        public string Remarks { get; set; }
         [Required]
         [CandidateDate]
        // [Display(Name ="Датум на интервју")]
@@ -63,6 +63,7 @@ namespace HRiVote.Models
             candidate.InterviewRound = item.InterviewRound;
             candidate.InterviewTime = item.InterviewTime;
             candidate.PhoneNumber = item.PhoneNumber;
+            candidate.Remarks = item.Remarks;
         }
     }
 }

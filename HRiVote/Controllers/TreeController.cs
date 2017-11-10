@@ -22,6 +22,36 @@ namespace DojoTree.Controllers
         // GET     /Tree/Data/3
         public ActionResult Index(string name)
         {
+            var notify = new Nottifications();
+            var Kalendar = db.kalendar.Include(c=>c.employee).ToList();
+            var Candidates = db.aplikanti.ToList();
+            var openposs = db.pozicii.ToList();
+            foreach(var item in Kalendar)
+            {
+                if (item.status == true && item.EndOfVacation.Value.Date <= DateTime.Now.Date)
+                {
+                    notify.Notifications.Add("The " + item.EmpName + " " + item.Title + " has Ended/Ending today please update his/hers status");
+                }
+            }
+            foreach(var item in Candidates)
+            {
+                if (item.InterviewDate.Date == DateTime.Now.Date)
+                {
+                    notify.Notifications.Add("The Candidate " + item.FirstName + " " + item.LastName + " has Interview today");
+                }
+                if (item.InterviewDate.Date < DateTime.Now.Date)
+                {
+                    notify.Notifications.Add("The Candidate " + item.FirstName + " " + item.LastName + " Interview Passed please update the Status");
+                }
+            }
+            foreach(var item in openposs)
+            {
+                if(item.Status==true && item.EndOfJobOpenning.Date <= DateTime.Now.Date)
+                {
+                    notify.Notifications.Add("The job Oppening : " + item.Name + " is ending today/has ended please update the status");
+                }
+            }
+
             string path = Server.MapPath("~/Managment/");
             List<string> picFolders = new List<string>();
 
@@ -66,6 +96,27 @@ namespace DojoTree.Controllers
         {
             if (System.IO.File.Exists(path))
             {
+                var emps = db.emps.ToList();
+                var candidate = db.aplikanti.ToList();
+              foreach(var item in emps)
+                {
+                    if (item.CV.Contains(path))
+                    {
+                        item.CV = "No CV uploaded";
+                    }
+                    if (item.Photo.Contains(path))
+                    {
+                        item.Photo = "No photo uploaded";
+                    }
+                }
+              foreach(var item in candidate)
+                {
+                    if (item.CV.Contains(path))
+                    {
+                        item.CV = "Cv not Uploaded";
+                    }
+                }
+                db.SaveChanges();
                 System.IO.File.Delete(path);
             }
             return RedirectToAction("Index");

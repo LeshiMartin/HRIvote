@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Index";
 }
-<div class="container Back col-sm-offset-1" style="border: solid transparent;border-radius: 20px;">
+<div class="container Back col-sm-offset-1" >
 
 
     <h2 class="text-center">Index</h2>
@@ -31,7 +31,7 @@
     </div>
     <div>
         <br /><br />
-        <table id="myTable" class="table table-hover table-bordered col-sm-offset-3" style="float:right;">
+        <table id="myTable" class="table table-hover table-responsive table-bordered " >
             <thead>
                 <tr>
                     <th>
@@ -79,12 +79,12 @@
                                 @Html.DisplayFor(x => item.Photo)
                             }
                             else
-                            {<img src="@Url.Content(item.Photo)" alt="@Html.DisplayFor(x => item.Photo)" width="100" />}
+                            {  <img src="@Url.Content(item.Photo)" alt="@Html.DisplayFor(x => item.Photo)" width="100" /> }
                         </td>
                         <td >
-                            @Html.ActionLink(" Details", "Index", new { id = item.ID }, new { @class = "  glyphicon glyphicon-info-sign btn   btn-info" }) |
-                            @Html.ActionLink(" Edit", "Edit", new { id = item.ID }, new { @class = "glyphicon glyphicon-pencil btn  btn-primary" }) |                          
-                            @Html.ActionLink(" Delete", "Delete", new { id = item.ID }, new { @class = "glyphicon glyphicon-trash btn  btn-danger" })
+                            @Html.ActionLink(" Details", "Index", new { id = item.ID }, new { @class = "  glyphicon glyphicon-info-sign btn btn-info" }) |
+                            @Html.ActionLink(" Edit", "Edit", new { id = item.ID }, new { @class = "glyphicon glyphicon-pencil btn btn-primary" }) |                          
+                            @Html.ActionLink(" Delete", "Delete", new { id = item.ID }, new { @class = "glyphicon glyphicon-trash btn btn-danger" })
 
                         </td>
                     </tr>
