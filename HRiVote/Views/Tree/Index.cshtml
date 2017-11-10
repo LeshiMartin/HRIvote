@@ -42,18 +42,20 @@
     
     </div>
     <br /><br />
-    <div class="row">
+    <div class="row col-md-12">
      
         @foreach (var imgPath in Directory.GetFiles(Server.MapPath(Model.files)))
         {
+
             var img = new FileInfo(imgPath);
-            <div class="col-md-2 col-md-offset-1">
-                <a href="@Url.Content(String.Format(Model.files + "/{0}", img.Name))"><img src="@Url.Content(String.Format(Model.files + "/{0}", img.Name))" alt="@imgPath" width="200" /></a>  
-                @Html.ActionLink(" Delete","Delete", new { path = imgPath }, new { @class = "btn btn-danger glyphicon glyphicon-trash" })               
+            <div class="col-md-3 button-top">
+                <a href="@Url.Content(String.Format(Model.files + "/{0}", img.Name))"><img src="@Url.Content(String.Format(Model.files + "/{0}", img.Name))" alt="@imgPath" width="200" /></a>
+                <div>
+                    <div class="col-md-2 button-down">
+                        @Html.ActionLink(" Delete", "Delete", new { path = imgPath }, new { @class = "btn btn-danger glyphicon glyphicon-trash" })
+                    </div>
+                </div>
             </div>
-            
-               
-            
         }
     </div>
     

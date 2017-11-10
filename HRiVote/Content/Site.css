@@ -184,3 +184,14 @@ a {
     user-select: none;
     min-width: 104px;
 }
+.button-top{
+    height:200px;
+    min-width:250px;
+    border-right:solid 1px;
+    border-bottom:solid 1px;
+   overflow:hidden;
+}
+.button-down{
+    position:absolute;
+    bottom:10px;
+}

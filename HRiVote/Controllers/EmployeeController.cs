@@ -78,9 +78,11 @@ namespace HRiVote.Controllers
              
             if (ModelState.IsValid)
             {
-                empl.Updated(employee, empl);              
-                Upload(file, file1, empl);
-
+                empl.Updated(employee, empl);
+                if (file != null || file1 != null)
+                {
+                    Upload(file, file1, empl);
+                }
                 if (skills!=null)
                 {
                     foreach (var item in skills)
@@ -132,7 +134,7 @@ namespace HRiVote.Controllers
         public ActionResult DeletePost(int id)
         {
             var employee = db.emps.Find(id);
-            db.emps.Remove(employee);
+            employee.EmploymentStatus = false;
             db.SaveChanges();
             return RedirectToAction("Index");
         }

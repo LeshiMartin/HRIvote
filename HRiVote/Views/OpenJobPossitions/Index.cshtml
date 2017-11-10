@@ -64,8 +64,8 @@
                                             @Html.DisplayFor(modelItem => item.EndOfJobOpenning)
                                         </td>
                                         <td>
-                                            @Html.ActionLink("Details", "Index", new { id = item.ID }, new { @class = "btn btn-info fa fa-search" }) |
-                                            @Html.ActionLink("Edit", "Index", new { Editid = item.ID }, new { @class = "btn btn-primary glyphicon glyphicon-pencil" }) |
+                                            @Html.ActionLink(" Details", "Index", new { id = item.ID }, new { @class = "btn btn-info glyphicon glyphicon-info-sign" }) |
+                                            @Html.ActionLink(" Edit", "Index", new { Editid = item.ID }, new { @class = "btn btn-primary glyphicon glyphicon-pencil" }) |
                                             @if (item.Status == true)
                                             {
                                                 <button class="btn btn-danger glyphicon glyphicon-trash js-delete" data-project-id="@item.ID" type="button"> Delete</button>
@@ -96,8 +96,8 @@
                             @Html.DisplayFor(modelItem => item.EndOfJobOpenning)
                         </td>
                         <td>
-                            @Html.ActionLink("Details", "Index", new { id = item.ID }, new { @class = "btn btn-info fa fa-search" }) |
-                            @Html.ActionLink("Edit", "Index", new { Editid = item.ID }, new { @class = "btn btn-primary glyphicon glyphicon-pencil" }) |
+                            @Html.ActionLink(" Details", "Index", new { id = item.ID }, new { @class = "btn btn-info glyphicon glyphicon-info-sign" }) |
+                            @Html.ActionLink(" Edit", "Index", new { Editid = item.ID }, new { @class = "btn btn-primary glyphicon glyphicon-pencil" }) |
                             @if (item.Status == true)
                             {
                                 <button class="btn btn-danger glyphicon glyphicon-trash js-delete"  data-project-id="@item.ID" type="button"> Delete</button>

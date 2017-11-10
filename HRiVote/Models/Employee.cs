@@ -82,6 +82,14 @@ namespace HRiVote.Models
             newEmployee.FullName = newEmployee.LastName + " " + newEmployee.FirstName;
             newEmployee.Phone = oldEMployee.Phone;
             newEmployee.VacationDays = oldEMployee.VacationDays;
+            if(oldEMployee.CV!= "No CV uploaded")
+            {
+                newEmployee.CV = oldEMployee.CV;
+            }
+            if(oldEMployee.Photo!= "No photo uploaded")
+            {
+                newEmployee.Photo = oldEMployee.Photo;
+            }
          
         }
         public void Remove()

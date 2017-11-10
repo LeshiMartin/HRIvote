@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Create";
 }
-<div class="Back container"style="border: solid transparent;border-radius: 20px;">
+<div class="container col-sm-offset-1">
     <h2>Create</h2>
 
 
@@ -79,10 +79,10 @@
                 @Html.LabelFor(model => model.InterviewRound, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.DropDownList("InterviewRound", new List<SelectListItem> {
-    new SelectListItem{Text="First Round", Value="1", Selected=true},
-    new SelectListItem{Text="Second Round", Value="2"},
-    new SelectListItem{Text="Third Round", Value="3"}
-}, htmlAttributes: new { @class = "form-control" })
+                   new SelectListItem{Text="First Round", Value="1", Selected=true},
+                   new SelectListItem{Text="Second Round", Value="2"},
+                   new SelectListItem{Text="Third Round", Value="3"}
+                    }, htmlAttributes: new { @class = "form-control" })
                     <br class="form-control" />
                     <br />
                     @Html.ValidationMessageFor(model => model.InterviewRound, "", new { @class = "text-danger" })
@@ -100,7 +100,7 @@
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Upload" class="btn btn-default btn-success" style="border-radius: 12px;padding: 6px 20px;font-size: 15px;"/>
+                    <input type="submit" value="Save" class="btn btn-default btn-success" />
                 </div>
             </div>
         </div>
@@ -110,7 +110,7 @@
 <br />
 <div class="Back container"style="border: solid transparent;border-radius: 20px;">
     <div>
-        @Html.ActionLink(" Back to List", "Index", null, new { @class = "btn btn-info fa fa-backward", @style = "border-radius: 12px;padding: 6px 20px;font-size: 15px;" })
+        @Html.ActionLink(" Back to List", "Index", null, new { @class = "btn btn-primary fa fa-backward"})
     </div>
 </div>
             @section Scripts {

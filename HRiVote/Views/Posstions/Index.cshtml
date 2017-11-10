@@ -8,7 +8,7 @@
     <h2>List</h2>
 
     <p>
-        @Html.ActionLink("Create New", "AddPosition","",new { @class = "btn btn-primary glyphicon glyphicon-pencil", @style = "border-radius: 12px;padding: 4px 10px;font-size: 13px;" })
+        @Html.ActionLink(" CreateNew", "AddPosition","",new { @class = "btn btn-primary glyphicon glyphicon-pencil" })
     </p>
     <table id="table" class="table table-bordered table-bordered ">
         <thead>
@@ -25,17 +25,17 @@
 
                 <tr>
                     <td>
-                        @Html.ActionLink(item.Title, "Index", "Employee", new { id = item.ID }, new { @class = "fa fa-paperplane" })
+                        @Html.DisplayFor(x=>item.Title)
                     </td>
                     <td>
 
                         @if (item.Status == true)
                 {
-                            <button data-project-id="@item.ID" type="button" class="btn btn-danger glyphicon glyphicon-trash js-delete">Delete</button>
+                            <button data-project-id="@item.ID" type="button" class="btn btn-danger glyphicon glyphicon-trash js-delete"> Delete</button>
                         }
                         else
                         {
-                            <button data-project-id="@item.ID" type="button" class="btn btn-primary glyphicon glyphicon-arrow-up js-update">Add</button>
+                            <button data-project-id="@item.ID" type="button" class="btn btn-primary glyphicon glyphicon-arrow-up js-update"> Add</button>
                         }
                     </td>
                 </tr>

@@ -21,6 +21,10 @@ namespace HRiVote.Models
         [DataType(DataType.Date), DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         [Required]
         public DateTime EndOfJobOpenning { get; set; }
+        public OpenPosition()
+        {
+
+        }
         public void Update(OpenPosition old,OpenPosition newpos)
         {
             old.Description = newpos.Description;

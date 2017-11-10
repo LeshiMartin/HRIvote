@@ -50,17 +50,19 @@ namespace HRiVote.Models
         [Required]
        // [Display(Name ="Круг на интервју")]
         public int InterviewRound { get; set; }
+        public Candidate()
+        {
 
-        //public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        //{
-        //    List<ValidationResult> results = new List<ValidationResult>();
-
-        //    if (InterviewDate < DateTime.Now || InterviewTime < DateTime.Now)
-        //    {
-        //        results.Add(new ValidationResult("Interview date and time must be greater than current time", new[] { "InterviewDate", "InterviewTime" }));
-        //    }
-
-        //    return results;
-        //}
+        }
+        public void Update(Candidate candidate,Candidate item)
+        {
+            candidate.FirstName = item.FirstName;
+            candidate.LastName = item.LastName;
+            candidate.Email = item.Email;
+            candidate.InterviewDate = item.InterviewDate;
+            candidate.InterviewRound = item.InterviewRound;
+            candidate.InterviewTime = item.InterviewTime;
+            candidate.PhoneNumber = item.PhoneNumber;
+        }
     }
 }

@@ -48,6 +48,7 @@ namespace HRiVote.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult IndexPost(OpenPosition item)
         {
+            var possitions = db.positions.ToList();
             var job = db.pozicii.Single(x => x.ID == item.ID);
             if(job == null)
             {
@@ -55,12 +56,13 @@ namespace HRiVote.Controllers
             }
             else
             {
-                //item.Update(item, job);
-                job.Description = item.Description;
-                job.EndOfJobOpenning = item.EndOfJobOpenning;
-                job.Name = item.Name;
-                job.StartOfJobOpenning = item.StartOfJobOpenning;
+                //UPdatte na oglasot i dokolku taa pozicija ja nema vo bazata na rabotni pozicii se dodava
+                job.Update(job, item);               
                 job.Status = true;
+                if (!possitions.Select(x => x.Title).Contains(item.Name))
+                {
+                    AddtoPossitions(item);
+                }
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -71,15 +73,12 @@ namespace HRiVote.Controllers
             return View(open);
 
         }
-        //public ActionResult UpdatePossition(int id)
-        //{
-        //    var possition = db.pozicii.Single(x => x.ID == id);
-        //    return View("OpenPosition", possition);
-        //}
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Save(OpenPosition open)
         {
+            var possitions = db.positions.ToList();
             if (open.ID == 0)
             {
 
@@ -87,6 +86,10 @@ namespace HRiVote.Controllers
                 {
                     open.Status = true;
                     db.pozicii.Add(open);
+                    if (!possitions.Select(x => x.Title).Contains(open.Name))
+                    {
+                        AddtoPossitions(open);
+                    }
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
@@ -98,22 +101,26 @@ namespace HRiVote.Controllers
             }
             else
             {
-                var pos = db.pozicii.Single(x => x.ID == open.ID);
+                var pos = db.pozicii.Single(x => x.ID == open.ID);                
+                if (!possitions.Select(x => x.Title).Contains(open.Name))
+                {
+                    AddtoPossitions(open);                   
+                }
                 pos.Update(open, pos);
                 pos.Status = true;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
         }
-        //public ActionResult Details(int id)
-        //{
-        //    var pos = db.pozicii.Find(id);
-        //    if (pos == null)
-        //    {
-        //        return HttpNotFound();
-
-        //    }
-        //    return View(pos);
-        //}
+        //Metod za Dodavanje na pozicii vo clasata na pozicii
+            public void AddtoPossitions(OpenPosition open)
+            {
+            var possition = new JobPosition()
+            {
+                Status = true,
+                Title = open.Name
+            };
+            db.positions.Add(possition);
+            }
     }
 }

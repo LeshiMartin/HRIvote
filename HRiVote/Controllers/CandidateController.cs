@@ -64,27 +64,11 @@ namespace HRiVote.Controllers
                 Candidate = db.aplikanti.ToList()
             };
             if (ModelState.IsValid)
-            {
-                if (file != null && file.ContentLength > 0)
-                {
-                    string _FileName = Path.GetFileName(file.FileName);
-                    string _path = Path.Combine(Server.MapPath("~/Managment/Document's"), _FileName);
-                    file.SaveAs(_path);
-                    item.CV = "~/Managment/Document's" + file.FileName;
-                }
-                else
-                {
-                    item.CV = "Cv not Uploaded";
-                    //ViewBag.Message = "Cv not Uploaded";
-                }
+            {              
+                //Gi Povikivam metodite za Upload i Update 
                 var candidate = db.aplikanti.Single(x => x.ID == item.ID);
-                candidate.FirstName = item.FirstName;
-                candidate.LastName = item.LastName;
-                candidate.Email = item.Email;
-                candidate.InterviewDate = item.InterviewDate;
-                candidate.InterviewRound = item.InterviewRound;
-                candidate.InterviewTime = item.InterviewTime;
-                candidate.PhoneNumber = item.PhoneNumber;
+                Upload(file, candidate);
+                candidate.Update(candidate, item);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -106,19 +90,8 @@ namespace HRiVote.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (file != null && file.ContentLength > 0)
-                {
-                    string _FileName = Path.GetFileName(file.FileName);
-                    string _path = Path.Combine(Server.MapPath("~/Managment/Document's"), _FileName);
-                    file.SaveAs(_path);
-                    candidate.CV = "~/Managment/Document's" + file.FileName;
-                }
-                else
-                {
-                    candidate.CV = "Cv not Uploaded";
-                    //ViewBag.Message = "Cv not Uploaded";
-                }
-               
+                //Go Povikuvam metodot za upload
+                Upload(file, candidate);
                
                 if(InterviewRound.HasValue)
                 {
@@ -131,8 +104,21 @@ namespace HRiVote.Controllers
 
             return View(candidate);
         }
-      
-
+      //Uplouduivanje na files
+        public void Upload(HttpPostedFileBase file,Candidate candidate)
+        {
+            if (file != null && file.ContentLength > 0)
+            {
+                string _FileName = Path.GetFileName(file.FileName);
+                string _path = Path.Combine(Server.MapPath("~/Managment/Document's"), _FileName);
+                file.SaveAs(_path);
+                candidate.CV = "~/Managment/Document's" + file.FileName;
+            }
+            else
+            {
+                candidate.CV = "Cv not Uploaded";
+            }
+        }
 
         protected override void Dispose(bool disposing)
         {

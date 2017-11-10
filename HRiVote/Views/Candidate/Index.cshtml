@@ -8,7 +8,7 @@
     <h2 class="col-md-6 col-md-offset-5" >List of Candidates</h2>
     @ViewBag.Error
     <p class="col-md-2">
-        @Html.ActionLink(" Create New", "Create", null, new { @class = "btn btn-info glyphicon glyphicon-pencil", @style = "border-radius: 12px;padding: 8px 10px;font-size: 15px;" })
+        @Html.ActionLink(" CreateNew", "Create", null, new { @class = "btn btn-primary glyphicon glyphicon-pencil" })
     </p>  
         @Html.ValidationSummary() 
     <div class="form-group">
@@ -88,11 +88,12 @@
                                                                   new SelectListItem{Text="Second Round", Value="2"},
                                                                   new SelectListItem{Text="Third Round", Value="3"}
                                                                   }, htmlAttributes: new { @class = "form-control" })
-
                                         </td>
-
-
-                                        <td><input type="submit" class="btn btn-success js-success" data-project-id="" value="Update" /></td>
+                                        <td>
+                                            <input type="submit" class="btn btn-success js-success" data-project-id="" value="Update" />
+                                            @Html.ActionLink(" Return", "Index", null, new { @class = "btn btn-primary fa fa-backward" })
+                                        </td>
+                                       
                                     }
                                 }
                                 else
@@ -129,7 +130,7 @@
                                         @Html.DisplayFor(modelItem => item.InterviewRound)
                                     </td>
                                     <td>
-                                        @Html.ActionLink(" Details", "Index", new { candidateid = item.ID }, new { @class = "btn btn-info fa fa-search" })<br />
+                                        @Html.ActionLink(" Details", "Index", new { candidateid = item.ID }, new { @class = "btn btn-info glyphicon glyphicon-info-sign" })<br />
                                         @Html.ActionLink(" Edit", "Index", new { updateid = item.ID }, new { @class = "btn btn-primary glyphicon glyphicon-pencil" })         <br />
                                         <button class="btn btn-danger btn-sm btn-group-sm glyphicon glyphicon-trash js-delete" type="button" data-project-id="@item.ID"> Delete</button>
 
@@ -175,9 +176,9 @@
                                 @Html.DisplayFor(modelItem => item.InterviewRound)
                             </td>
                             <td>
-                                @Html.ActionLink(" Details", "Index", new { candidateid = item.ID }, new { @class = "btn btn-info fa fa-search", @id = "btn" })     <br />
+                                @Html.ActionLink(" Details", "Index", new { candidateid = item.ID }, new { @class = "btn btn-info glyphicon glyphicon-info-sign", @id = "btn" })     <br />
                                 @Html.ActionLink(" Edit", "Index", new { updateid = item.ID }, new { @class = "btn btn-primary glyphicon glyphicon-pencil" })              <br />
-                                <button class="btn btn-danger btn-sm btn-group-sm glyphicon glyphicon-trash js-delete" type="button" data-project-id="@item.ID">Delete</button>
+                                <button class="btn btn-danger btn-sm btn-group-sm glyphicon glyphicon-trash js-delete" type="button" data-project-id="@item.ID"> Delete</button>
                             </td>
                         </tr>
 
