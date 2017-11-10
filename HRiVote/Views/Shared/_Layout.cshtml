@@ -92,8 +92,10 @@
                                 </div>
                                 <div id="collapse4" class="panel-collapse collapse">
                                     <div class="panel-body">
-                                        @Html.ActionLink(" Active Job Titles", "Index", "Posstions", new { status = true }, new { @class = "fa fa-paper-plane" })<br />
+                                        @Html.ActionLink(" Active Job Titles", "Index", "Posstions", new { status = true}, new { @class = "fa fa-paper-plane" })<br />
                                         @Html.ActionLink(" Removed Job Titles", "Index", "Posstions", new { status = false }, new { @class = "fa fa-paper-plane" })<br />
+                                        @Html.ActionLink(" Active SKills", "Index", "Posstions", new { skilStatus = true },new { @class="fa fa-paper-plane"})<br />
+                                        @Html.ActionLink(" Removed SKills", "Index", "Posstions", new { skilStatus = false }, new { @class = "fa fa-paper-plane" })
                                     </div>
 
                                 </div>

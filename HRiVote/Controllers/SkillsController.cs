@@ -37,10 +37,10 @@ namespace HRiVote.Controllers
         }
 
         // GET: Skills/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
+        //public ActionResult Create()
+        //{
+        //    return View(");
+        //}
 
         // POST: Skills/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 

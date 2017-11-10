@@ -305,13 +305,13 @@
     <Compile Include="Controllers\API\FileController.cs" />
     <Compile Include="Controllers\API\OpenController.cs" />
     <Compile Include="Controllers\API\PossitonsController.cs" />
+    <Compile Include="Controllers\API\SkillController.cs" />
     <Compile Include="Controllers\API\TreeController.cs" />
     <Compile Include="Controllers\CalendarController.cs" />
     <Compile Include="Controllers\CandidateController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\OpenJobPossitionsController.cs" />
     <Compile Include="Controllers\PosstionsController.cs" />
     <Compile Include="Controllers\SkillsController.cs" />
@@ -484,6 +484,7 @@
     <Compile Include="ViewModels\EmployeeViewModel.cs" />
     <Compile Include="ViewModels\FileViewModel.cs" />
     <Compile Include="ViewModels\OpenJobViewModel.cs" />
+    <Compile Include="ViewModels\PositionSkillViewModel.cs" />
     <Compile Include="ViewModels\PossitionsViewModel.cs" />
     <Compile Include="ViewModels\PosstionSkilllViewModel.cs" />
   </ItemGroup>
@@ -1102,7 +1103,6 @@
     <Folder Include="Managment\CV%27S\" />
     <Folder Include="Managment\Document%27s\" />
     <Folder Include="obj\Debug\TempPE\" />
-    <Folder Include="Views\Menu\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">

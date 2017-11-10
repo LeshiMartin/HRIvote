@@ -1,50 +1,97 @@
-﻿@model IEnumerable<HRiVote.Models.JobPosition>
-
+﻿@model HRiVote.ViewModels.PositionSkillViewModel
 @{
     ViewBag.Title = "Index";
 }
 
-<div class="container Back col-sm-offset-3 col-sm-6" style="border: solid transparent;border-radius: 20px;">
-    <h2>List</h2>
-
-    <p>
-        @Html.ActionLink(" CreateNew", "AddPosition","",new { @class = "btn btn-primary glyphicon glyphicon-pencil" })
-    </p>
-    <table id="table" class="table table-bordered table-bordered ">
-        <thead>
-            <tr>
-                <th class="text-center" width="150">
-                    @Html.DisplayNameFor(model => model.Title)
-                </th>
-                <th width="250" class="text-center"> Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
+<div class="container col-sm-offset-1" >
+    
+        <div class="col-md-4 col-md-offset-1" >
+            <h2 class="text-center">List of Possitions</h2>
+            <br /><br />
+            <p>
+                @Html.ActionLink(" CreateNew", "AddPosition", "", new { @class = "btn btn-primary glyphicon glyphicon-pencil" })
+            </p>
+            <table id="table" class="table table-bordered table-bordered ">
+                <thead>
+                    <tr>
+                        <th >
+                            Title
+                        </th>
+                        <th > Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.poss)
             {
 
-                <tr>
-                    <td>
-                        @Html.DisplayFor(x=>item.Title)
-                    </td>
-                    <td>
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(x => item.Title)
+                            </td>
+                            <td>
 
-                        @if (item.Status == true)
+                                @if (item.Status == true)
                 {
-                            <button data-project-id="@item.ID" type="button" class="btn btn-danger glyphicon glyphicon-trash js-delete"> Delete</button>
-                        }
-                        else
-                        {
-                            <button data-project-id="@item.ID" type="button" class="btn btn-primary glyphicon glyphicon-arrow-up js-update"> Add</button>
-                        }
-                    </td>
-                </tr>
+                                    <button data-project-id="@item.ID" type="button" class="btn btn-danger glyphicon glyphicon-trash js-delete"> Delete</button>
+                                }
+                                else
+                                {
+                                    <button data-project-id="@item.ID" type="button" class="btn btn-primary glyphicon glyphicon-arrow-up js-update"> Add</button>
+                                }
+                            </td>
+                        </tr>
 
-            }
-        </tbody>  
+                    }
+                </tbody>
 
-    </table>
-</div>
+            </table>
+        </div>
+    <div class="col-md-1 col-md-offset-1"style="border-left:solid 1px;height:1000px;">
+
+    </div>
+        <div class="col-md-3 col-md-offset-1" >
+            <h2 class="text-center">List of Skills</h2>
+            <br /><br />
+            <p>
+                @Html.ActionLink(" CreateNew", "AddPosition", new { skillid = 1 }, new { @class = "btn btn-primary glyphicon glyphicon-pencil" })
+            </p>
+            <table id="mytable" class="table table-bordered table-bordered ">
+                <thead>
+                    <tr>
+                        <th >
+                            Title
+                        </th>
+                        <th> Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.skils)
+            {
+
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(x => item.Skill)
+                            </td>
+                            <td>
+
+                                @if (item.status == true)
+                {
+                                    <button data-project-id="@item.ID" type="button" class="btn btn-danger glyphicon glyphicon-trash js-delete1"> Delete</button>
+                                }
+                                else
+                                {
+                                    <button data-project-id="@item.ID" type="button" class="btn btn-primary glyphicon glyphicon-arrow-up js-update1"> Add</button>
+                                }
+                            </td>
+                        </tr>
+
+                    }
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+
 
 @section scripts{
 <script src="~/Scripts/DataTables/dataTables.bootstrap.min.js"></script>
@@ -54,6 +101,7 @@
 
         $(document).ready(function () {
             $("#table").DataTable();
+            $("#mytable").DataTable();
             $("#table").on("click", ".js-delete", function () {
                 var button = $(this);
                 var dialog = bootbox.dialog({
@@ -104,6 +152,68 @@
                             callback: function () {
                                 $.ajax({
                                     url: "/api/Possitons/" + button.attr("data-project-id"),
+                                    method: "PUT",
+                                    success: function () {
+
+                                        button.parents("tr").remove();
+                                    }
+                                })
+
+                            }
+                        }
+                    }
+                });
+            });
+            $("#mytable").on("click", ".js-delete1", function () {
+                var button = $(this);
+                var dialog = bootbox.dialog({
+                    title: 'Remove',
+                    message: "<p>Are you sure you want to remove it</p>",
+                    buttons: {
+                        no: {
+                            label: "Cancel",
+                            className: 'btn1 btn-default',
+                            callback: function () {
+                                dialog.modal('hide')
+                            }
+                        },
+                        ok: {
+                            label: "Yes",
+                            className: 'btn1 btn-danger',
+                            callback: function () {
+                                $.ajax({
+                                    url: "/api/Skill/" + button.attr("data-project-id"),
+                                    method: "DELETE",
+                                    success: function () {
+                                        button.parents("tr").remove();
+                                    }
+                                })
+
+                            }
+                        }
+                    }
+                });
+
+            });
+            $("#mytable").on("click", ".js-update1", function () {
+                var button = $(this);
+                var dialog = bootbox.dialog({
+                    title: 'Remove',
+                    message: "<p>Are you sure you want to remove it</p>",
+                    buttons: {
+                        no: {
+                            label: "no",
+                            className: 'btn1 btn-danger',
+                            callback: function () {
+                                dialog.modal('hide')
+                            }
+                        },
+                        ok: {
+                            label: "ok",
+                            className: 'btn1 btn-default',
+                            callback: function () {
+                                $.ajax({
+                                    url: "/api/Skill/" + button.attr("data-project-id"),
                                     method: "PUT",
                                     success: function () {
 

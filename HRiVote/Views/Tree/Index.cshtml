@@ -22,6 +22,7 @@
             <input type="submit" value="upload" class="btn btn-primary" />
         </div>
     </div>
+        <br /><br />
     <div class="row">
      @foreach (var item in Model.pics)
      {
@@ -49,7 +50,7 @@
 
             var img = new FileInfo(imgPath);
             <div class="col-md-3 button-top">
-                <a href="@Url.Content(String.Format(Model.files + "/{0}", img.Name))"><img src="@Url.Content(String.Format(Model.files + "/{0}", img.Name))" alt="@imgPath" width="200" /></a>
+                <a href="@Url.Content(String.Format(Model.files + "/{0}", img.Name))" target="_blank"><img src="@Url.Content(String.Format(Model.files + "/{0}", img.Name))" alt="@imgPath" width="200" /></a>
                 <div>
                     <div class="col-md-2 button-down">
                         @Html.ActionLink(" Delete", "Delete", new { path = imgPath }, new { @class = "btn btn-danger glyphicon glyphicon-trash" })

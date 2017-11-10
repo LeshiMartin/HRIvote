@@ -15,8 +15,9 @@ namespace HRiVote.Controllers
     {
         private Entity db = new Entity();
         // GET: Posstions
-        public ActionResult Index(bool? status)
+        public ActionResult Index(bool? status,bool? skilStatus)
         {
+            var skills = db.skilss.ToList();
             var possitions = db.positions.ToList();
             if (!status.HasValue)
             {
@@ -26,9 +27,22 @@ namespace HRiVote.Controllers
             {
                 possitions = db.positions.Where(c => c.Status == status).ToList();
             }
-            return View(possitions);
+            if (!skilStatus.HasValue)
+            {
+                skills = db.skilss.Where(s => s.status == true).ToList();
+            }
+            else
+            {
+                skills = db.skilss.Where(s => s.status == skilStatus).ToList();
+            }
+            var viewmodel = new PositionSkillViewModel()
+            {
+                poss = possitions,
+                skils = skills
+            };
+            return View(viewmodel);
         }
-        public ActionResult AddPosition(int? id)
+        public ActionResult AddPosition(int? id,int?skillid)
         {
             var viewmodel = new PosstionSkilllViewModel()
             {
@@ -38,9 +52,24 @@ namespace HRiVote.Controllers
             if (id.HasValue)
             {
                 TempData["value"] = id;
+                TempData["skill"] = skillid;
             }
+            if (skillid.HasValue) { }
             return View(viewmodel);
         }
+        //public ActionResult Create(int?id)
+        //{
+        //    var viewmodel = new PosstionSkilllViewModel()
+        //    {
+        //        jobPosition = new JobPosition(),
+        //        skills = new Skills()
+        //    };
+        //    if (id.HasValue)
+        //    {
+        //        TempData["skill"] = id;
+        //    }
+        //    return View("AddPosition",viewmodel);
+        //}
         [HttpPost]
         [ActionName("AddPosition")]
         [ValidateAntiForgeryToken]
@@ -48,23 +77,34 @@ namespace HRiVote.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (!db.positions.Select(x => x.Title).Contains(jobPosition.Title))
+                if (jobPosition.Title!=null)
                 {
-                    jobPosition.Status = true;
-                    db.positions.Add(jobPosition);
-                    db.SaveChanges();
+                    if (!db.positions.Select(x => x.Title).Contains(jobPosition.Title))
+                    {
+                        jobPosition.Status = true;
+                        db.positions.Add(jobPosition);
+                        db.SaveChanges();
+                    } 
                 }
-                if (!db.skilss.Select(x => x.Skill).Contains(skill))
+                if (!string.IsNullOrWhiteSpace(skill))
                 {
-                    var skils = new Skills() { status = true, Skill = skill };
-                    db.skilss.Add(skils);
-                    db.SaveChanges();
+                    if (!db.skilss.Select(x => x.Skill).Contains(skill))
+                    {
+                        var skils = new Skills() { status = true, Skill = skill };
+                        db.skilss.Add(skils);
+                        db.SaveChanges();
 
+                    } 
                 }
                 var h = (int?)TempData["value"];
+                var k = (int?)TempData["skill"];
                 if (h.HasValue)
                 {
                     return RedirectToAction("AddEmployee","Employee");
+                }
+                else if (k.HasValue)
+                {
+                    return RedirectToAction("Index");
                 }
                 else
                 {
